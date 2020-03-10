@@ -22,7 +22,7 @@ description: :)
 navbar-links:
   About Me: "index"
   Blogs: "blog"
-  DataComm Reading Group: "reading"
+  DataComm Reading Group: "https://haoma7.github.io/readinggroup"
 #  Resources:
 #    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
 #    - Learn markdown: "http://www.markdowntutorial.com/"
