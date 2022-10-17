@@ -41,10 +41,13 @@ extra_javascript:
 
 nav:
   - Home: ./index.md
-  - Section:
-    - section/index.md
-    - Page 1: section/page-1.md
-    - Page n: section/page-n.md
+  - Machine Learning:
+    - Machine-Learning/index.md
+    - Page 1: Machine-Learning/page-1.md
+  - Web and Cloud:
+    - Web-and-Cloud/index.md
+    - Page 1: Web-and-Cloud/page-1.md
+
   - Tags: tags.md
 
 plugins:
@@ -62,3 +65,4 @@ extra:
     
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/mahao/
+
