@@ -1,0 +1,13 @@
+.md-grid {
+  max-width: 1600px; 
+}
+
+.md-tabs__link {font-size:1rem}
+
+
+[data-md-color-scheme="light-scheme"] {
+    --md-primary-fg-color:        rgba(5, 121, 230, 0.959);
+    --md-primary-fg-color--light: #ECB7B7;
+    --md-primary-fg-color--dark:  #90030C;
+    /* --md-footer-bg-color: {{ super() }}  */
+  }
