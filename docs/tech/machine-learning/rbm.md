@@ -1,8 +1,7 @@
 ---
 tags:
-  - HTML5
-  - JavaScript
-  - CSS
+  - machine learning
+  - generative model
 comments: true
 ---
 
