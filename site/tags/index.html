@@ -684,22 +684,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#css" class="md-nav__link">
-    CSS
+  <a href="#energy-model" class="md-nav__link">
+    Energy Model
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#html5" class="md-nav__link">
-    HTML5
+  <a href="#gibbs-sampling" class="md-nav__link">
+    Gibbs Sampling
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#javascript" class="md-nav__link">
-    JavaScript
+  <a href="#markov-chain-monte-carlo" class="md-nav__link">
+    Markov Chain Monte Carlo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-random-field" class="md-nav__link">
+    Markov Random Field
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricted-boltzmann-machine" class="md-nav__link">
+    Restricted Boltzmann Machine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generative-model" class="md-nav__link">
+    generative model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    machine learning
   </a>
   
 </li>
@@ -739,22 +767,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#css" class="md-nav__link">
-    CSS
+  <a href="#energy-model" class="md-nav__link">
+    Energy Model
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#html5" class="md-nav__link">
-    HTML5
+  <a href="#gibbs-sampling" class="md-nav__link">
+    Gibbs Sampling
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#javascript" class="md-nav__link">
-    JavaScript
+  <a href="#markov-chain-monte-carlo" class="md-nav__link">
+    Markov Chain Monte Carlo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-random-field" class="md-nav__link">
+    Markov Random Field
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricted-boltzmann-machine" class="md-nav__link">
+    Restricted Boltzmann Machine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generative-model" class="md-nav__link">
+    generative model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    machine learning
   </a>
   
 </li>
@@ -775,6 +831,41 @@
       main{
          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       }
+      body {
+    counter-reset: h1
+}
+
+h1 {
+    counter-reset: h2
+}
+
+h2 {
+    counter-reset: h3
+}
+
+h3 {
+    counter-reset: h4
+}
+
+h1:before {
+    counter-increment: h1;
+    content: counter(h1) ". "
+}
+
+h2:before {
+    counter-increment: h2;
+    content: counter(h1) "." counter(h2) ". "
+}
+
+h3:before {
+    counter-increment: h3;
+    content: counter(h1) "." counter(h2) "." counter(h3) ". "
+}
+
+h4:before {
+    counter-increment: h4;
+    content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". "
+}
    </style>
      
                   
@@ -785,15 +876,31 @@
 
 <h1 id="tags">Tags</h1>
 <p>Following is a list of relevant tags:</p>
-<h2 id="css"><span class="md-tag">CSS</span></h2>
+<h2 id="energy-model"><span class="md-tag">Energy Model</span></h2>
 <ul>
 <li><a href="../tech/machine-learning/rbm/">Restricted Boltzmann Machine</a></li>
 </ul>
-<h2 id="html5"><span class="md-tag">HTML5</span></h2>
+<h2 id="gibbs-sampling"><span class="md-tag">Gibbs Sampling</span></h2>
 <ul>
 <li><a href="../tech/machine-learning/rbm/">Restricted Boltzmann Machine</a></li>
 </ul>
-<h2 id="javascript"><span class="md-tag">JavaScript</span></h2>
+<h2 id="markov-chain-monte-carlo"><span class="md-tag">Markov Chain Monte Carlo</span></h2>
+<ul>
+<li><a href="../tech/machine-learning/rbm/">Restricted Boltzmann Machine</a></li>
+</ul>
+<h2 id="markov-random-field"><span class="md-tag">Markov Random Field</span></h2>
+<ul>
+<li><a href="../tech/machine-learning/rbm/">Restricted Boltzmann Machine</a></li>
+</ul>
+<h2 id="restricted-boltzmann-machine"><span class="md-tag">Restricted Boltzmann Machine</span></h2>
+<ul>
+<li><a href="../tech/machine-learning/rbm/">Restricted Boltzmann Machine</a></li>
+</ul>
+<h2 id="generative-model"><span class="md-tag">generative model</span></h2>
+<ul>
+<li><a href="../tech/machine-learning/rbm/">Restricted Boltzmann Machine</a></li>
+</ul>
+<h2 id="machine-learning"><span class="md-tag">machine learning</span></h2>
 <ul>
 <li><a href="../tech/machine-learning/rbm/">Restricted Boltzmann Machine</a></li>
 </ul>
