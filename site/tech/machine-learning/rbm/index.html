@@ -356,10 +356,27 @@
 <h1 id="an-introduction-to-restricted-boltzmann-machine-and-conditional-restricted-boltzmann-machine"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.</span> An introduction to Restricted Boltzmann Machine and Conditional Restricted Boltzmann Machine</h1>
 <h2 id="markov-chain-monte-carlo-simulations-for-the-ising-model"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1</span> Markov Chain Monte Carlo simulations for the Ising Model</h2>
 <h3 id="ising-model"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1.1</span> Ising Model</h3>
-<p>The Ising model is a formalized stochastic model of ferromagnet (i.e., an ordinary magnet) and is a d-dimensional lattice that can be denoted as the set below:</p>
-<div class="arithmatex">\[\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)\]</div>
-<p>$ I = \left{(x_1,x_2,x_d)\right}. $</p>
-<div class="arithmatex">\[ I = \{(x_1,x_2,\ldots,x_d)\in\mathbb{Z}^d: 1\leq x_l\leq L, l=1,2,\ldots,d\}. \]</div>
+<p>The Ising model is a formalized stochastic model of ferromagnet (i.e., an ordinary magnet) and is a <span class="arithmatex">\(d\)</span>-dimensional lattice that can be denoted as the set below:</p>
+<div class="arithmatex">\[ I = \Big\{(x_1,x_2,\ldots,x_d)\in\mathbb{Z}^d: 1\leq x_l\leq L, l=1,2,\ldots,d\Big\}.\]</div>
+<p>Each site can be considered as an iron atom if <span class="arithmatex">\(I\)</span> is an iron magnet. Specifically, a 2-dimensional Ising model contains <span class="arithmatex">\(L^2\)</span> sites which are evenly distributed in a square lattice. </p>
+<p>A <em>spin configuration</em> on <span class="arithmatex">\(I\)</span> is a function 
+$$
+    \mathbf{\sigma}: I\xrightarrow{} \Big{\pm 1\Big}
+$$
+which assigns a spin up (+1) or a spin down (-1) to each site in <span class="arithmatex">\(I\)</span>.</p>
+<p>\emph{Hamiltonian} <span class="arithmatex">\(\mathcal{H}(\mathbf{\sigma})\)</span> is a function which specifies the total energy of a spin configuration. In the absence of an external magnetic field, it is defined as 
+\begin{equation}
+    \mathcal{H}(\mathbf{\sigma}) = - J \sum_{x,y}\sigma_x\sigma_y
+\end{equation}
+where <span class="arithmatex">\(J\)</span> is the \emph{coupling constant}, and <span class="arithmatex">\(\sigma_x\)</span> and <span class="arithmatex">\(\sigma_y\)</span> represent the spin of site <span class="arithmatex">\(x\)</span> and site <span class="arithmatex">\(y\)</span>, respectively, and the summation is taken over all pairs of <span class="arithmatex">\((x,y)\)</span> where site <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are neighbours. Two sites are neighbours if exactly one coordinate of two sites differ by 1.</p>
+<p>The probability of a spin configuration follows the \emph{Boltzmann distribution}:
+\begin{equation}
+    p(\mathbf{\sigma})=\frac{1}{Z}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T})
+\end{equation}
+where <span class="arithmatex">\(k_B\)</span> is the Boltzmann constant and <span class="arithmatex">\(T\)</span> is the absolute temperature. <span class="arithmatex">\(Z\)</span> is a normalizing constant known as the \emph{partition function} and is defined as 
+\begin{equation}
+    Z = \sum_{\sigma}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T})
+\end{equation}</p>
 <h2 id="__comments"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2</span> Comments</h2>
 <!-- Insert generated snippet here -->
 <script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOINKUzM4CSBXc" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="haoma7/haoma7.github.io" data-repo-id="R_kgDOINKUzA" data-strict="0" data-theme="preferred_color_scheme" src="https://giscus.app/client.js">
