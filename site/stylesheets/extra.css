@@ -4,10 +4,19 @@
 
 .md-tabs__link {font-size:1rem}
 
+.rbm{text-align: center;}
+.rbm img{ width: 20rem; }
+
+ol:has(+li) { list-style-type:none;}
+
 
 [data-md-color-scheme="light-scheme"] {
     --md-primary-fg-color:        rgba(5, 121, 230, 0.959);
     --md-primary-fg-color--light: #ECB7B7;
     --md-primary-fg-color--dark:  #90030C;
     /* --md-footer-bg-color: {{ super() }}  */
+  }
+
+.enumerate-headings-plugin {
+    filter: opacity(35%);
   }

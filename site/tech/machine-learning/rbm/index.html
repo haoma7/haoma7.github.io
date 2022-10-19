@@ -22,7 +22,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#an-introduction-to-restricted-boltzmann-machine-and-conditional-restricted-boltzmann-machine">
+<a class="md-skip" href="#markov-chain-monte-carlo-simulations-for-the-ising-model">
           Skip to content
         </a>
 </div>
@@ -223,11 +223,59 @@
     Ising Model
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#markov-chain-monte-carlo-simulations">
+    Markov Chain Monte Carlo Simulations
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-concise-tutorial-for-restricted-boltzmann-machine">
+    A Concise Tutorial for Restricted Boltzmann Machine
+  </a>
+<nav aria-label="A Concise Tutorial for Restricted Boltzmann Machine" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#training">
+    Training
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rbm-training-algorithm">
+    RBM Training Algorithm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implementation-in-python">
+    Implementation in Python
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#binary-conditional-rbm">
+    Binary Conditional RBM
+  </a>
+<nav aria-label="Binary Conditional RBM" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implementation-in-python_1">
+    Implementation in Python
+  </a>
+</li>
 </ul>
 </nav>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../transformer/">
+        Head First Transformer
+      </a>
 </li>
 </ul>
 </nav>
@@ -329,6 +377,49 @@
     Ising Model
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#markov-chain-monte-carlo-simulations">
+    Markov Chain Monte Carlo Simulations
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-concise-tutorial-for-restricted-boltzmann-machine">
+    A Concise Tutorial for Restricted Boltzmann Machine
+  </a>
+<nav aria-label="A Concise Tutorial for Restricted Boltzmann Machine" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#training">
+    Training
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rbm-training-algorithm">
+    RBM Training Algorithm
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implementation-in-python">
+    Implementation in Python
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#binary-conditional-rbm">
+    Binary Conditional RBM
+  </a>
+<nav aria-label="Binary Conditional RBM" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#implementation-in-python_1">
+    Implementation in Python
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -353,31 +444,761 @@
 <a class="md-tag" href="../../../tags/#energy-model">Energy Model</a>
 <a class="md-tag" href="../../../tags/#markov-random-field">Markov Random Field</a>
 </nav>
-<h1 id="an-introduction-to-restricted-boltzmann-machine-and-conditional-restricted-boltzmann-machine"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.</span> An introduction to Restricted Boltzmann Machine and Conditional Restricted Boltzmann Machine</h1>
+<h1><span class="enumerate-headings-plugin enumerate-heading-plugin">1.</span> Restricted Boltzmann Machine</h1>
+<p>An introduction to Restricted Boltzmann Machine and Conditional Restricted Boltzmann Machine.</p>
 <h2 id="markov-chain-monte-carlo-simulations-for-the-ising-model"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1</span> Markov Chain Monte Carlo simulations for the Ising Model</h2>
 <h3 id="ising-model"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1.1</span> Ising Model</h3>
 <p>The Ising model is a formalized stochastic model of ferromagnet (i.e., an ordinary magnet) and is a <span class="arithmatex">\(d\)</span>-dimensional lattice that can be denoted as the set below:</p>
 <div class="arithmatex">\[ I = \Big\{(x_1,x_2,\ldots,x_d)\in\mathbb{Z}^d: 1\leq x_l\leq L, l=1,2,\ldots,d\Big\}.\]</div>
 <p>Each site can be considered as an iron atom if <span class="arithmatex">\(I\)</span> is an iron magnet. Specifically, a 2-dimensional Ising model contains <span class="arithmatex">\(L^2\)</span> sites which are evenly distributed in a square lattice. </p>
-<p>A <em>spin configuration</em> on <span class="arithmatex">\(I\)</span> is a function 
-$$
-    \mathbf{\sigma}: I\xrightarrow{} \Big{\pm 1\Big}
-$$
-which assigns a spin up (+1) or a spin down (-1) to each site in <span class="arithmatex">\(I\)</span>.</p>
-<p>\emph{Hamiltonian} <span class="arithmatex">\(\mathcal{H}(\mathbf{\sigma})\)</span> is a function which specifies the total energy of a spin configuration. In the absence of an external magnetic field, it is defined as 
-\begin{equation}
-    \mathcal{H}(\mathbf{\sigma}) = - J \sum_{x,y}\sigma_x\sigma_y
-\end{equation}
-where <span class="arithmatex">\(J\)</span> is the \emph{coupling constant}, and <span class="arithmatex">\(\sigma_x\)</span> and <span class="arithmatex">\(\sigma_y\)</span> represent the spin of site <span class="arithmatex">\(x\)</span> and site <span class="arithmatex">\(y\)</span>, respectively, and the summation is taken over all pairs of <span class="arithmatex">\((x,y)\)</span> where site <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are neighbours. Two sites are neighbours if exactly one coordinate of two sites differ by 1.</p>
-<p>The probability of a spin configuration follows the \emph{Boltzmann distribution}:
-\begin{equation}
-    p(\mathbf{\sigma})=\frac{1}{Z}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T})
-\end{equation}
-where <span class="arithmatex">\(k_B\)</span> is the Boltzmann constant and <span class="arithmatex">\(T\)</span> is the absolute temperature. <span class="arithmatex">\(Z\)</span> is a normalizing constant known as the \emph{partition function} and is defined as 
-\begin{equation}
-    Z = \sum_{\sigma}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T})
-\end{equation}</p>
-<h2 id="__comments"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2</span> Comments</h2>
+<p>A <em>spin configuration</em> on <span class="arithmatex">\(I\)</span> is a function:</p>
+<div class="arithmatex">\[ \mathbf{\sigma}: I\xrightarrow{} \Big\{\pm 1\Big\} \]</div>
+<p>which assigns a spin up (+1) or a spin down (-1) to each site in <span class="arithmatex">\(I\)</span>.</p>
+<p><em>Hamiltonian</em> <span class="arithmatex">\(\mathcal{H}(\mathbf{\sigma})\)</span> is a function which specifies the total energy of a spin configuration. In the absence of an external magnetic field, it is defined as </p>
+<div class="arithmatex">\[ \mathcal{H}(\mathbf{\sigma}) = - J \sum_{x,y}\sigma_x\sigma_y \]</div>
+<p>where <span class="arithmatex">\(J\)</span> is the <em>coupling constant </em>, and <span class="arithmatex">\(\sigma_x\)</span> and <span class="arithmatex">\(\sigma_y\)</span> represent the spin of site <span class="arithmatex">\(x\)</span> and site <span class="arithmatex">\(y\)</span>, respectively, and the summation is taken over all pairs of <span class="arithmatex">\((x,y)\)</span> where site <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are neighbours. Two sites are neighbours if exactly one coordinate of two sites differ by 1.</p>
+<p>The probability of a spin configuration follows the <em>Boltzmann distribution</em>:</p>
+<div class="arithmatex">\[ p(\mathbf{\sigma})=\frac{1}{Z}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T})\]</div>
+<p>where <span class="arithmatex">\(k_B\)</span> is the Boltzmann constant and <span class="arithmatex">\(T\)</span> is the absolute temperature. <span class="arithmatex">\(Z\)</span> is a normalizing constant known as the \emph{partition function} and is defined as </p>
+<div class="arithmatex">\[ Z = \sum_{\sigma}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T}) \]</div>
+<h3 id="markov-chain-monte-carlo-simulations"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1.2</span> Markov Chain Monte Carlo Simulations</h3>
+<p>The number of configuration in the Ising model is exponential of the number of sites, which makes the calculation of the normalizing constant <span class="arithmatex">\(Z\)</span> intractable for a large <span class="arithmatex">\(L\)</span>. Therefore, we often study the Ising model using Monte Carlo simulations. If we could sample <span class="arithmatex">\(N\)</span> spin configurations from the Boltzmann distribution, then the expectation value of an observable <span class="arithmatex">\(\mathcal{O}\)</span> can be approximated by</p>
+<div class="arithmatex">\[ \mathbb{E}(\mathcal{O})=\frac{1}{N}\sum_{i}^N\mathcal{O}(\sigma^i) \]</div>
+<p>where <span class="arithmatex">\(\sigma^i\)</span> is the <span class="arithmatex">\(i_{\mathrm{th}}\)</span> spin configuration sample. </p>
+<p>In spite of the computational intractability to compute the partition function <span class="arithmatex">\(Z\)</span>, we can still sample the Boltzmann distribution using Markov Chain Monte Carlo (MCMC) techniques, specifically, <em>Metropolis Algorithm</em>, which is a special case of the <em>Metropolis-Hasting Algorithm</em>. For this specific problem, the algorithm goes like below:</p>
+<p>!!! "Metropolis Algorithm for Boltzmann Distribution"</p>
+<div class="highlight"><pre><span></span><code>1. Initialize $\sigma^0$. A common practice is to independently and randomly assign +1 or -1 to each site.
+2. Randomly choose a site $x$.
+3. Let $\sigma^\prime$ be the spin configuration obtained by the flipping the spin at $x$ of the current spin configuration $\sigma$ , i.e., $\sigma_x^\prime=-\sigma_x$ and $\sigma_y^\prime=-\sigma_y$ for all $y\neq x$.
+4. Let $U_n$ be a standard uniform random variable. 
+5. If $U_n\leq \frac{p(\sigma^\prime)}{p(\sigma)}=\exp\Big(-\frac{\mathcal{H}(\sigma^\prime)-\mathcal{H}(\sigma)}{k_B T}\Big)$, then accept the spin flip and set $\sigma^{n+1}=\sigma^\prime$. Otherwise, reject the spin flip and set $\sigma^{n+1}=\sigma^n$.
+6. $n = n+1$ and return to Step 2.
+</code></pre></div>
+<p>After we obtain a sequence of spin configurations, we will sub-sample those configurations every <span class="arithmatex">\(\tau\)</span> steps to make sure that the samples are i.i.d samples. The result of the sub-sampling will be a sequence of spin configurations that contain </p>
+<div class="arithmatex">\[ \sigma^T, \sigma^{T+\tau}, \sigma^{T+2\tau},\ldots \]</div>
+<p>where <span class="arithmatex">\(T\)</span> and <span class="arithmatex">\(\tau\)</span> are known as the \emph{burn-in period} and the \emph{sampling period}.</p>
+<h2 id="a-concise-tutorial-for-restricted-boltzmann-machine"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2</span> A Concise Tutorial for Restricted Boltzmann Machine</h2>
+<p>A Restricted Boltzmann Machine (RBM) is a bipartite graph. The structure of a RBM that contains 3 hidden nodes and 3 visible nodes is illustrated below. </p>
+<div class="rbm">
+<img alt="a terrible drawing a rbm structure" src="../../../assets/RBM.PNG" title="a terrible drawing of a RBM structure"/>
+</div>
+<p>In the following, we consider a RBM that contains <span class="arithmatex">\(V\)</span> visible nodes and <span class="arithmatex">\(H\)</span> hidden nodes, where every visible node is connected with every hidden node, with no connection among each layer. In this tutorial, we focus on Bernoulli RBM where the value of each node is either 0 or 1. </p>
+<p>RBM is a theoretical model inspired by statistical mechanics. In this model, the value of <span class="arithmatex">\(\mathbf{v}=[v_1, v_2, \ldots, v_V]\)</span> and <span class="arithmatex">\(\mathbf{h}=[h_1, h_2, \ldots, h_H]\)</span>  satisfy Boltzmann (Gibbs) distribution, which claims that the probability of a system staying in a certain micro-state is the function of the system energy and the system temperature. For the RBM model, the probability distribution of <span class="arithmatex">\(\mathbf{v}\)</span> and <span class="arithmatex">\(\mathbf{h}\)</span> can be expressed as:</p>
+<div class="arithmatex">\[ p_{\theta}(\mathbf{v},\mathbf{h}) = \frac{1}{Z}\mathrm{exp}(-E(\mathbf{v},\mathbf{h})) \]</div>
+<p>where <span class="arithmatex">\(\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}\)</span>, and the normalization constant <span class="arithmatex">\(Z=\sum_{\mathbf{v},\mathbf{h}}\mathrm{exp}(-E(\mathbf{v},\mathbf{h}))\)</span> is referred to as the \emph{partition function}, and <span class="arithmatex">\(E(\mathbf{v},\mathbf{h})\)</span> is the energy function calculated by </p>
+<div class="arithmatex">\[ E(\mathbf{v},\mathbf{h}) = -\mathbf{h}^T\mathbf{W}\mathbf{v}-\mathbf{b}^T\mathbf{v}-\mathbf{c}^T\mathbf{h}
+=-\sum_{j}\sum_k h_j W_{j,k} v_k - \sum_k b_kv_k - \sum_j c_j h_j
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{c}\)</span> and <span class="arithmatex">\(\mathbf{b}\)</span> are the visible and hidden bias terms, respectively. Note here that <span class="arithmatex">\(Z\)</span> is intractable to compute for a large RBM model. </p>
+<h3 id="training"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.1</span> Training</h3>
+<p>The first question that we need to ask is what the objective function is. We can look at this from two perspectives:</p>
+<ul>
+<li>Kullback-Leibler (K-L) Divergence </li>
+<li>Maximum Likelihood</li>
+</ul>
+<p>K-L divergence is a measurement of distance between two probability distributions. In RBM, we would like to minimize the K-L divergence between the unknown distribution of the training data <span class="arithmatex">\(p_\mathbf{train}(\mathbf{v})\)</span> and the distribution represented by the RBM <span class="arithmatex">\(p_{\theta}(\mathbf{v})\)</span>:</p>
+<div class="arithmatex">\[ 
+\begin{eqnarray}
+&amp;\textrm{KL}(p_\mathbf{train}\|p_\mathbf{\theta})&amp;=\sum_{\mathbf{v}} \Big(p_\mathbf{train}(\mathbf{v})\log\frac{p_\mathbf{train}(\mathbf{v})}{p_\theta(\mathbf{v})}\Big) \nonumber \\
+&amp;&amp;= \sum_{\mathbf{v}}p_\mathbf{train}(\mathbf{v})\log p_\mathbf{train}(\mathbf{v})-\sum_{\mathbf{v}}p_\mathbf{train}(\mathbf{v})\log p_\theta(\mathbf{v}) \nonumber \\
+\end{eqnarray}
+\]</div>
+<p>So </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+&amp;\underset{\theta}{\min}~ \textrm{KL} &amp;\Longleftrightarrow  \underset{\theta}{\max}\sum_{\mathbf{v}}p_\mathbf{train}(\mathbf{v})\log p_\theta(\mathbf{v}) \\
+&amp;&amp;\nonumber \Longleftrightarrow \underset{\theta}{\max}\frac{1}{N}\sum_{\hat{\mathbf{v}_i}}\log p_\theta(\mathbf{\hat{v}_i})  ~\textrm{,}~ \hat{\mathbf{v}_i} ~\text{is a sample from}~ p_\mathbf{train}(\mathbf{\hat{v}})\\
+&amp;&amp; \Longleftrightarrow\underset{\theta}{\max}\prod_{\hat{\mathbf{v}_i}}p_\theta(\hat{\mathbf{v}_i})
+\end{eqnarray}
+\]</div>
+<p>So the minimization of the KL divergence is equivalent to the Maximum Likelihood. </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+&amp;p_\theta(\mathbf{v})&amp;=\sum_{\mathbf{h}}p_{\theta}(\mathbf{v},\mathbf{h})\\
+&amp;\nonumber &amp;=\sum_{\mathbf{h}}\frac{1}{Z}\exp(-E(\mathbf{v},\mathbf{h}))\\
+&amp;\nonumber &amp;=\frac{1}{Z}\sum_{\mathbf{h}}\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+\mathbf{b}^T\mathbf{v}+\mathbf{c}^T\mathbf{h})\\
+&amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\sum_{\mathbf{h}}\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+\mathbf{c}^T\mathbf{h})\\
+&amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\sum_{\mathbf{h}}\exp(\sum_{j=1}^{H}(h_jW_{j,:}\mathbf{v}+c_jh_j))\\
+&amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\sum_{h_1\in\{0,1\}}\exp(h_1W_{1,:}\mathbf{v}+c_1h_1) ~\ldots~\sum_{h_H\in\{0,1\}} \exp(h_H W_{H,:}\mathbf{v}+c_H h_H)\\
+&amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\prod_j(1+\exp(W_{j,:}\mathbf{v}+c_j))\\
+&amp;\nonumber &amp;=\frac{1}{Z}\exp(-F(\mathbf{v}))
+\end{eqnarray}
+\]</div>
+<p>where <span class="arithmatex">\(F(\mathbf{v})\)</span> is the <em>free energy</em> and can be calculated by</p>
+<div class="arithmatex">\[ F(\mathbf{v})=-\mathbf{b}^T\mathbf{v}-\sum_{j=1}^{H}\log (1+\exp(W_{j,:}\mathbf{v}+c_j)) \]</div>
+<p>Define <span class="arithmatex">\(\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}\)</span>, we will have</p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+ &amp; -\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{\theta}}&amp;=-\frac{\partial }{\partial \theta}\Big(\log\frac{\exp(-F(\mathbf{v}))}{Z}\Big)\\
+&amp; &amp;=\frac{\partial }{\partial \theta}(F(\mathbf{v})+\log Z)\\
+&amp;&amp;=\frac{\partial F(\mathbf{v}) }{\partial \theta}+\frac{1}{Z}\frac{\partial Z}{\partial \theta}\\
+&amp; &amp;=\frac{\partial F(\mathbf{v}) }{\partial \theta}+\sum_{\mathbf{v^\prime}}\frac{1}{Z}\exp(-F(\mathbf{v}^\prime))\frac{\partial (-F(\mathbf{v}^\prime))}{\partial \theta}\\
+&amp; &amp;=\frac{\partial F(\mathbf{v}) }{\partial \theta}-\sum_{\mathbf{v^\prime}}p_{\theta}(\mathbf{v}^\prime)\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\\
+&amp;&amp;=\frac{\partial F(\mathbf{v})}{\partial \theta}-\mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big] \tag{1}\label{eq1}
+\end{eqnarray}
+\]</div>
+<p>with <span class="arithmatex">\(\mathbf{v}^\prime \sim p_{\theta}(\mathbf{v}^\prime)\)</span>. while $ \frac{\partial F(\mathbf{v})}{\partial \theta}$ can be expressed as</p>
+<div class="arithmatex">\[\begin{eqnarray}    
+\nonumber &amp;\frac{\partial F(\mathbf{v})}{\partial w_{j,k}} = -p_\theta(h_j=1|\mathbf{v})v_k\\
+\nonumber &amp;\frac{\partial F(\mathbf{v})}{\partial \mathbf{b}} = -\mathbf{v}\\
+\nonumber &amp;\frac{\partial F(\mathbf{v})}{\partial \mathbf{c}} = -p_\theta(h_j=1|\mathbf{v})
+\end{eqnarray}\]</div>
+<p>The second term in Eq.~<span class="arithmatex">\(\eqref{eq1}\)</span> requires an exponential computational complexity, so we will use samples drawn from the <span class="arithmatex">\(p_{\theta}(\mathbf{v}^\prime)\)</span> to approximate the expectation based on MCMC techniques. However, we could apply block Gibbs Sampling, which is actually a special case of \emph{Metropolis-Hastings algorithm}, to obtain samples if <span class="arithmatex">\(p(\mathbf{v}| \mathbf{h})\)</span> and <span class="arithmatex">\(p(\mathbf{h}| \mathbf{v})\)</span> are available:</p>
+<ol>
+<li>Initialization: <span class="arithmatex">\(\mathbf{v}^1\)</span></li>
+<li>Find: <span class="arithmatex">\(p(\mathbf{h}^1| \mathbf{v}^1)\)</span></li>
+<li>Sample <span class="arithmatex">\(\mathbf{h}^1\sim p(\mathbf{h}^1| \mathbf{v}^1)\)</span></li>
+<li>Find: <span class="arithmatex">\(p(\mathbf{v}^2| \mathbf{h}^2)\)</span></li>
+<li>Sample: <span class="arithmatex">\(\mathbf{v}^2 \sim p(\mathbf{v}^2| \mathbf{h}^2)\)</span> </li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>... 
+</code></pre></div>
+6. Until equilibrium.  </p>
+<p>After sampling <span class="arithmatex">\(N\)</span> samples of <span class="arithmatex">\(\mathbf{v}^\prime\)</span>, i.e., <span class="arithmatex">\(\{\mathbf{v}_k^\prime\}|_{k=1,2,\ldots,N}\)</span>, we can use the sample mean to approximate the expectation:</p>
+<div class="arithmatex">\[\begin{eqnarray}
+\mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\approx \frac{1}{N}\sum_{k}\frac{\partial F(\mathbf{v}_k^\prime)}{\partial \theta}
+\end{eqnarray}\]</div>
+<p>However, this process, which requires us to wait until the Markov chain reaches equilibrium, is computationally inefficient. To resolve this, we use Contrastive Divergence (CD) to approximate the true value with a point estimate. CD-<span class="arithmatex">\(n\)</span> indicates that the point estimate <span class="arithmatex">\(\frac{\partial F(\mathbf{v}^n)}{\partial \theta}\)</span> can be used to approximate <span class="arithmatex">\(\mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\)</span>, given the initialization is the training data point. </p>
+<div class="arithmatex">\[\begin{eqnarray}
+    \mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\approx\frac{\partial F(\mathbf{v}^n)}{\partial \theta}
+\end{eqnarray}\]</div>
+<p>So Eq.~(<span class="arithmatex">\(\eqref{eq1}\)</span>) can be approximated as</p>
+<div class="arithmatex">\[\begin{eqnarray}
+ \nonumber -\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{\theta}}&amp;=\frac{\partial F(\mathbf{v})}{\partial \theta}-\mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\\
+ &amp;\approx\frac{\partial F(\mathbf{v})}{\partial \theta}-\frac{\partial F(\mathbf{v}^n)}{\partial \theta}
+\end{eqnarray}\]</div>
+<p>So </p>
+<div class="arithmatex">\[\begin{eqnarray}
+    &amp;-\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial w_{j,k}}=
+-p_\theta(h_j=1|\mathbf{v})v_k+p_\theta(h_j=1|\mathbf{v}^n)v_k^n \tag{2}\label{eq:g1}\\
+&amp;-\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{b}} = -\mathbf{v}+\mathbf{v}^n\tag{3}\label{eq:g2}\\
+&amp;-\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{c}} = -p_\theta(h_j=1|\mathbf{v})+p_\theta(h_j=1|\mathbf{v}^n)\tag{4}\label{eq:g3}
+\end{eqnarray}\]</div>
+<p>Now let's talk about how to calculate <span class="arithmatex">\(p_{\theta}(\mathbf{h}|\mathbf{v})\)</span> and <span class="arithmatex">\(p(\mathbf{v}|\mathbf{h})\label{eq:q3}\)</span>.</p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+&amp;\nonumber p_\theta(\mathbf{h}|\mathbf{v})&amp;=\frac{p_\theta(\mathbf{v},\mathbf{h}) }{p_\theta(\mathbf{v}) }\\
+\nonumber &amp;&amp;=\frac{\exp(-E(\mathbf{v},\mathbf{h}))}{\sum_{\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))}\\
+&amp;\nonumber &amp;=\frac{\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+\mathbf{c}^T\mathbf{h})}{\sum_{\mathbf{h}}\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+\mathbf{c}^T\mathbf{h})}\\
+&amp;\nonumber &amp;=\frac{\exp(\sum_j(h_j W_{j,:}\mathbf{v}+c_jh_j))}{\sum_{h_1}\ldots\sum_{h_H}\exp(\sum_j(h_j W_{j,:}\mathbf{v}+c_jh_j))}\\
+&amp;\nonumber &amp;=\frac{\prod_j\exp(h_j W_{j,:}\mathbf{v}+c_jh_j)}{(\sum_{h_1}\exp(h_1 W_{1,:}\mathbf{v}+c_1h_1))(\sum_{h_2}\exp(h_2 W_{2,:}\mathbf{v}+c_2h_2))\ldots(\sum_{h_H}\exp(h_H W_{H,:}\mathbf{v}+c_H h_H)}\\
+&amp;\nonumber &amp;=\prod_j\frac{\exp(h_j W_{j,:}\mathbf{v}+c_jh_j)}{1+\exp(W_{j,:}\mathbf{v}+c_j)}\\
+&amp;&amp;=\prod_j p_\theta (h_j|\mathbf{v})
+\end{eqnarray}\]</div>
+<p>So <span class="arithmatex">\(h_1\)</span>, <span class="arithmatex">\(h_2\)</span>, <span class="arithmatex">\(\ldots\)</span>, <span class="arithmatex">\(h_H\)</span> are conditionally independent given <span class="arithmatex">\(\mathbf{v}\)</span>, with</p>
+<div class="arithmatex">\[\begin{eqnarray}
+    p_\theta(h_j|\mathbf{v})=\frac{\exp(h_j W_{j,:}\mathbf{v}+c_jh_j)}{1+\exp(W_{j,:}\mathbf{v}+c_j)}
+\end{eqnarray}\]</div>
+<p>Specifically, </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    \nonumber p_\theta(h_j=1|\mathbf{v})=\frac{\exp( W_{j,:}\mathbf{v}+c_j)}{1+\exp(W_{j,:}\mathbf{v}+c_j)}\\
+    \nonumber p_\theta(h_j=0|\mathbf{v})=\frac{1}{1+\exp(W_{j,:}\mathbf{v}+c_j)}
+\end{eqnarray}
+\]</div>
+<p>Similarly, we can derive that </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    p_\theta(v_k|\mathbf{h})=\frac{\exp(\mathbf{h}^T W_{:,k}v_{k}+b_kv_k)}{1+\exp(\mathbf{h}^T W_{:,k}+b_k)}
+\end{eqnarray}
+\]</div>
+<p>Specifically, </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    \nonumber p_\theta(v_k=1|\mathbf{h})=\frac{\exp(\mathbf{h}^T W_{:,k}+b_k)}{1+\exp(\mathbf{h}^T W_{:,k}+b_k)}\\
+    \nonumber p_\theta(v_k=0|\mathbf{h})=\frac{1}{1+\exp(\mathbf{h}^T W_{:,k}+b_k)}
+\end{eqnarray}
+\]</div>
+<p>Alternatively, the derivation in some tutorials or papers does not involve the free energy function <span class="arithmatex">\(F(\mathbf{v})\)</span>. In that case, <span class="arithmatex">\(p_{\theta}(\mathbf{v})\)</span> can be expressed as</p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    \nonumber p_\theta(\mathbf{v})&amp;=\sum_{\mathbf{h}}p_\theta(\mathbf{v},\mathbf{h})\\
+    &amp;=\sum_{\mathbf{h}}\frac{1}{Z}\mathrm{exp}(-E(\mathbf{v},\mathbf{h}))
+\end{eqnarray}
+\]</div>
+<p>So </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    &amp;\nonumber &amp;-\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{\theta}}=-\frac{\partial}{\partial \theta}\Big(\log\sum_{\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))\Big)+\frac{\partial}{\partial \theta}\Big(\log\sum_{\mathbf{v},\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))\Big)\\
+    &amp;\nonumber &amp;=\frac{1}{\sum_{\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))}\sum_{\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))\frac{\partial E(\mathbf{v},\mathbf{h})}{\partial \theta}-\frac{1}{\sum_{\mathbf{v},\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))}\sum_{\mathbf{v},\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))\frac{\partial E(\mathbf{v},\mathbf{h})}{\partial \theta}\\
+    &amp;&amp;=\sum_{\mathbf{h}}p_\theta(\mathbf{h}|\mathbf{v})\frac{\partial E(\mathbf{v},\mathbf{h})}{\partial \theta}-\sum_{\mathbf{v},\mathbf{h}}p_\theta(\mathbf{v},\mathbf{h})\frac{\partial E(\mathbf{v},\mathbf{h})}{\partial \theta}\tag{5}\label{eq:2}
+\end{eqnarray}
+\]</div>
+<p>Eq. (<span class="arithmatex">\(\eqref{eq:1}\)</span>) is actually the same with Eq. <span class="arithmatex">\(\eqref{eq:2}\)</span> since</p>
+<div class="arithmatex">\[
+    F(\mathbf{v})=-\log\Big(\sum_{\mathbf{h}}\exp\big(-E(\mathbf{v},\mathbf{h})\big)\Big)
+\]</div>
+<p>%\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
+%%% and comment out the ``thebibliography'' section.</p>
+<p>%%% Comment out this section when you \bibliography{references} is enabled.</p>
+<h3 id="rbm-training-algorithm"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.2</span> RBM Training Algorithm</h3>
+<p>!!! "RBM Training Algorithm"</p>
+<div class="highlight"><pre><span></span><code>Initialization for the $\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}$
+
+Fix the maximum number of epochs $max\_epoch$, and mini-batch size $M$
+
+**for** $i = 1,\ldots,{max\_epoch}$ **do**
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**for** *mini-batch* $\mathrm{\mathbf{v}}_{mb}$ $\mathrm{\mathbf{in}}$ Dataset $\mathrm{\mathbf{D}}$ **do**
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; $\overline{\Delta\mathbf{W}}$, $\overline{\Delta\mathbf{b}}$, $\overline{\Delta\mathbf{c}}$~$\gets$~$\mathbf{0}$\;
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**for**  each data sample $\mathrm{\mathbf{v}}$ $\mathrm{\mathbf{in}}$ $\mathrm{\mathbf{v}}_{mb}$ **do**
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;$\mathrm{\mathbf{v}}^{(0)} \gets \mathrm{\mathbf{v}}$
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**for**  $t=0,\ldots,n-1$ **do**
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sample $\mathbf{h}^{(t)}$ $\sim$ $p_{\theta}(\mathbf{h}|\mathbf{v}^{(t)})$
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sample $\mathbf{v}^{(t+1)}$ $\sim$ $p_{\theta}(\mathbf{v}|\mathbf{h}^{(t)})$
+
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**end**
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;Calculate the gradient $\Delta\mathbf{W}$, $\Delta\mathbf{b}$, and $\Delta\mathbf{c}$ according to Eq.$\eqref{eq:g1}$~$\eqref{eq:g2}$~$\eqref{eq:g3}$
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;$\overline{\Delta\mathbf{W}}$, $\overline{\Delta\mathbf{b}}$, $\overline{\Delta\mathbf{c}}$ $\gets$ $\overline{\Delta\mathbf{W}}+\Delta\mathbf{W}$, $\overline{\Delta\mathbf{b}}+\Delta\mathbf{b}$, $\overline{\Delta\mathbf{c}}+\Delta\mathbf{c}$
+
+  &amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**end**
+
+  &amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;$\mathbf{W}$, $\mathbf{b}$, $\mathbf{c}$ $\gets$ 
+  $\mathbf{W}-\frac{1}{M}\overline{\Delta\mathbf{W}}$, $\mathbf{b}-\frac{1}{M}\overline{\Delta\mathbf{b}}$, $\mathbf{c}-\frac{1}{M}\overline{\Delta\mathbf{c}}$
+
+
+&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;**end**
+
+**end**
+</code></pre></div>
+<h3 id="implementation-in-python"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.3</span> Implementation in Python</h3>
+<div class="highlight"><span class="filename">RBM_vanila.py</span><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="kn">import</span> <span class="nn">torchvision</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="kn">import</span> <span class="nn">pickle</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="kn">import</span> <span class="nn">time</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="k">class</span> <span class="nc">BinaryRBM</span><span class="p">():</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="c1"># RBM Initialization</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_v</span><span class="p">,</span> <span class="n">num_h</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">"CPU"</span><span class="p">):</span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="sd">            num_v (int): the number of nodes in the visible layer</span>
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="sd">            num_h (int): the number of nodes in the hidden layer </span>
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="sd">            device (str): CPU or GPU mode</span>
+<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a>
+<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">num_v</span> <span class="o">=</span> <span class="n">num_v</span> <span class="c1"># the number of visible nodes</span>
+<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">num_h</span> <span class="o">=</span> <span class="n">num_h</span> <span class="c1"># the number of hidden nodes</span>
+<a href="#__codelineno-1-24" id="__codelineno-1-24" name="__codelineno-1-24"></a>
+<a href="#__codelineno-1-25" id="__codelineno-1-25" name="__codelineno-1-25"></a>        <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s2">"GPU"</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+<a href="#__codelineno-1-26" id="__codelineno-1-26" name="__codelineno-1-26"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"GPU is not supported"</span><span class="p">)</span>
+<a href="#__codelineno-1-27" id="__codelineno-1-27" name="__codelineno-1-27"></a>        <span class="k">elif</span> <span class="n">device</span> <span class="o">==</span> <span class="s2">"GPU"</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+<a href="#__codelineno-1-28" id="__codelineno-1-28" name="__codelineno-1-28"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cuda"</span><span class="p">)</span>
+<a href="#__codelineno-1-29" id="__codelineno-1-29" name="__codelineno-1-29"></a>        <span class="k">else</span><span class="p">:</span>
+<a href="#__codelineno-1-30" id="__codelineno-1-30" name="__codelineno-1-30"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cpu"</span><span class="p">)</span>
+<a href="#__codelineno-1-31" id="__codelineno-1-31" name="__codelineno-1-31"></a>
+<a href="#__codelineno-1-32" id="__codelineno-1-32" name="__codelineno-1-32"></a>        <span class="c1"># normalization to ensure stability ? </span>
+<a href="#__codelineno-1-33" id="__codelineno-1-33" name="__codelineno-1-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_h</span><span class="p">,</span> <span class="n">num_v</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">num_v</span><span class="p">)</span>
+<a href="#__codelineno-1-34" id="__codelineno-1-34" name="__codelineno-1-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_v</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># bias (column) vector for the visible layer</span>
+<a href="#__codelineno-1-35" id="__codelineno-1-35" name="__codelineno-1-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_h</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># bias (column) vector for the hidden layer</span>
+<a href="#__codelineno-1-36" id="__codelineno-1-36" name="__codelineno-1-36"></a>
+<a href="#__codelineno-1-37" id="__codelineno-1-37" name="__codelineno-1-37"></a>
+<a href="#__codelineno-1-38" id="__codelineno-1-38" name="__codelineno-1-38"></a>
+<a href="#__codelineno-1-39" id="__codelineno-1-39" name="__codelineno-1-39"></a>    <span class="c1"># Calculation of the free energy F(v)</span>
+<a href="#__codelineno-1-40" id="__codelineno-1-40" name="__codelineno-1-40"></a>    <span class="k">def</span> <span class="nf">free_energy_func</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a href="#__codelineno-1-41" id="__codelineno-1-41" name="__codelineno-1-41"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-42" id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-1-43" id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-1-44" id="__codelineno-1-44" name="__codelineno-1-44"></a>
+<a href="#__codelineno-1-45" id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-1-46" id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="sd">        free_energy (torch.Tensor): the free energy F(v) (c.f. Eq (12))</span>
+<a href="#__codelineno-1-47" id="__codelineno-1-47" name="__codelineno-1-47"></a>
+<a href="#__codelineno-1-48" id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-49" id="__codelineno-1-49" name="__codelineno-1-49"></a>        <span class="c1"># c.f. Eq.(12)</span>
+<a href="#__codelineno-1-50" id="__codelineno-1-50" name="__codelineno-1-50"></a>        <span class="c1"># .sum(0) represents the summation of different rows</span>
+<a href="#__codelineno-1-51" id="__codelineno-1-51" name="__codelineno-1-51"></a>        <span class="c1"># F.softplus(x) calculates log(1+exp(x))</span>
+<a href="#__codelineno-1-52" id="__codelineno-1-52" name="__codelineno-1-52"></a>
+<a href="#__codelineno-1-53" id="__codelineno-1-53" name="__codelineno-1-53"></a>        <span class="k">return</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">t</span><span class="p">(),</span><span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span> <span class="o">-</span> <span class="n">F</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span><span class="n">v</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a href="#__codelineno-1-54" id="__codelineno-1-54" name="__codelineno-1-54"></a>
+<a href="#__codelineno-1-55" id="__codelineno-1-55" name="__codelineno-1-55"></a>    <span class="k">def</span> <span class="nf">sample_h_given_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a href="#__codelineno-1-56" id="__codelineno-1-56" name="__codelineno-1-56"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-57" id="__codelineno-1-57" name="__codelineno-1-57"></a><span class="sd">          Args:</span>
+<a href="#__codelineno-1-58" id="__codelineno-1-58" name="__codelineno-1-58"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-1-59" id="__codelineno-1-59" name="__codelineno-1-59"></a>
+<a href="#__codelineno-1-60" id="__codelineno-1-60" name="__codelineno-1-60"></a>
+<a href="#__codelineno-1-61" id="__codelineno-1-61" name="__codelineno-1-61"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-1-62" id="__codelineno-1-62" name="__codelineno-1-62"></a><span class="sd">        sampled_h (torch.Tensor): the sample h according to Eq.(17). </span>
+<a href="#__codelineno-1-63" id="__codelineno-1-63" name="__codelineno-1-63"></a><span class="sd">                                  It is a column vector that contains 0 or 1. </span>
+<a href="#__codelineno-1-64" id="__codelineno-1-64" name="__codelineno-1-64"></a>
+<a href="#__codelineno-1-65" id="__codelineno-1-65" name="__codelineno-1-65"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-66" id="__codelineno-1-66" name="__codelineno-1-66"></a>
+<a href="#__codelineno-1-67" id="__codelineno-1-67" name="__codelineno-1-67"></a>
+<a href="#__codelineno-1-68" id="__codelineno-1-68" name="__codelineno-1-68"></a>        <span class="k">return</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">sigmoid_</span><span class="p">()</span><span class="o">&gt;</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_h</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="c1"># c.f. Eq (17)</span>
+<a href="#__codelineno-1-69" id="__codelineno-1-69" name="__codelineno-1-69"></a>
+<a href="#__codelineno-1-70" id="__codelineno-1-70" name="__codelineno-1-70"></a>    <span class="k">def</span> <span class="nf">sample_v_given_h</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+<a href="#__codelineno-1-71" id="__codelineno-1-71" name="__codelineno-1-71"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-72" id="__codelineno-1-72" name="__codelineno-1-72"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-1-73" id="__codelineno-1-73" name="__codelineno-1-73"></a><span class="sd">        h (torch.Tensor): the hidden states</span>
+<a href="#__codelineno-1-74" id="__codelineno-1-74" name="__codelineno-1-74"></a>
+<a href="#__codelineno-1-75" id="__codelineno-1-75" name="__codelineno-1-75"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-1-76" id="__codelineno-1-76" name="__codelineno-1-76"></a><span class="sd">        sampled_v (torch.Tensor): the sample v according to Eq.(18). </span>
+<a href="#__codelineno-1-77" id="__codelineno-1-77" name="__codelineno-1-77"></a><span class="sd">                                  It is a column vector that contains 0 or 1. </span>
+<a href="#__codelineno-1-78" id="__codelineno-1-78" name="__codelineno-1-78"></a>
+<a href="#__codelineno-1-79" id="__codelineno-1-79" name="__codelineno-1-79"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-80" id="__codelineno-1-80" name="__codelineno-1-80"></a>
+<a href="#__codelineno-1-81" id="__codelineno-1-81" name="__codelineno-1-81"></a>
+<a href="#__codelineno-1-82" id="__codelineno-1-82" name="__codelineno-1-82"></a>        <span class="k">return</span> <span class="p">(</span> <span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">t</span><span class="p">(),</span> <span class="n">h</span><span class="p">)</span><span class="o">.</span><span class="n">sigmoid_</span><span class="p">()</span><span class="o">&gt;</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_v</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="c1"># c.f. Eq (18)</span>
+<a href="#__codelineno-1-83" id="__codelineno-1-83" name="__codelineno-1-83"></a>
+<a href="#__codelineno-1-84" id="__codelineno-1-84" name="__codelineno-1-84"></a>
+<a href="#__codelineno-1-85" id="__codelineno-1-85" name="__codelineno-1-85"></a>    <span class="k">def</span> <span class="nf">block_gibbs_sampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_v</span><span class="p">,</span> <span class="n">num_iter</span><span class="p">):</span>
+<a href="#__codelineno-1-86" id="__codelineno-1-86" name="__codelineno-1-86"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-87" id="__codelineno-1-87" name="__codelineno-1-87"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-1-88" id="__codelineno-1-88" name="__codelineno-1-88"></a><span class="sd">        initial_v (torch.Tensor): the initial visible states to start the block gibbs sampling</span>
+<a href="#__codelineno-1-89" id="__codelineno-1-89" name="__codelineno-1-89"></a><span class="sd">        num_iter(int): the number of iterations for the gibbs sampling</span>
+<a href="#__codelineno-1-90" id="__codelineno-1-90" name="__codelineno-1-90"></a>
+<a href="#__codelineno-1-91" id="__codelineno-1-91" name="__codelineno-1-91"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-1-92" id="__codelineno-1-92" name="__codelineno-1-92"></a><span class="sd">        gibbs_v (torch.Tensor): the sampled visible states</span>
+<a href="#__codelineno-1-93" id="__codelineno-1-93" name="__codelineno-1-93"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-94" id="__codelineno-1-94" name="__codelineno-1-94"></a>        <span class="n">v</span> <span class="o">=</span> <span class="n">initial_v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+<a href="#__codelineno-1-95" id="__codelineno-1-95" name="__codelineno-1-95"></a>
+<a href="#__codelineno-1-96" id="__codelineno-1-96" name="__codelineno-1-96"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iter</span><span class="p">):</span>
+<a href="#__codelineno-1-97" id="__codelineno-1-97" name="__codelineno-1-97"></a>
+<a href="#__codelineno-1-98" id="__codelineno-1-98" name="__codelineno-1-98"></a>            <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_h_given_v</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<a href="#__codelineno-1-99" id="__codelineno-1-99" name="__codelineno-1-99"></a>            <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_v_given_h</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<a href="#__codelineno-1-100" id="__codelineno-1-100" name="__codelineno-1-100"></a>
+<a href="#__codelineno-1-101" id="__codelineno-1-101" name="__codelineno-1-101"></a>        <span class="k">return</span> <span class="n">v</span>
+<a href="#__codelineno-1-102" id="__codelineno-1-102" name="__codelineno-1-102"></a>
+<a href="#__codelineno-1-103" id="__codelineno-1-103" name="__codelineno-1-103"></a>    <span class="k">def</span> <span class="nf">free_energy_gradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a href="#__codelineno-1-104" id="__codelineno-1-104" name="__codelineno-1-104"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-105" id="__codelineno-1-105" name="__codelineno-1-105"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-1-106" id="__codelineno-1-106" name="__codelineno-1-106"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-1-107" id="__codelineno-1-107" name="__codelineno-1-107"></a>
+<a href="#__codelineno-1-108" id="__codelineno-1-108" name="__codelineno-1-108"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-1-109" id="__codelineno-1-109" name="__codelineno-1-109"></a><span class="sd">        grad_w (torch.Tensor): the average gradient of the free energy with respect to w across all samples</span>
+<a href="#__codelineno-1-110" id="__codelineno-1-110" name="__codelineno-1-110"></a><span class="sd">        grad_b (torch.Tensor): the average gradient of the free energy with respect to b across all samples</span>
+<a href="#__codelineno-1-111" id="__codelineno-1-111" name="__codelineno-1-111"></a><span class="sd">        grad_c (torch.Tensor): the average gradient of the free energy with respect to c across all samples</span>
+<a href="#__codelineno-1-112" id="__codelineno-1-112" name="__codelineno-1-112"></a>
+<a href="#__codelineno-1-113" id="__codelineno-1-113" name="__codelineno-1-113"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-114" id="__codelineno-1-114" name="__codelineno-1-114"></a>        <span class="n">temp</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">sigmoid_</span><span class="p">()</span>
+<a href="#__codelineno-1-115" id="__codelineno-1-115" name="__codelineno-1-115"></a>
+<a href="#__codelineno-1-116" id="__codelineno-1-116" name="__codelineno-1-116"></a>        <span class="n">grad_c</span> <span class="o">=</span>  <span class="n">temp</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-1-117" id="__codelineno-1-117" name="__codelineno-1-117"></a>        <span class="n">grad_b</span> <span class="o">=</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-1-118" id="__codelineno-1-118" name="__codelineno-1-118"></a>        <span class="n">grad_w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">t</span><span class="p">())</span><span class="o">/</span><span class="n">v</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-1-119" id="__codelineno-1-119" name="__codelineno-1-119"></a>
+<a href="#__codelineno-1-120" id="__codelineno-1-120" name="__codelineno-1-120"></a>
+<a href="#__codelineno-1-121" id="__codelineno-1-121" name="__codelineno-1-121"></a>        <span class="k">return</span> <span class="n">grad_w</span><span class="p">,</span> <span class="n">grad_b</span><span class="p">,</span> <span class="n">grad_c</span>
+<a href="#__codelineno-1-122" id="__codelineno-1-122" name="__codelineno-1-122"></a>
+<a href="#__codelineno-1-123" id="__codelineno-1-123" name="__codelineno-1-123"></a>    <span class="k">def</span> <span class="nf">mini_batch_gradient_func</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">cd_k</span><span class="p">):</span>
+<a href="#__codelineno-1-124" id="__codelineno-1-124" name="__codelineno-1-124"></a>
+<a href="#__codelineno-1-125" id="__codelineno-1-125" name="__codelineno-1-125"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-126" id="__codelineno-1-126" name="__codelineno-1-126"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-1-127" id="__codelineno-1-127" name="__codelineno-1-127"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-1-128" id="__codelineno-1-128" name="__codelineno-1-128"></a><span class="sd">        cd_k (int): cd_k mode that is chosen</span>
+<a href="#__codelineno-1-129" id="__codelineno-1-129" name="__codelineno-1-129"></a>
+<a href="#__codelineno-1-130" id="__codelineno-1-130" name="__codelineno-1-130"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-1-131" id="__codelineno-1-131" name="__codelineno-1-131"></a><span class="sd">        grad_mini_batch (Torch) the average gradient across all samples in the mini-batch</span>
+<a href="#__codelineno-1-132" id="__codelineno-1-132" name="__codelineno-1-132"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-133" id="__codelineno-1-133" name="__codelineno-1-133"></a>        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="c1"># move to GPU if necessary </span>
+<a href="#__codelineno-1-134" id="__codelineno-1-134" name="__codelineno-1-134"></a>
+<a href="#__codelineno-1-135" id="__codelineno-1-135" name="__codelineno-1-135"></a>        <span class="n">v_k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_gibbs_sampling</span><span class="p">(</span><span class="n">initial_v</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> <span class="n">num_iter</span> <span class="o">=</span> <span class="n">cd_k</span><span class="p">)</span>
+<a href="#__codelineno-1-136" id="__codelineno-1-136" name="__codelineno-1-136"></a>
+<a href="#__codelineno-1-137" id="__codelineno-1-137" name="__codelineno-1-137"></a>        <span class="p">[</span><span class="n">grad_w_pos</span><span class="p">,</span> <span class="n">grad_b_pos</span><span class="p">,</span> <span class="n">grad_c_pos</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">free_energy_gradient</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<a href="#__codelineno-1-138" id="__codelineno-1-138" name="__codelineno-1-138"></a>        <span class="p">[</span><span class="n">grad_w_neg</span><span class="p">,</span> <span class="n">grad_b_neg</span><span class="p">,</span> <span class="n">grad_c_neg</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">free_energy_gradient</span><span class="p">(</span><span class="n">v_k</span><span class="p">)</span>
+<a href="#__codelineno-1-139" id="__codelineno-1-139" name="__codelineno-1-139"></a>
+<a href="#__codelineno-1-140" id="__codelineno-1-140" name="__codelineno-1-140"></a>        <span class="k">return</span> <span class="n">grad_w_pos</span> <span class="o">-</span> <span class="n">grad_w_neg</span><span class="p">,</span> <span class="n">grad_b_pos</span> <span class="o">-</span> <span class="n">grad_b_neg</span><span class="p">,</span> <span class="n">grad_c_pos</span> <span class="o">-</span> <span class="n">grad_c_neg</span> <span class="c1"># c.f. Eq.(13)</span>
+<a href="#__codelineno-1-141" id="__codelineno-1-141" name="__codelineno-1-141"></a>
+<a href="#__codelineno-1-142" id="__codelineno-1-142" name="__codelineno-1-142"></a>
+<a href="#__codelineno-1-143" id="__codelineno-1-143" name="__codelineno-1-143"></a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">,</span> <span class="n">cd_k</span><span class="p">,</span> <span class="n">max_epochs</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<a href="#__codelineno-1-144" id="__codelineno-1-144" name="__codelineno-1-144"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-1-145" id="__codelineno-1-145" name="__codelineno-1-145"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-1-146" id="__codelineno-1-146" name="__codelineno-1-146"></a><span class="sd">        dataloader: dataloader of the training data </span>
+<a href="#__codelineno-1-147" id="__codelineno-1-147" name="__codelineno-1-147"></a><span class="sd">        cd_k: the contrastive divergence mode</span>
+<a href="#__codelineno-1-148" id="__codelineno-1-148" name="__codelineno-1-148"></a><span class="sd">        max_epochs: number of epochs</span>
+<a href="#__codelineno-1-149" id="__codelineno-1-149" name="__codelineno-1-149"></a><span class="sd">        lr: the learning rate</span>
+<a href="#__codelineno-1-150" id="__codelineno-1-150" name="__codelineno-1-150"></a>
+<a href="#__codelineno-1-151" id="__codelineno-1-151" name="__codelineno-1-151"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-1-152" id="__codelineno-1-152" name="__codelineno-1-152"></a><span class="sd">        w, b, c: the parameters of the RBM</span>
+<a href="#__codelineno-1-153" id="__codelineno-1-153" name="__codelineno-1-153"></a><span class="sd">        """</span>
+<a href="#__codelineno-1-154" id="__codelineno-1-154" name="__codelineno-1-154"></a>        <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_epochs</span><span class="p">):</span>
+<a href="#__codelineno-1-155" id="__codelineno-1-155" name="__codelineno-1-155"></a>
+<a href="#__codelineno-1-156" id="__codelineno-1-156" name="__codelineno-1-156"></a>            <span class="nb">print</span><span class="p">(</span><span class="s1">'Epoch </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">iter</span><span class="p">))</span>
+<a href="#__codelineno-1-157" id="__codelineno-1-157" name="__codelineno-1-157"></a>
+<a href="#__codelineno-1-158" id="__codelineno-1-158" name="__codelineno-1-158"></a>            <span class="k">for</span> <span class="n">mini_batch_samples</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+<a href="#__codelineno-1-159" id="__codelineno-1-159" name="__codelineno-1-159"></a>                <span class="n">mini_batch_samples_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">mini_batch_samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<a href="#__codelineno-1-160" id="__codelineno-1-160" name="__codelineno-1-160"></a>                <span class="n">grad_w</span><span class="p">,</span> <span class="n">grad_b</span><span class="p">,</span> <span class="n">grad_c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mini_batch_gradient_func</span><span class="p">(</span><span class="n">mini_batch_samples_</span><span class="p">,</span> <span class="n">cd_k</span><span class="p">)</span>
+<a href="#__codelineno-1-161" id="__codelineno-1-161" name="__codelineno-1-161"></a>
+<a href="#__codelineno-1-162" id="__codelineno-1-162" name="__codelineno-1-162"></a>
+<a href="#__codelineno-1-163" id="__codelineno-1-163" name="__codelineno-1-163"></a>                <span class="c1"># update w, b, c</span>
+<a href="#__codelineno-1-164" id="__codelineno-1-164" name="__codelineno-1-164"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_w</span>
+<a href="#__codelineno-1-165" id="__codelineno-1-165" name="__codelineno-1-165"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_b</span>
+<a href="#__codelineno-1-166" id="__codelineno-1-166" name="__codelineno-1-166"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_c</span>
+<a href="#__codelineno-1-167" id="__codelineno-1-167" name="__codelineno-1-167"></a>            <span class="c1"># break</span>
+<a href="#__codelineno-1-168" id="__codelineno-1-168" name="__codelineno-1-168"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">))</span>
+<a href="#__codelineno-1-169" id="__codelineno-1-169" name="__codelineno-1-169"></a>
+<a href="#__codelineno-1-170" id="__codelineno-1-170" name="__codelineno-1-170"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+<a href="#__codelineno-1-171" id="__codelineno-1-171" name="__codelineno-1-171"></a>
+<a href="#__codelineno-1-172" id="__codelineno-1-172" name="__codelineno-1-172"></a>
+<a href="#__codelineno-1-173" id="__codelineno-1-173" name="__codelineno-1-173"></a>
+<a href="#__codelineno-1-174" id="__codelineno-1-174" name="__codelineno-1-174"></a>
+<a href="#__codelineno-1-175" id="__codelineno-1-175" name="__codelineno-1-175"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+<a href="#__codelineno-1-176" id="__codelineno-1-176" name="__codelineno-1-176"></a>
+<a href="#__codelineno-1-177" id="__codelineno-1-177" name="__codelineno-1-177"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">BinaryRBM</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="s2">"CPU"</span><span class="p">)</span>
+<a href="#__codelineno-1-178" id="__codelineno-1-178" name="__codelineno-1-178"></a>
+<a href="#__codelineno-1-179" id="__codelineno-1-179" name="__codelineno-1-179"></a>    <span class="c1"># Load Data</span>
+<a href="#__codelineno-1-180" id="__codelineno-1-180" name="__codelineno-1-180"></a>    <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s2">"~"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="#__codelineno-1-181" id="__codelineno-1-181" name="__codelineno-1-181"></a>    <span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span><span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<a href="#__codelineno-1-182" id="__codelineno-1-182" name="__codelineno-1-182"></a>
+<a href="#__codelineno-1-183" id="__codelineno-1-183" name="__codelineno-1-183"></a>    <span class="c1"># Train</span>
+<a href="#__codelineno-1-184" id="__codelineno-1-184" name="__codelineno-1-184"></a>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a href="#__codelineno-1-185" id="__codelineno-1-185" name="__codelineno-1-185"></a>    <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">cd_k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<a href="#__codelineno-1-186" id="__codelineno-1-186" name="__codelineno-1-186"></a>    <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<a href="#__codelineno-1-187" id="__codelineno-1-187" name="__codelineno-1-187"></a>
+<a href="#__codelineno-1-188" id="__codelineno-1-188" name="__codelineno-1-188"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'objs.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># Python 3: open(..., 'wb')</span>
+<a href="#__codelineno-1-189" id="__codelineno-1-189" name="__codelineno-1-189"></a>        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">([</span><span class="n">w</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">c</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()],</span> <span class="n">f</span><span class="p">)</span>
+<a href="#__codelineno-1-190" id="__codelineno-1-190" name="__codelineno-1-190"></a>
+<a href="#__codelineno-1-191" id="__codelineno-1-191" name="__codelineno-1-191"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Training Ended. Elapsed Time is </span><span class="si">{0:.2f}</span><span class="s2">s"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">))</span>
+<a href="#__codelineno-1-192" id="__codelineno-1-192" name="__codelineno-1-192"></a>
+<a href="#__codelineno-1-193" id="__codelineno-1-193" name="__codelineno-1-193"></a>
+<a href="#__codelineno-1-194" id="__codelineno-1-194" name="__codelineno-1-194"></a>
+<a href="#__codelineno-1-195" id="__codelineno-1-195" name="__codelineno-1-195"></a>    <span class="c1"># Test </span>
+<a href="#__codelineno-1-196" id="__codelineno-1-196" name="__codelineno-1-196"></a>
+<a href="#__codelineno-1-197" id="__codelineno-1-197" name="__codelineno-1-197"></a>    <span class="c1"># retrieve the next image data for testing </span>
+<a href="#__codelineno-1-198" id="__codelineno-1-198" name="__codelineno-1-198"></a>    <span class="n">i</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a href="#__codelineno-1-199" id="__codelineno-1-199" name="__codelineno-1-199"></a>
+<a href="#__codelineno-1-200" id="__codelineno-1-200" name="__codelineno-1-200"></a>    <span class="c1"># Generate new visible states with a random initial visible states via Gibbs sampling the RBM</span>
+<a href="#__codelineno-1-201" id="__codelineno-1-201" name="__codelineno-1-201"></a>    <span class="n">v_gen</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">block_gibbs_sampling</span><span class="p">(</span><span class="n">initial_v</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(),</span><span class="n">num_iter</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<a href="#__codelineno-1-202" id="__codelineno-1-202" name="__codelineno-1-202"></a>
+<a href="#__codelineno-1-203" id="__codelineno-1-203" name="__codelineno-1-203"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-1-204" id="__codelineno-1-204" name="__codelineno-1-204"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<a href="#__codelineno-1-205" id="__codelineno-1-205" name="__codelineno-1-205"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(),</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">"gray"</span><span class="p">)</span>
+<a href="#__codelineno-1-206" id="__codelineno-1-206" name="__codelineno-1-206"></a>
+<a href="#__codelineno-1-207" id="__codelineno-1-207" name="__codelineno-1-207"></a>    <span class="c1"># Display the images</span>
+<a href="#__codelineno-1-208" id="__codelineno-1-208" name="__codelineno-1-208"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<a href="#__codelineno-1-209" id="__codelineno-1-209" name="__codelineno-1-209"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">v_gen</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">"gray"</span><span class="p">)</span>
+<a href="#__codelineno-1-210" id="__codelineno-1-210" name="__codelineno-1-210"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="binary-conditional-rbm"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.3</span> Binary Conditional RBM</h2>
+<p>Conditional RBM is a generalization of Vanilla RBM discussed in Section 2. In Conditional RBM, we have some extra <span class="arithmatex">\(R\)</span> label nodes, represented by <span class="arithmatex">\(\mathbf{r}\)</span>, where every label node is connected with every hidden node, with no connection among themselves. </p>
+<p><span class="arithmatex">\(E_{\theta,\mathbf{r}}(\mathbf{v}, \mathbf{h})\)</span> is the energy function calculated by </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+&amp;\nonumber E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}) &amp; =  -\mathbf{h}^T\mathbf{W}\mathbf{v}-\mathbf{h}^T\mathbf{W}^{'}\mathbf{r}-\mathbf{b}^T\mathbf{v}-\mathbf{c}^T\mathbf{h}\\
+&amp;\nonumber &amp;= -\mathbf{h}^T\mathbf{W}\mathbf{v}-\mathbf{b}^T\mathbf{v}-(\mathbf{W}^{'}\mathbf{r}+\mathbf{c})^T\mathbf{h}\\
+&amp;&amp;=-\sum_{j}\sum_k h_j W_{j,k} v_k - \sum_k b_k v_k - \sum_{j}\ h_j (\sum_i W_{j,i}^{'} r_i + c_j)
+\end{eqnarray}
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{r}\)</span> is fixed. </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    &amp;p_{\theta,\mathbf{r}}(\mathbf{v})&amp;=\sum_{\mathbf{h}}p_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h})\\
+    &amp;\nonumber &amp;=\sum_{\mathbf{h}}\frac{1}{Z}\exp(-E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}))\\
+    &amp;\nonumber &amp;=\sum_{\mathbf{h}}\frac{1}{Z}\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+\mathbf{b}^T\mathbf{v}+(\mathbf{W}^{'}\mathbf{r}+\mathbf{c})^T\mathbf{h})\\
+    &amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\sum_{\mathbf{h}}\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+(\mathbf{W}^{'}\mathbf{r}+\mathbf{c})^T\mathbf{h})\\
+     &amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\sum_{\mathbf{h}}\exp(\sum_{j=1}^{H}(h_j W_{j,:}\mathbf{v}+(W_{j,:}^{'}\mathbf{r}+c_j) h_j))\\
+     &amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\sum_{h_1\in\{0,1\}}\exp(h_1W_{1,:}\mathbf{v}+(W_{1,:}^{'}\mathbf{r}+c_1)h_1) ~\ldots~\sum_{h_H\in\{0,1\}} \exp(h_H W_{H,:}\mathbf{v}+(W_{H,:}^{'}\mathbf{r}+c_H) h_H)\\
+     &amp;\nonumber &amp;=\frac{1}{Z}\exp(\mathbf{b}^T\mathbf{v})\prod_j(1+\exp(W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j))\\
+     &amp;\nonumber &amp;=\frac{1}{Z}\exp(-F_{\mathbf{r}}(\mathbf{v}))
+\end{eqnarray}
+\]</div>
+<p>where </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+F_{\mathbf{r}}(\mathbf{v})=-\mathbf{b}^T\mathbf{v}-\sum_{j=1}^{H}\log (1+\exp(W_{j,:}\mathbf{v}+W_{j,:}^{'}\mathbf{r}+c_j)))
+\end{eqnarray}
+\]</div>
+<div class="arithmatex">\[
+\begin{eqnarray}
+&amp;\nonumber p_{\theta,\mathbf{r}}(\mathbf{h}|\mathbf{v})&amp;=\frac{p_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}) }{p_{\theta,\mathbf{r}}(\mathbf{v})}\\
+&amp;\nonumber &amp;=\frac{\exp(-E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}))}{\sum_{\mathbf{h}}\exp(-E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}))}\\
+&amp;\nonumber &amp;=\frac{\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+\mathbf{h}^T(\mathbf{W}^{'}\mathbf{r}+\mathbf{c}))}{\sum_{\mathbf{h}}\exp(\mathbf{h}^T\mathbf{W}\mathbf{v}+\mathbf{h}^T(\mathbf{W}^{'}\mathbf{r}+\mathbf{c}))}\\
+&amp;\nonumber &amp;=\frac{\exp(\sum_j(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j)))}{\sum_{h_1}\ldots\sum_{h_H}\exp(\sum_j(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j)))}\\
+&amp;\nonumber &amp;=\frac{\prod_j\exp(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j))}{(\sum_{h_1}\exp(h_1 (W_{1,:}\mathbf{v}+W_{1,:}^{'} \mathbf{r}+c_1)))\ldots(\sum_{h_H}\exp(h_H (W_{H,:}\mathbf{v}+W_{H,:}^{'} \mathbf{r}+c_H))}\\
+&amp;\nonumber &amp;=\prod_j\frac{\exp(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j))}{1+\exp(W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j)}\\
+&amp;&amp;=\prod_j p_{\theta,\mathbf{r}} (h_j|\mathbf{v})
+\end{eqnarray}
+\]</div>
+<div class="arithmatex">\[
+\begin{eqnarray}
+&amp;\nonumber p_{\theta,\mathbf{r}}(\mathbf{v}|\mathbf{h})&amp;=\frac{p_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}) }{p_{\theta,\mathbf{r}}(\mathbf{h})}\\
+&amp;\nonumber &amp;=\frac{\exp(-E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}))}{\sum_{\mathbf{v}}\exp(-E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}))}\\
+&amp;\nonumber &amp;=\frac{\exp(\mathbf{v}^T\mathbf{W}^T\mathbf{h}+\mathbf{v}^T\mathbf{b})}{\sum_{\mathbf{v}}\exp(\mathbf{v}^T\mathbf{W}^T\mathbf{h}+\mathbf{v}^T\mathbf{b})}\\
+&amp;\nonumber &amp;=\frac{\exp(\sum_k(v_k W_{:,k}^T\mathbf{h}+v_kb_k))}{\sum_{h_1}\ldots\sum_{h_H}\exp(\sum_j(h_j W_{j,:}\mathbf{v}+c_jh_j))}\\
+&amp;\nonumber &amp;=\frac{\prod_k\exp(v_k W_{:,k}^T\mathbf{h}+v_kb_k)}{(\sum_{v_1}\exp(v_1 W_{:,1}^T\mathbf{h}+v_1b_1))\ldots(\sum_{v_V}\exp(v_V W_{:,V}^T\mathbf{h}+v_Vb_V)}\\
+&amp;\nonumber &amp;=\prod_k\frac{\exp(v_k W_{:,k}^T\mathbf{h}+v_kb_k)}{1+\exp( W_{:,k}^T\mathbf{h}+b_k)}\\
+&amp;&amp;=\prod_k p_\theta (v_k|\mathbf{h})
+\end{eqnarray}
+\]</div>
+<p>Define <span class="arithmatex">\(\theta=\{\mathbf{W},\mathbf{W}^{'},\mathbf{b},\mathbf{c}\}\)</span>, we will have</p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+  -\frac{\partial \log p_{\mathbf{\theta},\mathbf{r}}(\mathbf{v})}{\partial \mathbf{\theta}}&amp;=-\frac{\partial }{\partial \theta}\Big(\log\frac{\exp(-F_{\mathbf{r}}(\mathbf{v}))}{Z}\Big)=\frac{\partial F_\mathbf{r}(\mathbf{v})}{\partial \theta}-\mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F_\mathbf{r}(\mathbf{v}^\prime)}{\partial \theta}\Big]\tag{5}\label{eq:1}
+\end{eqnarray}
+\]</div>
+<p>with <span class="arithmatex">\(\mathbf{v}^\prime \sim p_{\theta,\mathbf{r}}(\mathbf{v}^\prime)\)</span>. while $ \frac{\partial F(\mathbf{v})}{\partial \theta}$ can be expressed as</p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    \nonumber &amp;\frac{\partial F_{\mathbf{r}}(\mathbf{v})}{\partial w_{j,k}} = -p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v})v_k\\
+    \nonumber &amp;\frac{\partial F_{\mathbf{r}}(\mathbf{v})}{\partial w_{j,i}^{'}} = -p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v})r_i\\
+     \nonumber &amp;\frac{\partial F_{\mathbf{r}}(\mathbf{v})}{\partial \mathbf{b}} = -\mathbf{v}\\
+     \nonumber &amp;\frac{\partial F_{\mathbf{r}}(\mathbf{v})}{\partial \mathbf{c}} = -p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v})
+\end{eqnarray}
+\]</div>
+<p>In a similar fashion, we can use Contrastive Divergence to approximate the second Expectation term. </p>
+<div class="arithmatex">\[
+\begin{eqnarray}
+    &amp;-\frac{\partial \log p_{\theta,\mathbf{r}}(\mathbf{v})}{\partial w_{j,k}}=
+-p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v})v_k+p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v}^n)v_k^n \\
+&amp;-\frac{\partial \log p_{\theta,\mathbf{r}}(\mathbf{v})}{\partial w_{j,i}^{'}}=
+-p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v})r_i+p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v}^n)r_i \\
+&amp;-\frac{\partial \log p_{\mathbf{\theta},\mathbf{r}}(\mathbf{v})}{\partial \mathbf{b}} = -\mathbf{v}+\mathbf{v}^n\\
+&amp;-\frac{\partial \log p_{\mathbf{\theta},\mathbf{r}}(\mathbf{v})}{\partial \mathbf{c}} = -p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v})+p_{\theta,\mathbf{r}}(h_j=1|\mathbf{v}^n)
+\end{eqnarray}
+\]</div>
+<p>Where <span class="arithmatex">\(\mathbf{v}^n\)</span> is obtained after <span class="arithmatex">\(n\)</span> iterations of block Gibbs Sampling below. </p>
+<ol>
+<li>Initialization: <span class="arithmatex">\(\mathbf{v}^{\mathrm{train}}\)</span></li>
+<li>Find: <span class="arithmatex">\(p_{\theta,\mathbf{r}^{\mathrm{train}}}(\mathbf{h}^1| \mathbf{v}^{\mathrm{train}})\)</span></li>
+<li>Sample <span class="arithmatex">\(\mathbf{h}^1\sim p_{\theta,\mathbf{r}^{\mathrm{train}}}(\mathbf{h}^1| \mathbf{v}^{\mathrm{train}})\)</span></li>
+<li>Find: <span class="arithmatex">\(p_{\theta,\mathbf{r}^{\mathrm{train}}}(\mathbf{v}^1| \mathbf{h}^1)\)</span></li>
+<li>Sample: <span class="arithmatex">\(\mathbf{v}^1 \sim p_{\theta,\mathbf{r}^{\mathrm{train}}}(\mathbf{v}^1| \mathbf{h}^1)\)</span></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>... 
+</code></pre></div>
+<p>where <span class="arithmatex">\(\mathbf{r}^\mathrm{train}\)</span> is the corresponding label for <span class="arithmatex">\(\mathbf{v}^{\mathrm{train}}\)</span>. </p>
+<h3 id="implementation-in-python_1"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.3.1</span> Implementation in Python</h3>
+<div class="highlight"><span class="filename">Conditional_RBM.py</span><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="kn">import</span> <span class="nn">torchvision</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="kn">import</span> <span class="nn">pickle</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="kn">import</span> <span class="nn">time</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="k">class</span> <span class="nc">BinaryRBM</span><span class="p">():</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="c1"># RBM Initialization</span>
+<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_v</span><span class="p">,</span> <span class="n">num_h</span><span class="p">,</span> <span class="n">num_l</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">"CPU"</span><span class="p">):</span>
+<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a>
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="sd">            num_v (int): the number of nodes in the visible layer</span>
+<a href="#__codelineno-3-18" id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="sd">            num_h (int): the number of nodes in the hidden layer </span>
+<a href="#__codelineno-3-19" id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="sd">            device (str): CPU or GPU mode</span>
+<a href="#__codelineno-3-20" id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-21" id="__codelineno-3-21" name="__codelineno-3-21"></a>
+<a href="#__codelineno-3-22" id="__codelineno-3-22" name="__codelineno-3-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">num_v</span> <span class="o">=</span> <span class="n">num_v</span> <span class="c1"># the number of visible nodes</span>
+<a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">num_h</span> <span class="o">=</span> <span class="n">num_h</span> <span class="c1"># the number of hidden nodes</span>
+<a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">num_l</span> <span class="o">=</span> <span class="n">num_l</span> <span class="c1"># the number of label nodes (which are part of the visible layer)</span>
+<a href="#__codelineno-3-25" id="__codelineno-3-25" name="__codelineno-3-25"></a>
+<a href="#__codelineno-3-26" id="__codelineno-3-26" name="__codelineno-3-26"></a>        <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s2">"GPU"</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+<a href="#__codelineno-3-27" id="__codelineno-3-27" name="__codelineno-3-27"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"GPU is not supported"</span><span class="p">)</span>
+<a href="#__codelineno-3-28" id="__codelineno-3-28" name="__codelineno-3-28"></a>        <span class="k">elif</span> <span class="n">device</span> <span class="o">==</span> <span class="s2">"GPU"</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+<a href="#__codelineno-3-29" id="__codelineno-3-29" name="__codelineno-3-29"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cuda"</span><span class="p">)</span>
+<a href="#__codelineno-3-30" id="__codelineno-3-30" name="__codelineno-3-30"></a>        <span class="k">else</span><span class="p">:</span>
+<a href="#__codelineno-3-31" id="__codelineno-3-31" name="__codelineno-3-31"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cpu"</span><span class="p">)</span>
+<a href="#__codelineno-3-32" id="__codelineno-3-32" name="__codelineno-3-32"></a>
+<a href="#__codelineno-3-33" id="__codelineno-3-33" name="__codelineno-3-33"></a>        <span class="c1"># normalization to ensure stability ? </span>
+<a href="#__codelineno-3-34" id="__codelineno-3-34" name="__codelineno-3-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_h</span><span class="p">,</span> <span class="n">num_v</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">num_v</span><span class="p">)</span>
+<a href="#__codelineno-3-35" id="__codelineno-3-35" name="__codelineno-3-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w_l</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_h</span><span class="p">,</span> <span class="n">num_l</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">num_l</span><span class="p">)</span>
+<a href="#__codelineno-3-36" id="__codelineno-3-36" name="__codelineno-3-36"></a>
+<a href="#__codelineno-3-37" id="__codelineno-3-37" name="__codelineno-3-37"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_v</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># bias (column) vector for the visible layer</span>
+<a href="#__codelineno-3-38" id="__codelineno-3-38" name="__codelineno-3-38"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_h</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># bias (column) vector for the hidden layer</span>
+<a href="#__codelineno-3-39" id="__codelineno-3-39" name="__codelineno-3-39"></a>
+<a href="#__codelineno-3-40" id="__codelineno-3-40" name="__codelineno-3-40"></a>    <span class="k">def</span> <span class="nf">idx2onehot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<a href="#__codelineno-3-41" id="__codelineno-3-41" name="__codelineno-3-41"></a>
+<a href="#__codelineno-3-42" id="__codelineno-3-42" name="__codelineno-3-42"></a>        <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">idx</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span>
+<a href="#__codelineno-3-43" id="__codelineno-3-43" name="__codelineno-3-43"></a>        <span class="n">idx2dim</span> <span class="o">=</span> <span class="n">idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># change from 1-dim tensor to 2-dim tensor</span>
+<a href="#__codelineno-3-44" id="__codelineno-3-44" name="__codelineno-3-44"></a>        <span class="n">onehot</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">idx2dim</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">scatter_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">idx2dim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-3-45" id="__codelineno-3-45" name="__codelineno-3-45"></a>
+<a href="#__codelineno-3-46" id="__codelineno-3-46" name="__codelineno-3-46"></a>        <span class="k">return</span> <span class="n">onehot</span>
+<a href="#__codelineno-3-47" id="__codelineno-3-47" name="__codelineno-3-47"></a>
+<a href="#__codelineno-3-48" id="__codelineno-3-48" name="__codelineno-3-48"></a>
+<a href="#__codelineno-3-49" id="__codelineno-3-49" name="__codelineno-3-49"></a>
+<a href="#__codelineno-3-50" id="__codelineno-3-50" name="__codelineno-3-50"></a>    <span class="c1"># Calculation of the free energy F(v)</span>
+<a href="#__codelineno-3-51" id="__codelineno-3-51" name="__codelineno-3-51"></a>    <span class="k">def</span> <span class="nf">free_energy_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+<a href="#__codelineno-3-52" id="__codelineno-3-52" name="__codelineno-3-52"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-53" id="__codelineno-3-53" name="__codelineno-3-53"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-3-54" id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-3-55" id="__codelineno-3-55" name="__codelineno-3-55"></a>
+<a href="#__codelineno-3-56" id="__codelineno-3-56" name="__codelineno-3-56"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-3-57" id="__codelineno-3-57" name="__codelineno-3-57"></a><span class="sd">        free_energy (torch.Tensor): the free energy F(v) (c.f. Eq (12))</span>
+<a href="#__codelineno-3-58" id="__codelineno-3-58" name="__codelineno-3-58"></a>
+<a href="#__codelineno-3-59" id="__codelineno-3-59" name="__codelineno-3-59"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-60" id="__codelineno-3-60" name="__codelineno-3-60"></a>        <span class="c1"># c.f. Eq.(12)</span>
+<a href="#__codelineno-3-61" id="__codelineno-3-61" name="__codelineno-3-61"></a>        <span class="c1"># .sum(0) represents the summation of different rows</span>
+<a href="#__codelineno-3-62" id="__codelineno-3-62" name="__codelineno-3-62"></a>        <span class="c1"># F.softplus(x) calculates log(1+exp(x))</span>
+<a href="#__codelineno-3-63" id="__codelineno-3-63" name="__codelineno-3-63"></a>
+<a href="#__codelineno-3-64" id="__codelineno-3-64" name="__codelineno-3-64"></a>        <span class="k">return</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">t</span><span class="p">(),</span><span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span> <span class="o">-</span> <span class="n">F</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">w_v</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">w_l</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">),</span><span class="n">l</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)),</span><span class="mi">0</span><span class="p">)))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a href="#__codelineno-3-65" id="__codelineno-3-65" name="__codelineno-3-65"></a>
+<a href="#__codelineno-3-66" id="__codelineno-3-66" name="__codelineno-3-66"></a>    <span class="k">def</span> <span class="nf">sample_h_given_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<a href="#__codelineno-3-67" id="__codelineno-3-67" name="__codelineno-3-67"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-68" id="__codelineno-3-68" name="__codelineno-3-68"></a><span class="sd">          Args:</span>
+<a href="#__codelineno-3-69" id="__codelineno-3-69" name="__codelineno-3-69"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-3-70" id="__codelineno-3-70" name="__codelineno-3-70"></a>
+<a href="#__codelineno-3-71" id="__codelineno-3-71" name="__codelineno-3-71"></a>
+<a href="#__codelineno-3-72" id="__codelineno-3-72" name="__codelineno-3-72"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-3-73" id="__codelineno-3-73" name="__codelineno-3-73"></a><span class="sd">        sampled_h (torch.Tensor): the sample h according to Eq.(17). </span>
+<a href="#__codelineno-3-74" id="__codelineno-3-74" name="__codelineno-3-74"></a><span class="sd">                                  It is a column vector that contains 0 or 1. </span>
+<a href="#__codelineno-3-75" id="__codelineno-3-75" name="__codelineno-3-75"></a>
+<a href="#__codelineno-3-76" id="__codelineno-3-76" name="__codelineno-3-76"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-77" id="__codelineno-3-77" name="__codelineno-3-77"></a>
+<a href="#__codelineno-3-78" id="__codelineno-3-78" name="__codelineno-3-78"></a>        <span class="k">return</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">w_v</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">w_l</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">v</span><span class="p">,</span><span class="n">label</span><span class="p">),</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">sigmoid_</span><span class="p">()</span><span class="o">&gt;</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_h</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="c1"># c.f. Eq (17)</span>
+<a href="#__codelineno-3-79" id="__codelineno-3-79" name="__codelineno-3-79"></a>
+<a href="#__codelineno-3-80" id="__codelineno-3-80" name="__codelineno-3-80"></a>    <span class="k">def</span> <span class="nf">sample_v_given_h</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+<a href="#__codelineno-3-81" id="__codelineno-3-81" name="__codelineno-3-81"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-82" id="__codelineno-3-82" name="__codelineno-3-82"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-3-83" id="__codelineno-3-83" name="__codelineno-3-83"></a><span class="sd">        h (torch.Tensor): the hidden states</span>
+<a href="#__codelineno-3-84" id="__codelineno-3-84" name="__codelineno-3-84"></a>
+<a href="#__codelineno-3-85" id="__codelineno-3-85" name="__codelineno-3-85"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-3-86" id="__codelineno-3-86" name="__codelineno-3-86"></a><span class="sd">        sampled_v (torch.Tensor): the sample v according to Eq.(18). </span>
+<a href="#__codelineno-3-87" id="__codelineno-3-87" name="__codelineno-3-87"></a><span class="sd">                                  It is a column vector that contains 0 or 1. </span>
+<a href="#__codelineno-3-88" id="__codelineno-3-88" name="__codelineno-3-88"></a>
+<a href="#__codelineno-3-89" id="__codelineno-3-89" name="__codelineno-3-89"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-90" id="__codelineno-3-90" name="__codelineno-3-90"></a>        <span class="k">return</span> <span class="p">(</span> <span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_v</span><span class="o">.</span><span class="n">t</span><span class="p">(),</span> <span class="n">h</span><span class="p">)</span><span class="o">.</span><span class="n">sigmoid_</span><span class="p">()</span><span class="o">&gt;</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_v</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="c1"># c.f. Eq (18)</span>
+<a href="#__codelineno-3-91" id="__codelineno-3-91" name="__codelineno-3-91"></a>
+<a href="#__codelineno-3-92" id="__codelineno-3-92" name="__codelineno-3-92"></a>
+<a href="#__codelineno-3-93" id="__codelineno-3-93" name="__codelineno-3-93"></a>    <span class="k">def</span> <span class="nf">block_gibbs_sampling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_v</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">num_iter</span><span class="p">):</span>
+<a href="#__codelineno-3-94" id="__codelineno-3-94" name="__codelineno-3-94"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-95" id="__codelineno-3-95" name="__codelineno-3-95"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-3-96" id="__codelineno-3-96" name="__codelineno-3-96"></a><span class="sd">        initial_v (torch.Tensor): the initial visible states to start the block gibbs sampling</span>
+<a href="#__codelineno-3-97" id="__codelineno-3-97" name="__codelineno-3-97"></a><span class="sd">        num_iter(int): the number of iterations for the gibbs sampling</span>
+<a href="#__codelineno-3-98" id="__codelineno-3-98" name="__codelineno-3-98"></a>
+<a href="#__codelineno-3-99" id="__codelineno-3-99" name="__codelineno-3-99"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-3-100" id="__codelineno-3-100" name="__codelineno-3-100"></a><span class="sd">        gibbs_v (torch.Tensor): the sampled visible states</span>
+<a href="#__codelineno-3-101" id="__codelineno-3-101" name="__codelineno-3-101"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-102" id="__codelineno-3-102" name="__codelineno-3-102"></a>        <span class="n">v</span> <span class="o">=</span> <span class="n">initial_v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+<a href="#__codelineno-3-103" id="__codelineno-3-103" name="__codelineno-3-103"></a>        <span class="n">label</span> <span class="o">=</span> <span class="n">label</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+<a href="#__codelineno-3-104" id="__codelineno-3-104" name="__codelineno-3-104"></a>        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iter</span><span class="p">):</span>
+<a href="#__codelineno-3-105" id="__codelineno-3-105" name="__codelineno-3-105"></a>
+<a href="#__codelineno-3-106" id="__codelineno-3-106" name="__codelineno-3-106"></a>            <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_h_given_v</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">label</span><span class="p">)</span>
+<a href="#__codelineno-3-107" id="__codelineno-3-107" name="__codelineno-3-107"></a>            <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_v_given_h</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<a href="#__codelineno-3-108" id="__codelineno-3-108" name="__codelineno-3-108"></a>
+<a href="#__codelineno-3-109" id="__codelineno-3-109" name="__codelineno-3-109"></a>        <span class="k">return</span> <span class="n">v</span>
+<a href="#__codelineno-3-110" id="__codelineno-3-110" name="__codelineno-3-110"></a>
+<a href="#__codelineno-3-111" id="__codelineno-3-111" name="__codelineno-3-111"></a>    <span class="k">def</span> <span class="nf">free_energy_gradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<a href="#__codelineno-3-112" id="__codelineno-3-112" name="__codelineno-3-112"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-113" id="__codelineno-3-113" name="__codelineno-3-113"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-3-114" id="__codelineno-3-114" name="__codelineno-3-114"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-3-115" id="__codelineno-3-115" name="__codelineno-3-115"></a>
+<a href="#__codelineno-3-116" id="__codelineno-3-116" name="__codelineno-3-116"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-3-117" id="__codelineno-3-117" name="__codelineno-3-117"></a><span class="sd">        grad_w (torch.Tensor): the average gradient of the free energy with respect to w across all samples</span>
+<a href="#__codelineno-3-118" id="__codelineno-3-118" name="__codelineno-3-118"></a><span class="sd">        grad_b (torch.Tensor): the average gradient of the free energy with respect to b across all samples</span>
+<a href="#__codelineno-3-119" id="__codelineno-3-119" name="__codelineno-3-119"></a><span class="sd">        grad_c (torch.Tensor): the average gradient of the free energy with respect to c across all samples</span>
+<a href="#__codelineno-3-120" id="__codelineno-3-120" name="__codelineno-3-120"></a>
+<a href="#__codelineno-3-121" id="__codelineno-3-121" name="__codelineno-3-121"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-122" id="__codelineno-3-122" name="__codelineno-3-122"></a>        <span class="n">temp</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">addmm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">w_v</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">w_l</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">v</span><span class="p">,</span><span class="n">label</span><span class="p">),</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">sigmoid_</span><span class="p">()</span>
+<a href="#__codelineno-3-123" id="__codelineno-3-123" name="__codelineno-3-123"></a>
+<a href="#__codelineno-3-124" id="__codelineno-3-124" name="__codelineno-3-124"></a>        <span class="n">grad_c</span> <span class="o">=</span>  <span class="n">temp</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-3-125" id="__codelineno-3-125" name="__codelineno-3-125"></a>        <span class="n">grad_b</span> <span class="o">=</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-3-126" id="__codelineno-3-126" name="__codelineno-3-126"></a>        <span class="n">grad_w_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">t</span><span class="p">())</span><span class="o">/</span><span class="n">v</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-3-127" id="__codelineno-3-127" name="__codelineno-3-127"></a>        <span class="n">grad_w_l</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span><span class="n">label</span><span class="o">.</span><span class="n">t</span><span class="p">())</span><span class="o">/</span><span class="n">label</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-3-128" id="__codelineno-3-128" name="__codelineno-3-128"></a>
+<a href="#__codelineno-3-129" id="__codelineno-3-129" name="__codelineno-3-129"></a>        <span class="c1"># v.size(1)  == label.size(1) == batch_size</span>
+<a href="#__codelineno-3-130" id="__codelineno-3-130" name="__codelineno-3-130"></a>
+<a href="#__codelineno-3-131" id="__codelineno-3-131" name="__codelineno-3-131"></a>        <span class="k">return</span> <span class="n">grad_w_v</span><span class="p">,</span> <span class="n">grad_w_l</span><span class="p">,</span> <span class="n">grad_b</span><span class="p">,</span> <span class="n">grad_c</span>
+<a href="#__codelineno-3-132" id="__codelineno-3-132" name="__codelineno-3-132"></a>
+<a href="#__codelineno-3-133" id="__codelineno-3-133" name="__codelineno-3-133"></a>    <span class="k">def</span> <span class="nf">mini_batch_gradient_func</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">cd_k</span><span class="p">,</span><span class="n">labels</span><span class="p">):</span>
+<a href="#__codelineno-3-134" id="__codelineno-3-134" name="__codelineno-3-134"></a>
+<a href="#__codelineno-3-135" id="__codelineno-3-135" name="__codelineno-3-135"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-136" id="__codelineno-3-136" name="__codelineno-3-136"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-3-137" id="__codelineno-3-137" name="__codelineno-3-137"></a><span class="sd">        v (torch.Tensor): the visible states</span>
+<a href="#__codelineno-3-138" id="__codelineno-3-138" name="__codelineno-3-138"></a><span class="sd">        cd_k (int): cd_k mode that is chosen</span>
+<a href="#__codelineno-3-139" id="__codelineno-3-139" name="__codelineno-3-139"></a>
+<a href="#__codelineno-3-140" id="__codelineno-3-140" name="__codelineno-3-140"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-3-141" id="__codelineno-3-141" name="__codelineno-3-141"></a><span class="sd">        grad_mini_batch (Torch) the average gradient across all samples in the mini-batch</span>
+<a href="#__codelineno-3-142" id="__codelineno-3-142" name="__codelineno-3-142"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-143" id="__codelineno-3-143" name="__codelineno-3-143"></a>        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="c1"># move to GPU if necessary </span>
+<a href="#__codelineno-3-144" id="__codelineno-3-144" name="__codelineno-3-144"></a>
+<a href="#__codelineno-3-145" id="__codelineno-3-145" name="__codelineno-3-145"></a>        <span class="n">v_k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">block_gibbs_sampling</span><span class="p">(</span><span class="n">initial_v</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span> <span class="n">num_iter</span> <span class="o">=</span> <span class="n">cd_k</span><span class="p">)</span>
+<a href="#__codelineno-3-146" id="__codelineno-3-146" name="__codelineno-3-146"></a>
+<a href="#__codelineno-3-147" id="__codelineno-3-147" name="__codelineno-3-147"></a>        <span class="p">[</span><span class="n">grad_w_v_pos</span><span class="p">,</span><span class="n">grad_w_l_pos</span><span class="p">,</span> <span class="n">grad_b_pos</span><span class="p">,</span> <span class="n">grad_c_pos</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">free_energy_gradient</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
+<a href="#__codelineno-3-148" id="__codelineno-3-148" name="__codelineno-3-148"></a>        <span class="p">[</span><span class="n">grad_w_v_neg</span><span class="p">,</span><span class="n">grad_w_l_neg</span><span class="p">,</span> <span class="n">grad_b_neg</span><span class="p">,</span> <span class="n">grad_c_neg</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">free_energy_gradient</span><span class="p">(</span><span class="n">v_k</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
+<a href="#__codelineno-3-149" id="__codelineno-3-149" name="__codelineno-3-149"></a>
+<a href="#__codelineno-3-150" id="__codelineno-3-150" name="__codelineno-3-150"></a>        <span class="k">return</span> <span class="n">grad_w_v_pos</span> <span class="o">-</span> <span class="n">grad_w_v_neg</span><span class="p">,</span> <span class="n">grad_w_l_pos</span> <span class="o">-</span> <span class="n">grad_w_l_neg</span><span class="p">,</span> <span class="n">grad_b_pos</span> <span class="o">-</span> <span class="n">grad_b_neg</span><span class="p">,</span> <span class="n">grad_c_pos</span> <span class="o">-</span> <span class="n">grad_c_neg</span> <span class="c1"># c.f. Eq.(13)</span>
+<a href="#__codelineno-3-151" id="__codelineno-3-151" name="__codelineno-3-151"></a>
+<a href="#__codelineno-3-152" id="__codelineno-3-152" name="__codelineno-3-152"></a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">,</span> <span class="n">cd_k</span><span class="p">,</span> <span class="n">max_epochs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">):</span>
+<a href="#__codelineno-3-153" id="__codelineno-3-153" name="__codelineno-3-153"></a>        <span class="sd">"""</span>
+<a href="#__codelineno-3-154" id="__codelineno-3-154" name="__codelineno-3-154"></a><span class="sd">        Args:</span>
+<a href="#__codelineno-3-155" id="__codelineno-3-155" name="__codelineno-3-155"></a><span class="sd">        dataloader: dataloader of the training data </span>
+<a href="#__codelineno-3-156" id="__codelineno-3-156" name="__codelineno-3-156"></a><span class="sd">        cd_k: the contrastive divergence mode</span>
+<a href="#__codelineno-3-157" id="__codelineno-3-157" name="__codelineno-3-157"></a><span class="sd">        max_epochs: number of epochs</span>
+<a href="#__codelineno-3-158" id="__codelineno-3-158" name="__codelineno-3-158"></a><span class="sd">        lr: the learning rate</span>
+<a href="#__codelineno-3-159" id="__codelineno-3-159" name="__codelineno-3-159"></a>
+<a href="#__codelineno-3-160" id="__codelineno-3-160" name="__codelineno-3-160"></a><span class="sd">        Returns:</span>
+<a href="#__codelineno-3-161" id="__codelineno-3-161" name="__codelineno-3-161"></a><span class="sd">        w, b, c: the parameters of the RBM</span>
+<a href="#__codelineno-3-162" id="__codelineno-3-162" name="__codelineno-3-162"></a><span class="sd">        """</span>
+<a href="#__codelineno-3-163" id="__codelineno-3-163" name="__codelineno-3-163"></a>        <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_epochs</span><span class="p">):</span>
+<a href="#__codelineno-3-164" id="__codelineno-3-164" name="__codelineno-3-164"></a>
+<a href="#__codelineno-3-165" id="__codelineno-3-165" name="__codelineno-3-165"></a>            <span class="nb">print</span><span class="p">(</span><span class="s1">'Epoch </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">iter</span><span class="p">))</span>
+<a href="#__codelineno-3-166" id="__codelineno-3-166" name="__codelineno-3-166"></a>
+<a href="#__codelineno-3-167" id="__codelineno-3-167" name="__codelineno-3-167"></a>            <span class="k">for</span> <span class="n">mini_batch_samples</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+<a href="#__codelineno-3-168" id="__codelineno-3-168" name="__codelineno-3-168"></a>                <span class="n">mini_batch_samples_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">mini_batch_samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<a href="#__codelineno-3-169" id="__codelineno-3-169" name="__codelineno-3-169"></a>
+<a href="#__codelineno-3-170" id="__codelineno-3-170" name="__codelineno-3-170"></a>                <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">idx2onehot</span><span class="p">(</span><span class="n">mini_batch_samples</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span>
+<a href="#__codelineno-3-171" id="__codelineno-3-171" name="__codelineno-3-171"></a>
+<a href="#__codelineno-3-172" id="__codelineno-3-172" name="__codelineno-3-172"></a>
+<a href="#__codelineno-3-173" id="__codelineno-3-173" name="__codelineno-3-173"></a>                <span class="c1"># we use mini_batch_samples[0] to extract the data since mini_batch_samples[1] is the label. </span>
+<a href="#__codelineno-3-174" id="__codelineno-3-174" name="__codelineno-3-174"></a>                <span class="c1"># each column in  mini_batch_samples_ is corresponding to one data sample. </span>
+<a href="#__codelineno-3-175" id="__codelineno-3-175" name="__codelineno-3-175"></a>
+<a href="#__codelineno-3-176" id="__codelineno-3-176" name="__codelineno-3-176"></a>                <span class="n">grad_w_v</span><span class="p">,</span> <span class="n">grad_w_l</span><span class="p">,</span> <span class="n">grad_b</span><span class="p">,</span> <span class="n">grad_c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mini_batch_gradient_func</span><span class="p">(</span><span class="n">mini_batch_samples_</span><span class="p">,</span> <span class="n">cd_k</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<a href="#__codelineno-3-177" id="__codelineno-3-177" name="__codelineno-3-177"></a>
+<a href="#__codelineno-3-178" id="__codelineno-3-178" name="__codelineno-3-178"></a>
+<a href="#__codelineno-3-179" id="__codelineno-3-179" name="__codelineno-3-179"></a>                <span class="c1"># update w, b, c</span>
+<a href="#__codelineno-3-180" id="__codelineno-3-180" name="__codelineno-3-180"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">w_v</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_w_v</span>
+<a href="#__codelineno-3-181" id="__codelineno-3-181" name="__codelineno-3-181"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">w_l</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_w_l</span>
+<a href="#__codelineno-3-182" id="__codelineno-3-182" name="__codelineno-3-182"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_b</span>
+<a href="#__codelineno-3-183" id="__codelineno-3-183" name="__codelineno-3-183"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">grad_c</span>
+<a href="#__codelineno-3-184" id="__codelineno-3-184" name="__codelineno-3-184"></a>            <span class="c1"># break</span>
+<a href="#__codelineno-3-185" id="__codelineno-3-185" name="__codelineno-3-185"></a>
+<a href="#__codelineno-3-186" id="__codelineno-3-186" name="__codelineno-3-186"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_l</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+<a href="#__codelineno-3-187" id="__codelineno-3-187" name="__codelineno-3-187"></a>
+<a href="#__codelineno-3-188" id="__codelineno-3-188" name="__codelineno-3-188"></a>
+<a href="#__codelineno-3-189" id="__codelineno-3-189" name="__codelineno-3-189"></a>
+<a href="#__codelineno-3-190" id="__codelineno-3-190" name="__codelineno-3-190"></a>
+<a href="#__codelineno-3-191" id="__codelineno-3-191" name="__codelineno-3-191"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+<a href="#__codelineno-3-192" id="__codelineno-3-192" name="__codelineno-3-192"></a>
+<a href="#__codelineno-3-193" id="__codelineno-3-193" name="__codelineno-3-193"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">BinaryRBM</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">device</span><span class="o">=</span><span class="s2">"CPU"</span><span class="p">)</span>
+<a href="#__codelineno-3-194" id="__codelineno-3-194" name="__codelineno-3-194"></a>
+<a href="#__codelineno-3-195" id="__codelineno-3-195" name="__codelineno-3-195"></a>    <span class="c1"># Load Data</span>
+<a href="#__codelineno-3-196" id="__codelineno-3-196" name="__codelineno-3-196"></a>    <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s2">"~"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="#__codelineno-3-197" id="__codelineno-3-197" name="__codelineno-3-197"></a>    <span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span><span class="n">shuffle</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<a href="#__codelineno-3-198" id="__codelineno-3-198" name="__codelineno-3-198"></a>
+<a href="#__codelineno-3-199" id="__codelineno-3-199" name="__codelineno-3-199"></a>    <span class="c1"># Train</span>
+<a href="#__codelineno-3-200" id="__codelineno-3-200" name="__codelineno-3-200"></a>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a href="#__codelineno-3-201" id="__codelineno-3-201" name="__codelineno-3-201"></a>    <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">cd_k</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<a href="#__codelineno-3-202" id="__codelineno-3-202" name="__codelineno-3-202"></a>    <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<a href="#__codelineno-3-203" id="__codelineno-3-203" name="__codelineno-3-203"></a>
+<a href="#__codelineno-3-204" id="__codelineno-3-204" name="__codelineno-3-204"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'objs.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># Python 3: open(..., 'wb')</span>
+<a href="#__codelineno-3-205" id="__codelineno-3-205" name="__codelineno-3-205"></a>        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">([</span><span class="n">w</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">b</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">c</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()],</span> <span class="n">f</span><span class="p">)</span>
+<a href="#__codelineno-3-206" id="__codelineno-3-206" name="__codelineno-3-206"></a>
+<a href="#__codelineno-3-207" id="__codelineno-3-207" name="__codelineno-3-207"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Training Ended. Elapsed Time is </span><span class="si">{0:.2f}</span><span class="s2">s"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">))</span>
+<a href="#__codelineno-3-208" id="__codelineno-3-208" name="__codelineno-3-208"></a>
+<a href="#__codelineno-3-209" id="__codelineno-3-209" name="__codelineno-3-209"></a>
+<a href="#__codelineno-3-210" id="__codelineno-3-210" name="__codelineno-3-210"></a>
+<a href="#__codelineno-3-211" id="__codelineno-3-211" name="__codelineno-3-211"></a>    <span class="c1"># Test </span>
+<a href="#__codelineno-3-212" id="__codelineno-3-212" name="__codelineno-3-212"></a>
+<a href="#__codelineno-3-213" id="__codelineno-3-213" name="__codelineno-3-213"></a>    <span class="c1"># retrieve the next image data for testing </span>
+<a href="#__codelineno-3-214" id="__codelineno-3-214" name="__codelineno-3-214"></a>    <span class="n">i</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a href="#__codelineno-3-215" id="__codelineno-3-215" name="__codelineno-3-215"></a>
+<a href="#__codelineno-3-216" id="__codelineno-3-216" name="__codelineno-3-216"></a>    <span class="c1"># Generate new visible states with a random initial visible states via Gibbs sampling the RBM</span>
+<a href="#__codelineno-3-217" id="__codelineno-3-217" name="__codelineno-3-217"></a>    <span class="n">v_gen</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">block_gibbs_sampling</span><span class="p">(</span><span class="n">initial_v</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(),</span><span class="n">num_iter</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+<a href="#__codelineno-3-218" id="__codelineno-3-218" name="__codelineno-3-218"></a>
+<a href="#__codelineno-3-219" id="__codelineno-3-219" name="__codelineno-3-219"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-3-220" id="__codelineno-3-220" name="__codelineno-3-220"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<a href="#__codelineno-3-221" id="__codelineno-3-221" name="__codelineno-3-221"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(),</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">"gray"</span><span class="p">)</span>
+<a href="#__codelineno-3-222" id="__codelineno-3-222" name="__codelineno-3-222"></a>
+<a href="#__codelineno-3-223" id="__codelineno-3-223" name="__codelineno-3-223"></a>    <span class="c1"># Display the images</span>
+<a href="#__codelineno-3-224" id="__codelineno-3-224" name="__codelineno-3-224"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<a href="#__codelineno-3-225" id="__codelineno-3-225" name="__codelineno-3-225"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">v_gen</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span><span class="n">cmap</span> <span class="o">=</span> <span class="s2">"gray"</span><span class="p">)</span>
+<a href="#__codelineno-3-226" id="__codelineno-3-226" name="__codelineno-3-226"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="__comments"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.4</span> Comments</h2>
 <!-- Insert generated snippet here -->
 <script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOINKUzM4CSBXc" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="haoma7/haoma7.github.io" data-repo-id="R_kgDOINKUzA" data-strict="0" data-theme="preferred_color_scheme" src="https://giscus.app/client.js">
 </script>
@@ -433,13 +1254,13 @@ where <span class="arithmatex">\(k_B\)</span> is the Boltzmann constant and <spa
             </div>
 </div>
 </a>
-<a aria-label="Next: test Web" class="md-footer__link md-footer__link--next" href="../../web-and-cloud/" rel="next">
+<a aria-label="Next: Head First Transformer" class="md-footer__link md-footer__link--next" href="../transformer/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              test Web
+              Head First Transformer
             </div>
 </div>
 <div class="md-footer__button md-icon">
