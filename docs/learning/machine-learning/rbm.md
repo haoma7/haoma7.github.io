@@ -44,7 +44,7 @@ The probability of a spin configuration follows the *Boltzmann distribution*:
 
 $$ p(\mathbf{\sigma})=\frac{1}{Z}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T})$$
 
-where $k_B$ is the Boltzmann constant and $T$ is the absolute temperature. $Z$ is a normalizing constant known as the \emph{partition function} and is defined as 
+where $k_B$ is the Boltzmann constant and $T$ is the absolute temperature. $Z$ is a normalizing constant known as the *partition function* and is defined as 
 
 
 $$ Z = \sum_{\sigma}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T}) $$
@@ -72,7 +72,7 @@ After we obtain a sequence of spin configurations, we will sub-sample those conf
 
 $$ \sigma^T, \sigma^{T+\tau}, \sigma^{T+2\tau},\ldots $$
 
-where $T$ and $\tau$ are known as the \emph{burn-in period} and the \emph{sampling period}.
+where $T$ and $\tau$ are known as the *burn-in period* and the *sampling period*.
 
 ## Restricted Boltzmann Machine
 
@@ -90,7 +90,7 @@ RBM is a theoretical model inspired by statistical mechanics. In this model, the
 
 $$ p_{\theta}(\mathbf{v},\mathbf{h}) = \frac{1}{Z}\mathrm{exp}(-E(\mathbf{v},\mathbf{h})) $$
 
-where $\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}$, and the normalization constant $Z=\sum_{\mathbf{v},\mathbf{h}}\mathrm{exp}(-E(\mathbf{v},\mathbf{h}))$ is referred to as the \emph{partition function}, and $E(\mathbf{v},\mathbf{h})$ is the energy function calculated by 
+where $\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}$, and the normalization constant $Z=\sum_{\mathbf{v},\mathbf{h}}\mathrm{exp}(-E(\mathbf{v},\mathbf{h}))$ is referred to as the *partition function*, and $E(\mathbf{v},\mathbf{h})$ is the energy function calculated by 
 
 $$ E(\mathbf{v},\mathbf{h}) = -\mathbf{h}^T\mathbf{W}\mathbf{v}-\mathbf{b}^T\mathbf{v}-\mathbf{c}^T\mathbf{h}
 =-\sum_{j}\sum_k h_j W_{j,k} v_k - \sum_k b_kv_k - \sum_j c_j h_j
@@ -196,7 +196,7 @@ $$\begin{eqnarray}
     \mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\approx\frac{\partial F(\mathbf{v}^n)}{\partial \theta}
 \end{eqnarray}$$
 
-So Eq.~($\eqref{eq1}$) can be approximated as
+So Eq.$\eqref{eq1}$ can be approximated as
 
 $$\begin{eqnarray}
  \nonumber -\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{\theta}}&=\frac{\partial F(\mathbf{v})}{\partial \theta}-\mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\\

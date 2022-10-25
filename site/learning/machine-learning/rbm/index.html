@@ -128,7 +128,7 @@
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../../">
-        Tech
+        Learning
       </a>
 </li>
 <li class="md-tabs__item">
@@ -172,15 +172,15 @@
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../">Tech</a>
+<a href="../../">Learning</a>
 <label for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-label="Tech" class="md-nav" data-md-level="1">
+<nav aria-label="Learning" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
-          Tech
+          Learning
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -232,10 +232,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#a-concise-tutorial-for-restricted-boltzmann-machine">
-    A Concise Tutorial for Restricted Boltzmann Machine
+<a class="md-nav__link" href="#restricted-boltzmann-machine">
+    Restricted Boltzmann Machine
   </a>
-<nav aria-label="A Concise Tutorial for Restricted Boltzmann Machine" class="md-nav">
+<nav aria-label="Restricted Boltzmann Machine" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#training">
@@ -323,6 +323,9 @@
 <input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
 <a href="../../../teaching/">Teaching</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
 </div>
 <nav aria-label="Teaching" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
@@ -330,6 +333,11 @@
           Teaching
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../teaching/teaching-philosophy/">
+        Teaching Philosophy
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -386,10 +394,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#a-concise-tutorial-for-restricted-boltzmann-machine">
-    A Concise Tutorial for Restricted Boltzmann Machine
+<a class="md-nav__link" href="#restricted-boltzmann-machine">
+    Restricted Boltzmann Machine
   </a>
-<nav aria-label="A Concise Tutorial for Restricted Boltzmann Machine" class="md-nav">
+<nav aria-label="Restricted Boltzmann Machine" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#training">
@@ -430,11 +438,6 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<style>
-      main{
-         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      }
-   </style>
 <nav class="md-tags">
 <a class="md-tag" href="../../../tags/#machine-learning">machine learning</a>
 <a class="md-tag" href="../../../tags/#generative-model">generative model</a>
@@ -459,25 +462,28 @@
 <p>where <span class="arithmatex">\(J\)</span> is the <em>coupling constant </em>, and <span class="arithmatex">\(\sigma_x\)</span> and <span class="arithmatex">\(\sigma_y\)</span> represent the spin of site <span class="arithmatex">\(x\)</span> and site <span class="arithmatex">\(y\)</span>, respectively, and the summation is taken over all pairs of <span class="arithmatex">\((x,y)\)</span> where site <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are neighbours. Two sites are neighbours if exactly one coordinate of two sites differ by 1.</p>
 <p>The probability of a spin configuration follows the <em>Boltzmann distribution</em>:</p>
 <div class="arithmatex">\[ p(\mathbf{\sigma})=\frac{1}{Z}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T})\]</div>
-<p>where <span class="arithmatex">\(k_B\)</span> is the Boltzmann constant and <span class="arithmatex">\(T\)</span> is the absolute temperature. <span class="arithmatex">\(Z\)</span> is a normalizing constant known as the \emph{partition function} and is defined as </p>
+<p>where <span class="arithmatex">\(k_B\)</span> is the Boltzmann constant and <span class="arithmatex">\(T\)</span> is the absolute temperature. <span class="arithmatex">\(Z\)</span> is a normalizing constant known as the <em>partition function</em> and is defined as </p>
 <div class="arithmatex">\[ Z = \sum_{\sigma}\exp(-\frac{\mathcal{H}(\mathbf{\sigma})}{k_B T}) \]</div>
 <h3 id="markov-chain-monte-carlo-simulations"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1.2</span> Markov Chain Monte Carlo Simulations</h3>
 <p>The number of configuration in the Ising model is exponential of the number of sites, which makes the calculation of the normalizing constant <span class="arithmatex">\(Z\)</span> intractable for a large <span class="arithmatex">\(L\)</span>. Therefore, we often study the Ising model using Monte Carlo simulations. If we could sample <span class="arithmatex">\(N\)</span> spin configurations from the Boltzmann distribution, then the expectation value of an observable <span class="arithmatex">\(\mathcal{O}\)</span> can be approximated by</p>
 <div class="arithmatex">\[ \mathbb{E}(\mathcal{O})=\frac{1}{N}\sum_{i}^N\mathcal{O}(\sigma^i) \]</div>
 <p>where <span class="arithmatex">\(\sigma^i\)</span> is the <span class="arithmatex">\(i_{\mathrm{th}}\)</span> spin configuration sample. </p>
 <p>In spite of the computational intractability to compute the partition function <span class="arithmatex">\(Z\)</span>, we can still sample the Boltzmann distribution using Markov Chain Monte Carlo (MCMC) techniques, specifically, <em>Metropolis Algorithm</em>, which is a special case of the <em>Metropolis-Hasting Algorithm</em>. For this specific problem, the algorithm goes like below:</p>
-<p>!!! "Metropolis Algorithm for Boltzmann Distribution"</p>
-<div class="highlight"><pre><span></span><code>1. Initialize $\sigma^0$. A common practice is to independently and randomly assign +1 or -1 to each site.
-2. Randomly choose a site $x$.
-3. Let $\sigma^\prime$ be the spin configuration obtained by the flipping the spin at $x$ of the current spin configuration $\sigma$ , i.e., $\sigma_x^\prime=-\sigma_x$ and $\sigma_y^\prime=-\sigma_y$ for all $y\neq x$.
-4. Let $U_n$ be a standard uniform random variable. 
-5. If $U_n\leq \frac{p(\sigma^\prime)}{p(\sigma)}=\exp\Big(-\frac{\mathcal{H}(\sigma^\prime)-\mathcal{H}(\sigma)}{k_B T}\Big)$, then accept the spin flip and set $\sigma^{n+1}=\sigma^\prime$. Otherwise, reject the spin flip and set $\sigma^{n+1}=\sigma^n$.
-6. $n = n+1$ and return to Step 2.
-</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Metropolis Algorithm for Boltzmann Distribution</p>
+<ol>
+<li>Initialize <span class="arithmatex">\(\sigma^0\)</span>. A common practice is to independently and randomly assign +1 or -1 to each site.</li>
+<li>Randomly choose a site <span class="arithmatex">\(x\)</span>.</li>
+<li>Let <span class="arithmatex">\(\sigma^\prime\)</span> be the spin configuration obtained by the flipping the spin at <span class="arithmatex">\(x\)</span> of the current spin configuration <span class="arithmatex">\(\sigma\)</span> , i.e., <span class="arithmatex">\(\sigma_x^\prime=-\sigma_x\)</span> and <span class="arithmatex">\(\sigma_y^\prime=-\sigma_y\)</span> for all <span class="arithmatex">\(y\neq x\)</span>.</li>
+<li>Let <span class="arithmatex">\(U_n\)</span> be a standard uniform random variable. </li>
+<li>If <span class="arithmatex">\(U_n\leq \frac{p(\sigma^\prime)}{p(\sigma)}=\exp\Big(-\frac{\mathcal{H}(\sigma^\prime)-\mathcal{H}(\sigma)}{k_B T}\Big)\)</span>, then accept the spin flip and set <span class="arithmatex">\(\sigma^{n+1}=\sigma^\prime\)</span>. Otherwise, reject the spin flip and set <span class="arithmatex">\(\sigma^{n+1}=\sigma^n\)</span>.</li>
+<li><span class="arithmatex">\(n = n+1\)</span> and return to Step 2. </li>
+</ol>
+</div>
 <p>After we obtain a sequence of spin configurations, we will sub-sample those configurations every <span class="arithmatex">\(\tau\)</span> steps to make sure that the samples are i.i.d samples. The result of the sub-sampling will be a sequence of spin configurations that contain </p>
 <div class="arithmatex">\[ \sigma^T, \sigma^{T+\tau}, \sigma^{T+2\tau},\ldots \]</div>
-<p>where <span class="arithmatex">\(T\)</span> and <span class="arithmatex">\(\tau\)</span> are known as the \emph{burn-in period} and the \emph{sampling period}.</p>
-<h2 id="a-concise-tutorial-for-restricted-boltzmann-machine"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2</span> A Concise Tutorial for Restricted Boltzmann Machine</h2>
+<p>where <span class="arithmatex">\(T\)</span> and <span class="arithmatex">\(\tau\)</span> are known as the <em>burn-in period</em> and the <em>sampling period</em>.</p>
+<h2 id="restricted-boltzmann-machine"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2</span> Restricted Boltzmann Machine</h2>
 <p>A Restricted Boltzmann Machine (RBM) is a bipartite graph. The structure of a RBM that contains 3 hidden nodes and 3 visible nodes is illustrated below. </p>
 <div class="rbm">
 <img alt="a terrible drawing a rbm structure" src="../../../assets/RBM.PNG" title="a terrible drawing of a RBM structure"/>
@@ -485,7 +491,7 @@
 <p>In the following, we consider a RBM that contains <span class="arithmatex">\(V\)</span> visible nodes and <span class="arithmatex">\(H\)</span> hidden nodes, where every visible node is connected with every hidden node, with no connection among each layer. In this tutorial, we focus on Bernoulli RBM where the value of each node is either 0 or 1. </p>
 <p>RBM is a theoretical model inspired by statistical mechanics. In this model, the value of <span class="arithmatex">\(\mathbf{v}=[v_1, v_2, \ldots, v_V]\)</span> and <span class="arithmatex">\(\mathbf{h}=[h_1, h_2, \ldots, h_H]\)</span>  satisfy Boltzmann (Gibbs) distribution, which claims that the probability of a system staying in a certain micro-state is the function of the system energy and the system temperature. For the RBM model, the probability distribution of <span class="arithmatex">\(\mathbf{v}\)</span> and <span class="arithmatex">\(\mathbf{h}\)</span> can be expressed as:</p>
 <div class="arithmatex">\[ p_{\theta}(\mathbf{v},\mathbf{h}) = \frac{1}{Z}\mathrm{exp}(-E(\mathbf{v},\mathbf{h})) \]</div>
-<p>where <span class="arithmatex">\(\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}\)</span>, and the normalization constant <span class="arithmatex">\(Z=\sum_{\mathbf{v},\mathbf{h}}\mathrm{exp}(-E(\mathbf{v},\mathbf{h}))\)</span> is referred to as the \emph{partition function}, and <span class="arithmatex">\(E(\mathbf{v},\mathbf{h})\)</span> is the energy function calculated by </p>
+<p>where <span class="arithmatex">\(\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}\)</span>, and the normalization constant <span class="arithmatex">\(Z=\sum_{\mathbf{v},\mathbf{h}}\mathrm{exp}(-E(\mathbf{v},\mathbf{h}))\)</span> is referred to as the <em>partition function</em>, and <span class="arithmatex">\(E(\mathbf{v},\mathbf{h})\)</span> is the energy function calculated by </p>
 <div class="arithmatex">\[ E(\mathbf{v},\mathbf{h}) = -\mathbf{h}^T\mathbf{W}\mathbf{v}-\mathbf{b}^T\mathbf{v}-\mathbf{c}^T\mathbf{h}
 =-\sum_{j}\sum_k h_j W_{j,k} v_k - \sum_k b_kv_k - \sum_j c_j h_j
 \]</div>
@@ -543,7 +549,9 @@
 \nonumber &amp;\frac{\partial F(\mathbf{v})}{\partial \mathbf{b}} = -\mathbf{v}\\
 \nonumber &amp;\frac{\partial F(\mathbf{v})}{\partial \mathbf{c}} = -p_\theta(h_j=1|\mathbf{v})
 \end{eqnarray}\]</div>
-<p>The second term in Eq.~<span class="arithmatex">\(\eqref{eq1}\)</span> requires an exponential computational complexity, so we will use samples drawn from the <span class="arithmatex">\(p_{\theta}(\mathbf{v}^\prime)\)</span> to approximate the expectation based on MCMC techniques. However, we could apply block Gibbs Sampling, which is actually a special case of \emph{Metropolis-Hastings algorithm}, to obtain samples if <span class="arithmatex">\(p(\mathbf{v}| \mathbf{h})\)</span> and <span class="arithmatex">\(p(\mathbf{h}| \mathbf{v})\)</span> are available:</p>
+<p>The second term in Eq.~<span class="arithmatex">\(\eqref{eq1}\)</span> requires an exponential computational complexity, so we will use samples drawn from the <span class="arithmatex">\(p_{\theta}(\mathbf{v}^\prime)\)</span> to approximate the expectation based on MCMC techniques. However, we could apply block Gibbs Sampling, which is actually a special case of <em>Metropolis-Hastings algorithm</em>, to obtain samples if <span class="arithmatex">\(p(\mathbf{v}| \mathbf{h})\)</span> and <span class="arithmatex">\(p(\mathbf{h}| \mathbf{v})\)</span> are available:</p>
+<div class="admonition note">
+<p class="admonition-title">Gibbs sampling</p>
 <ol>
 <li>Initialization: <span class="arithmatex">\(\mathbf{v}^1\)</span></li>
 <li>Find: <span class="arithmatex">\(p(\mathbf{h}^1| \mathbf{v}^1)\)</span></li>
@@ -554,6 +562,7 @@
 <p><div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>... 
 </code></pre></div>
 6. Until equilibrium.  </p>
+</div>
 <p>After sampling <span class="arithmatex">\(N\)</span> samples of <span class="arithmatex">\(\mathbf{v}^\prime\)</span>, i.e., <span class="arithmatex">\(\{\mathbf{v}_k^\prime\}|_{k=1,2,\ldots,N}\)</span>, we can use the sample mean to approximate the expectation:</p>
 <div class="arithmatex">\[\begin{eqnarray}
 \mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\approx \frac{1}{N}\sum_{k}\frac{\partial F(\mathbf{v}_k^\prime)}{\partial \theta}
@@ -562,7 +571,7 @@
 <div class="arithmatex">\[\begin{eqnarray}
     \mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\approx\frac{\partial F(\mathbf{v}^n)}{\partial \theta}
 \end{eqnarray}\]</div>
-<p>So Eq.~(<span class="arithmatex">\(\eqref{eq1}\)</span>) can be approximated as</p>
+<p>So Eq.<span class="arithmatex">\(\eqref{eq1}\)</span> can be approximated as</p>
 <div class="arithmatex">\[\begin{eqnarray}
  \nonumber -\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{\theta}}&amp;=\frac{\partial F(\mathbf{v})}{\partial \theta}-\mathbb{E}_{\mathbf{v}^\prime}\Big[\frac{\partial F(\mathbf{v}^\prime)}{\partial \theta}\Big]\\
  &amp;\approx\frac{\partial F(\mathbf{v})}{\partial \theta}-\frac{\partial F(\mathbf{v}^n)}{\partial \theta}
@@ -575,6 +584,8 @@
 &amp;-\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{c}} = -p_\theta(h_j=1|\mathbf{v})+p_\theta(h_j=1|\mathbf{v}^n)\tag{4}\label{eq:g3}
 \end{eqnarray}\]</div>
 <p>Now let's talk about how to calculate <span class="arithmatex">\(p_{\theta}(\mathbf{h}|\mathbf{v})\)</span> and <span class="arithmatex">\(p(\mathbf{v}|\mathbf{h})\label{eq:q3}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Detailed Derivation</p>
 <div class="arithmatex">\[
 \begin{eqnarray}
 &amp;\nonumber p_\theta(\mathbf{h}|\mathbf{v})&amp;=\frac{p_\theta(\mathbf{v},\mathbf{h}) }{p_\theta(\mathbf{v}) }\\
@@ -585,6 +596,7 @@
 &amp;\nonumber &amp;=\prod_j\frac{\exp(h_j W_{j,:}\mathbf{v}+c_jh_j)}{1+\exp(W_{j,:}\mathbf{v}+c_j)}\\
 &amp;&amp;=\prod_j p_\theta (h_j|\mathbf{v})
 \end{eqnarray}\]</div>
+</div>
 <p>So <span class="arithmatex">\(h_1\)</span>, <span class="arithmatex">\(h_2\)</span>, <span class="arithmatex">\(\ldots\)</span>, <span class="arithmatex">\(h_H\)</span> are conditionally independent given <span class="arithmatex">\(\mathbf{v}\)</span>, with</p>
 <div class="arithmatex">\[\begin{eqnarray}
     p_\theta(h_j|\mathbf{v})=\frac{\exp(h_j W_{j,:}\mathbf{v}+c_jh_j)}{1+\exp(W_{j,:}\mathbf{v}+c_j)}
@@ -617,6 +629,8 @@
 \end{eqnarray}
 \]</div>
 <p>So </p>
+<div class="admonition note">
+<p class="admonition-title">Detailed Derivation</p>
 <div class="arithmatex">\[
 \begin{eqnarray}
     &amp;\nonumber &amp;-\frac{\partial \log p_{\mathbf{\theta}}(\mathbf{v})}{\partial \mathbf{\theta}}=-\frac{\partial}{\partial \theta}\Big(\log\sum_{\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))\Big)+\frac{\partial}{\partial \theta}\Big(\log\sum_{\mathbf{v},\mathbf{h}}\exp(-E(\mathbf{v},\mathbf{h}))\Big)\\
@@ -624,7 +638,8 @@
     &amp;&amp;=\sum_{\mathbf{h}}p_\theta(\mathbf{h}|\mathbf{v})\frac{\partial E(\mathbf{v},\mathbf{h})}{\partial \theta}-\sum_{\mathbf{v},\mathbf{h}}p_\theta(\mathbf{v},\mathbf{h})\frac{\partial E(\mathbf{v},\mathbf{h})}{\partial \theta}\tag{5}\label{eq:2}
 \end{eqnarray}
 \]</div>
-<p>Eq. (<span class="arithmatex">\(\eqref{eq:1}\)</span>) is actually the same with Eq. <span class="arithmatex">\(\eqref{eq:2}\)</span> since</p>
+</div>
+<p>Eq. <span class="arithmatex">\(\eqref{eq:1}\)</span> is actually the same with Eq. <span class="arithmatex">\(\eqref{eq:2}\)</span> since</p>
 <div class="arithmatex">\[
     F(\mathbf{v})=-\log\Big(\sum_{\mathbf{h}}\exp\big(-E(\mathbf{v},\mathbf{h})\big)\Big)
 \]</div>
@@ -632,44 +647,27 @@
 %%% and comment out the ``thebibliography'' section.</p>
 <p>%%% Comment out this section when you \bibliography{references} is enabled.</p>
 <h3 id="rbm-training-algorithm"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.2</span> RBM Training Algorithm</h3>
-<p>!!! "RBM Training Algorithm"</p>
-<div class="highlight"><pre><span></span><code>Initialization for the $\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}$
-
-Fix the maximum number of epochs $max\_epoch$, and mini-batch size $M$
-
-**for** $i = 1,\ldots,{max\_epoch}$ **do**
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**for** *mini-batch* $\mathrm{\mathbf{v}}_{mb}$ $\mathrm{\mathbf{in}}$ Dataset $\mathrm{\mathbf{D}}$ **do**
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; $\overline{\Delta\mathbf{W}}$, $\overline{\Delta\mathbf{b}}$, $\overline{\Delta\mathbf{c}}$~$\gets$~$\mathbf{0}$\;
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**for**  each data sample $\mathrm{\mathbf{v}}$ $\mathrm{\mathbf{in}}$ $\mathrm{\mathbf{v}}_{mb}$ **do**
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;$\mathrm{\mathbf{v}}^{(0)} \gets \mathrm{\mathbf{v}}$
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**for**  $t=0,\ldots,n-1$ **do**
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sample $\mathbf{h}^{(t)}$ $\sim$ $p_{\theta}(\mathbf{h}|\mathbf{v}^{(t)})$
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Sample $\mathbf{v}^{(t+1)}$ $\sim$ $p_{\theta}(\mathbf{v}|\mathbf{h}^{(t)})$
-
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**end**
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;Calculate the gradient $\Delta\mathbf{W}$, $\Delta\mathbf{b}$, and $\Delta\mathbf{c}$ according to Eq.$\eqref{eq:g1}$~$\eqref{eq:g2}$~$\eqref{eq:g3}$
-
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;$\overline{\Delta\mathbf{W}}$, $\overline{\Delta\mathbf{b}}$, $\overline{\Delta\mathbf{c}}$ $\gets$ $\overline{\Delta\mathbf{W}}+\Delta\mathbf{W}$, $\overline{\Delta\mathbf{b}}+\Delta\mathbf{b}$, $\overline{\Delta\mathbf{c}}+\Delta\mathbf{c}$
-
-  &amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;**end**
-
-  &amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;$\mathbf{W}$, $\mathbf{b}$, $\mathbf{c}$ $\gets$ 
-  $\mathbf{W}-\frac{1}{M}\overline{\Delta\mathbf{W}}$, $\mathbf{b}-\frac{1}{M}\overline{\Delta\mathbf{b}}$, $\mathbf{c}-\frac{1}{M}\overline{\Delta\mathbf{c}}$
-
-
-&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;**end**
-
-**end**
-</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">RBM Training Algorithm</p>
+<p>Initialization for the <span class="arithmatex">\(\theta=\{\mathbf{W},\mathbf{b},\mathbf{c}\}\)</span></p>
+<p>Fix the maximum number of epochs <span class="arithmatex">\(max\_epoch\)</span>, and mini-batch size <span class="arithmatex">\(M\)</span></p>
+<p><strong>for</strong> <span class="arithmatex">\(i = 1,\ldots,{max\_epoch}\)</span> <strong>do</strong></p>
+<p>    <strong>for</strong> <em>mini-batch</em> <span class="arithmatex">\(\mathrm{\mathbf{v}}_{mb}\)</span> <span class="arithmatex">\(\mathrm{\mathbf{in}}\)</span> Dataset <span class="arithmatex">\(\mathrm{\mathbf{D}}\)</span> <strong>do</strong></p>
+<p>         <span class="arithmatex">\(\overline{\Delta\mathbf{W}}\)</span>, <span class="arithmatex">\(\overline{\Delta\mathbf{b}}\)</span>, <span class="arithmatex">\(\overline{\Delta\mathbf{c}}\)</span>~<span class="arithmatex">\(\gets\)</span>~<span class="arithmatex">\(\mathbf{0}\)</span>\;</p>
+<p>        <strong>for</strong>  each data sample <span class="arithmatex">\(\mathrm{\mathbf{v}}\)</span> <span class="arithmatex">\(\mathrm{\mathbf{in}}\)</span> <span class="arithmatex">\(\mathrm{\mathbf{v}}_{mb}\)</span> <strong>do</strong></p>
+<p>            <span class="arithmatex">\(\mathrm{\mathbf{v}}^{(0)} \gets \mathrm{\mathbf{v}}\)</span></p>
+<p>            <strong>for</strong> <span class="arithmatex">\(t=0,\ldots,n-1\)</span> <strong>do</strong> </p>
+<p>                Sample <span class="arithmatex">\(\mathbf{h}^{(t)}\)</span> <span class="arithmatex">\(\sim\)</span> <span class="arithmatex">\(p_{\theta}(\mathbf{h}|\mathbf{v}^{(t)})\)</span></p>
+<p>                Sample <span class="arithmatex">\(\mathbf{v}^{(t+1)}\)</span> <span class="arithmatex">\(\sim\)</span> <span class="arithmatex">\(p_{\theta}(\mathbf{v}|\mathbf{h}^{(t)})\)</span> </p>
+<p>            <strong>end</strong> </p>
+<p>            Calculate the gradient <span class="arithmatex">\(\Delta\mathbf{W}\)</span>, <span class="arithmatex">\(\Delta\mathbf{b}\)</span>, and <span class="arithmatex">\(\Delta\mathbf{c}\)</span> according to Eq.<span class="arithmatex">\(\eqref{eq:g1}\)</span>~<span class="arithmatex">\(\eqref{eq:g2}\)</span>~<span class="arithmatex">\(\eqref{eq:g3}\)</span></p>
+<p>           <span class="arithmatex">\(\overline{\Delta\mathbf{W}}\)</span>, <span class="arithmatex">\(\overline{\Delta\mathbf{b}}\)</span>, <span class="arithmatex">\(\overline{\Delta\mathbf{c}}\)</span> <span class="arithmatex">\(\gets\)</span> <span class="arithmatex">\(\overline{\Delta\mathbf{W}}+\Delta\mathbf{W}\)</span>, <span class="arithmatex">\(\overline{\Delta\mathbf{b}}+\Delta\mathbf{b}\)</span>, <span class="arithmatex">\(\overline{\Delta\mathbf{c}}+\Delta\mathbf{c}\)</span></p>
+<p>         <strong>end</strong></p>
+<p>         <span class="arithmatex">\(\mathbf{W}\)</span>, <span class="arithmatex">\(\mathbf{b}\)</span>, <span class="arithmatex">\(\mathbf{c}\)</span> <span class="arithmatex">\(\gets\)</span>
+<span class="arithmatex">\(\mathbf{W}-\frac{1}{M}\overline{\Delta\mathbf{W}}\)</span>, <span class="arithmatex">\(\mathbf{b}-\frac{1}{M}\overline{\Delta\mathbf{b}}\)</span>, <span class="arithmatex">\(\mathbf{c}-\frac{1}{M}\overline{\Delta\mathbf{c}}\)</span></p>
+<p>     <strong>end</strong></p>
+<p><strong>end</strong></p>
+</div>
 <h3 id="implementation-in-python"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2.3</span> Implementation in Python</h3>
 <div class="highlight"><span class="filename">RBM_vanila.py</span><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">torch</span>
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
@@ -892,7 +890,7 @@ Fix the maximum number of epochs $max\_epoch$, and mini-batch size $M$
 &amp;&amp;=-\sum_{j}\sum_k h_j W_{j,k} v_k - \sum_k b_k v_k - \sum_{j}\ h_j (\sum_i W_{j,i}^{'} r_i + c_j)
 \end{eqnarray}
 \]</div>
-<p>where <span class="arithmatex">\(\mathbf{r}\)</span> is fixed. </p>
+<p>where <span class="arithmatex">\(\mathbf{r}\)</span> is fixed. Now let's calculate some probability distribution functions in advance. </p>
 <div class="arithmatex">\[
 \begin{eqnarray}
     &amp;p_{\theta,\mathbf{r}}(\mathbf{v})&amp;=\sum_{\mathbf{h}}p_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h})\\
@@ -919,11 +917,7 @@ F_{\mathbf{r}}(\mathbf{v})=-\mathbf{b}^T\mathbf{v}-\sum_{j=1}^{H}\log (1+\exp(W_
 &amp;\nonumber &amp;=\frac{\exp(\sum_j(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j)))}{\sum_{h_1}\ldots\sum_{h_H}\exp(\sum_j(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j)))}\\
 &amp;\nonumber &amp;=\frac{\prod_j\exp(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j))}{(\sum_{h_1}\exp(h_1 (W_{1,:}\mathbf{v}+W_{1,:}^{'} \mathbf{r}+c_1)))\ldots(\sum_{h_H}\exp(h_H (W_{H,:}\mathbf{v}+W_{H,:}^{'} \mathbf{r}+c_H))}\\
 &amp;\nonumber &amp;=\prod_j\frac{\exp(h_j (W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j))}{1+\exp(W_{j,:}\mathbf{v}+W_{j,:}^{'} \mathbf{r}+c_j)}\\
-&amp;&amp;=\prod_j p_{\theta,\mathbf{r}} (h_j|\mathbf{v})
-\end{eqnarray}
-\]</div>
-<div class="arithmatex">\[
-\begin{eqnarray}
+&amp;&amp;=\prod_j p_{\theta,\mathbf{r}} (h_j|\mathbf{v})\\
 &amp;\nonumber p_{\theta,\mathbf{r}}(\mathbf{v}|\mathbf{h})&amp;=\frac{p_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}) }{p_{\theta,\mathbf{r}}(\mathbf{h})}\\
 &amp;\nonumber &amp;=\frac{\exp(-E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}))}{\sum_{\mathbf{v}}\exp(-E_{\theta,\mathbf{r}}(\mathbf{v},\mathbf{h}))}\\
 &amp;\nonumber &amp;=\frac{\exp(\mathbf{v}^T\mathbf{W}^T\mathbf{h}+\mathbf{v}^T\mathbf{b})}{\sum_{\mathbf{v}}\exp(\mathbf{v}^T\mathbf{W}^T\mathbf{h}+\mathbf{v}^T\mathbf{b})}\\
@@ -960,6 +954,8 @@ F_{\mathbf{r}}(\mathbf{v})=-\mathbf{b}^T\mathbf{v}-\sum_{j=1}^{H}\log (1+\exp(W_
 \end{eqnarray}
 \]</div>
 <p>Where <span class="arithmatex">\(\mathbf{v}^n\)</span> is obtained after <span class="arithmatex">\(n\)</span> iterations of block Gibbs Sampling below. </p>
+<div class="admonition note">
+<p class="admonition-title">Gibbs Sampling</p>
 <ol>
 <li>Initialization: <span class="arithmatex">\(\mathbf{v}^{\mathrm{train}}\)</span></li>
 <li>Find: <span class="arithmatex">\(p_{\theta,\mathbf{r}^{\mathrm{train}}}(\mathbf{h}^1| \mathbf{v}^{\mathrm{train}})\)</span></li>
@@ -969,6 +965,7 @@ F_{\mathbf{r}}(\mathbf{v})=-\mathbf{b}^T\mathbf{v}-\sum_{j=1}^{H}\log (1+\exp(W_
 </ol>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>... 
 </code></pre></div>
+</div>
 <p>where <span class="arithmatex">\(\mathbf{r}^\mathrm{train}\)</span> is the corresponding label for <span class="arithmatex">\(\mathbf{v}^{\mathrm{train}}\)</span>. </p>
 <h3 id="implementation-in-python_1"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.3.1</span> Implementation in Python</h3>
 <div class="highlight"><span class="filename">Conditional_RBM.py</span><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">torch</span>
@@ -1231,6 +1228,12 @@ F_{\mathbf{r}}(\mathbf{v})=-\mathbf{b}^T\mathbf{v}-\sum_{j=1}^{H}\log (1+\exp(W_
       })
     })
   </script>
+<style>
+      main{
+         font-family: "Exo 2", Lora, Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+   </style>
 </article>
 </div>
 </div>
@@ -1292,16 +1295,8 @@ F_{\mathbf{r}}(\mathbf{v})=-\mathbf{b}^T\mathbf{v}-\sum_{j=1}^{H}\log (1+\exp(W_
 </div>
 <style>
       div.doraemon { position: relative; height: 0px; float: right; margin-top: 0px;}
-div.doraemon img { position: absolute; left: 22rem; bottom: 0; height:4rem}
-      
-      
-      .do{
-         width:30px;
-         position: absolute;
-right: 400px;
-bottom: 0px;
-      }
-     </style>
+      div.doraemon img { position: absolute; left: 22rem; bottom: 0; height:4rem}
+      </style>
 </div>
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>

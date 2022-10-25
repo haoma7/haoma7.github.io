@@ -43,7 +43,9 @@ extra_javascript:
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
-  
+  - footnotes
+  - attr_list
+  - md_in_html
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
@@ -57,19 +59,20 @@ markdown_extensions:
 
 nav:
   - Home: ./index.md
-  - Tech:
-    - tech/index.md
+  - Learning:
+    - learning/index.md
     - 'Machine Learning': 
-        - tech/machine-learning/index.md 
-        - 'Restricted Boltzmann Machine': tech/machine-learning/rbm.md 
-        - 'Head First Transformer': tech/machine-learning/transformer.md
+        - learning/machine-learning/index.md 
+        - 'Restricted Boltzmann Machine': learning/machine-learning/rbm.md 
+        - 'Head First Transformer': learning/machine-learning/transformer.md
     - 'Web and Cloud': 
-        - tech/web-and-cloud/index.md
-        - 'Vue.js': tech/web-and-cloud/vuejs.md
+        - learning/web-and-cloud/index.md
+        - 'Vue.js': learning/web-and-cloud/vuejs.md
     - 'Networks':
-        - tech/networks/index.md
+        - learning/networks/index.md
   - Teaching:
     - 'Teaching': teaching/index.md
+    - 'Teaching Philosophy': teaching/teaching-philosophy.md
   - Life:
     - life/index.md
   - Tags: tags.md
