@@ -7,11 +7,11 @@ comments: true
 
 # CSIT@KPU
 
-Some students at CSIT department of KPU found it a bit to navigate the curriculum. Below is a flowchart I built which is based on university websites. Note that this is not guarantteed to be the lastest and correct version. Please leave any commments if you notice any mistakes. Hope it may help.
+Some students at CSIT department of KPU found it a bit hard to navigate the curriculum, so I spend some time to build the flowchart below based on public data on university websites. Note that this is not guarantteed to be the lastest and correct version. Please leave commments if you notice any mistakes. Hope it may help.
 
 <iframe width="1400" height="750" src="https://miro.com/app/live-embed/uXjVOGRVlQc=/?moveToViewport=1725,-2177,7532,3719&embedId=749907066196" frameborder="0" scrolling="no" allowfullscreen></iframe>
 
-You can only access the miro board through the [link here](https://miro.com/app/board/uXjVOGRVlQc=/?invite_link_id=177508737098)
+You can also access the miro board through the [link here](https://miro.com/app/board/uXjVOGRVlQc=/?invite_link_id=177508737098)
 
 I also grouped some closely-related courses below together with their pre-requisite relations. Note that not all courses in the curriculum are included below. 
 

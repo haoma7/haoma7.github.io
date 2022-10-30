@@ -22,7 +22,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#kpu">1. 
+<a class="md-skip" href="#csitkpu">1. 
           Skip to content
         </a>
 </div>
@@ -274,6 +274,11 @@
         CSIT@KPU
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../high-ed-books/">
+        Thoughts on Higher-Ed
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -311,34 +316,150 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="kpu"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.</span> KPU</h1>
-<p>https://miro.com/app/board/uXjVOGRVlQc=/?invite_link_id=177508737098</p>
-<p>INFO 1112, INFO 2313, INFO 2315 and INFO 3245</p>
+<nav class="md-tags">
+<a class="md-tag" href="../../tags/#curriculum-design">curriculum design</a>
+</nav>
+<h1 id="csitkpu"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.</span> CSIT@KPU</h1>
+<p>Some students at CSIT department of KPU found it a bit hard to navigate the curriculum, so I spend some time to build the flowchart below based on public data on university websites. Note that this is not guarantteed to be the lastest and correct version. Please leave commments if you notice any mistakes. Hope it may help.</p>
+<iframe allowfullscreen="" frameborder="0" height="750" scrolling="no" src="https://miro.com/app/live-embed/uXjVOGRVlQc=/?moveToViewport=1725,-2177,7532,3719&amp;embedId=749907066196" width="1400"></iframe>
+<p>You can also access the miro board through the <a href="https://miro.com/app/board/uXjVOGRVlQc=/?invite_link_id=177508737098">link here</a></p>
+<p>I also grouped some closely-related courses below together with their pre-requisite relations. Note that not all courses in the curriculum are included below. </p>
+<div class="admonition note">
+<p class="admonition-title">general-purpose programming language</p>
 <ul>
-<li>
-<p>INFO 1112 Principles of Program Structure and Design I</p>
-</li>
-<li>
-<p>INFO 2313 Principles of Program Structure and Design II</p>
-</li>
-<li>
-<p>INFO 2315 Data Structure (Course Outline To be Reviewed Date: 1-Sep-2022 )</p>
-</li>
-<li>
-<p>INFO 3245 Mobile Programming</p>
-</li>
+<li>INFO 1112 Principles of Program Structure and Design I (C++)</li>
+<li>INFO 2313 Principles of Program Structure and Design II (Java)</li>
+<li>INFO 2315 Data Structure (Java)</li>
+<li>INFO 3245 Mobile Programming (Java)</li>
 </ul>
-<p>Pre-req Relations:</p>
-<p>INFO 1112 =&gt; INFO 2313 =&gt; INFO 3245 INFO 2313 =&gt; INFO 2315</p>
 <pre class="mermaid"><code>graph LR
-  A[Start] --&gt; B{Error?};
-  B --&gt;|Yes| C[Hmm...];
-  C --&gt; D[Debug];
-  D --&gt; B;
-  B ----&gt;|No| E[Yay!];</code></pre>
+title[&lt;u&gt;pre-requisite relation&lt;/u&gt;]
+
+A[INFO 1112 ] --&gt; B[INFO 2313];
+B[INFO 2313 ] --&gt; C[INFO 3245];   
+A[INFO 2313 ] --&gt; D[INFO 2315];   </code></pre>
+</div>
+<div class="admonition note">
+<p class="admonition-title">web development</p>
+<ul>
+<li>INFO 1213 Web Application Development (HTML, CSS, Javascript)</li>
+<li>INFO 3135 Advanced Web Application Development (PHP, MySQL)</li>
+<li>INFO 3225 Web Multimedia (Javascript)</li>
+<li>INFO 4115 Human Factors and Website Design </li>
+<li>INFO 4235 Special Topics in Web and Mobile Application Development (modern Web frameworks)</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+title[&lt;u&gt;pre-requisite relation&lt;/u&gt;]
+A[INFO 1213] --&gt; B[INFO 3225]; 
+A[INFO 1213] --&gt; C[INFO 3135];
+C[INFO 3135] --&gt; D[INFO 4115];
+C[INFO 3135] --&gt; E[INFO 4235];</code></pre>
+</div>
+<div class="admonition note">
+<p class="admonition-title">database</p>
+<ul>
+<li>INFO 2312 Database Management Systems</li>
+<li>INFO 4330 Data Warehousing and Data Mining </li>
+</ul>
+<pre class="mermaid"><code>graph LR
+title[&lt;u&gt;pre-requisite relation&lt;/u&gt;]
+A[INFO 2312] --&gt; B[INFO 4330]; </code></pre>
+</div>
+<div class="admonition note">
+<p class="admonition-title">computer security</p>
+<ul>
+<li>INFO 2411 Foundations of Computer Security</li>
+<li>INFO 3171 System Security</li>
+<li>INFO 4120 Digital Forensics</li>
+<li>INFO 4125 Website and Cloud Security</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+title[&lt;u&gt;pre-requisite relation&lt;/u&gt;]
+A[INFO 2411] --&gt; B[INFO 4125]; 
+A[INFO 2411] --&gt; C[INFO 3171];
+C[INFO 3171] --&gt; D[INFO 4120];</code></pre>
+</div>
+<div class="admonition note">
+<p class="admonition-title">cisco networking</p>
+<ul>
+<li>INFO 1212 Networking Technologies I</li>
+<li>INFO 2311 Networking Technologies II</li>
+<li>INFO 3390 Networking Technologies III</li>
+<li>INFO 4260 Networking Technologies IV</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+title[&lt;u&gt;pre-requisite relation&lt;/u&gt;]
+A[INFO 1212] --&gt; B[INFO 2311]; 
+B[INFO 2311] --&gt; C[INFO 3390];
+C[INFO 3390] --&gt; D[INFO 4260];</code></pre>
+</div>
+<div class="admonition note">
+<p class="admonition-title">wireless</p>
+<ul>
+<li>INFO 3180 Wireless Networks</li>
+<li>INFO 4370 Security of Wireless Systems</li>
+<li>INFO 4381 Internet of Things and Applications</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+title[&lt;u&gt;pre-requisite relation&lt;/u&gt;]
+A[INFO 3180] --&gt; B[INFO 4381]; 
+A[INFO 3180] --&gt; C[INFO 4370];</code></pre>
+</div>
+<div class="admonition note">
+<p class="admonition-title">system analysis and design</p>
+<ul>
+<li>INFO 1113 Systems Analysis and Design </li>
+<li>INFO 3150 Object-Oriented Software Engineering </li>
+</ul>
+<p>No prerequisite relation exist between the two courses. </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">project</p>
+<ul>
+<li>INFO 2413 System Development Project</li>
+<li>INFO 4190 Integration Project I</li>
+<li>INFO 4290 Integration Project II</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+title[&lt;u&gt;pre-requisite relation&lt;/u&gt;]
+A[INFO 4190] --&gt; B[INFO 4290]; </code></pre>
+</div>
+<h2 id="__comments"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.1</span> Comments</h2>
+<!-- Insert generated snippet here -->
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOINKUzM4CSBXc" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="haoma7/haoma7.github.io" data-repo-id="R_kgDOINKUzA" data-strict="0" data-theme="preferred_color_scheme" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 <style>
       main{
-         font-family: "Exo 2", Lora, Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-family: "Inter", "Exo 2", Lora, Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       }
 
    </style>
@@ -365,13 +486,13 @@
             </div>
 </div>
 </a>
-<a aria-label="Next: life" class="md-footer__link md-footer__link--next" href="../../life/" rel="next">
+<a aria-label="Next: Thoughts on Higher-Ed" class="md-footer__link md-footer__link--next" href="../high-ed-books/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              life
+              Thoughts on Higher-Ed
             </div>
 </div>
 <div class="md-footer__button md-icon">
@@ -411,6 +532,8 @@
 </div>
 <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.indexes", "navigation.top", "header.autohide", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
 <script src="../../assets/javascripts/bundle.078830c0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="../../javascripts/extra.js"></script>
 <script src="../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
