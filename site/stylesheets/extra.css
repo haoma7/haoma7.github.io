@@ -43,9 +43,16 @@
 
 }
 
+.md-ellipsis{
+  color:var(--md-primary-fg-color--dark);
 
+}
 .md-header--shadow{
   box-shadow: none;
+}
+.md-search__form{
+ background-color: var(--md-primary-fg-color);
+  
 }
 
 .md-footer{
@@ -62,7 +69,11 @@
   text-align:center;
 }
 .md-social{
-margin:auto;
+margin:auto  auto;
+}
+
+.md-footer-meta__inner{
+
 }
 
 path{
@@ -272,6 +283,10 @@ path{
     }
 
     */
+
+    slider-image img{
+      border-radius:20px;
+    }
     .swiper-pagination-bullet{border: 1px solid #1da1f2;}.swiper-pagination-bullet-active{background:#1da1f2}
     img:not([draggable]), embed, object, video {
         max-width: 100%;
@@ -280,8 +295,8 @@ path{
     
     .swiper-container {        
       
-        margin:250px auto;
-        position: relative;
+        margin-top:10%;
+        margin-left: 1.5%;
         overflow: hidden;
         z-index: 1
     }
@@ -308,7 +323,8 @@ path{
         transition-property: -webkit-transform;
         transition-property: transform;
         transition-property: transform, -webkit-transform;
-        box-sizing: content-box
+        box-sizing: content-box;
+        margin:auto auto;
     }
     
     .swiper-container-android .swiper-slide,
@@ -374,62 +390,7 @@ path{
         -ms-touch-action: pan-x;
         touch-action: pan-x
     }
-    
-    .swiper-button-next,
-    .swiper-button-prev {
-        position: absolute;
-        top: 50%;
-        width: 27px;
-        height: 44px;
-        margin-top: -22px;
-        z-index: 10;
-        cursor: pointer;
-        background-size: 27px 44px;
-        background-position: center;
-        background-repeat: no-repeat
-    }
-    
-    .swiper-button-next.swiper-button-disabled,
-    .swiper-button-prev.swiper-button-disabled {
-        opacity: .35;
-        cursor: auto;
-        pointer-events: none
-    }
-    
-    .swiper-button-prev,
-    .swiper-container-rtl .swiper-button-next {
-        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
-        left: 10px;
-        right: auto
-    }
-    
-    .swiper-button-prev.swiper-button-black,
-    .swiper-container-rtl .swiper-button-next.swiper-button-black {
-        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E")
-    }
-    
-    .swiper-button-prev.swiper-button-white,
-    .swiper-container-rtl .swiper-button-next.swiper-button-white {
-        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E")
-    }
-    
-    .swiper-button-next,
-    .swiper-container-rtl .swiper-button-prev {
-        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
-        right: 10px;
-        left: auto
-    }
-    
-    .swiper-button-next.swiper-button-black,
-    .swiper-container-rtl .swiper-button-prev.swiper-button-black {
-        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E")
-    }
-    
-    .swiper-button-next.swiper-button-white,
-    .swiper-container-rtl .swiper-button-prev.swiper-button-white {
-        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E")
-    }
-    
+
     .swiper-pagination {
         position: absolute;
         text-align: center;
