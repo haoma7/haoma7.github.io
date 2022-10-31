@@ -9,7 +9,6 @@ theme:
     - navigation.instant
     - navigation.tracking
     - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.expand
     - navigation.indexes 
     - navigation.top
@@ -31,7 +30,7 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   font:
-    text: Gaegu
+    text: Inter
     code: Roboto Mono
 extra_css:
   - stylesheets/extra.css

@@ -6,23 +6,91 @@
   font-size:1.1rem;
 }
 
-
-.md-typeset p{ 
-  font-size:1.1rem;
+.md-typeset h1
+ {
+  
+  font-size:1.2rem;
+  color:var(--md-primary-fg-color--dark)
 }
-.md-tabs__link {font-size:1rem}
 
+.md-typeset h2{
+  font-size:1.1rem;
+ 
+}
+.md-typeset p{ 
+  font-size:1rem;
+}
+.md-tabs__link {
+  font-size:1rem;
+  background-color: var(--md-primary-fg-color);
+  color:var(--md-primary-fg-color--dark);
+
+}
+
+.md-header{
+  font-size:1rem;
+  background-color: var(--md-primary-fg-color);
+  color:var(--md-primary-fg-color--dark);
+}
+
+
+.md-header__ellipsis{
+  background-color: var(--md-primary-fg-color);
+}
+
+.md-header__inner{
+  background-color: var(--md-primary-fg-color);
+
+}
+
+
+.md-header--shadow{
+  box-shadow: none;
+}
+
+.md-footer{
+  background-color: var(--md-primary-fg-color);
+
+}
+
+.md-footer-meta{
+  background-color: var(--md-primary-fg-color);
+
+}
+
+.md-tabs__inner {
+  text-align:center;
+}
+.md-social{
+margin:auto;
+}
+
+path{
+  color:var(--md-primary-fg-color--light);
+  
+}
+/* for the rbm post */
 .rbm{text-align: center;}
 .rbm img{ width: 20rem; }
 
 
 [data-md-color-scheme="light-scheme"] {
-    --md-primary-fg-color:        rgba(5, 121, 230, 0.959);
-    --md-primary-fg-color--light: #ECB7B7;
-    --md-primary-fg-color--dark:  #90030C;
+    --md-primary-fg-color:        rgba(255, 255, 255,0);
+    --md-primary-fg-color--light: rgba(0,0,0,1);
+    --md-primary-fg-color--dark:  rgba(0,0,0,1);
+
     /* --md-footer-bg-color: {{ super() }}  */
   }
 
+
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        hsla(232,75%,95%,1)
+  --md-primary-fg-color--light: #ECB7B7;
+  --md-primary-fg-color--dark:  #FFFFFF;
+
+  /* --md-footer-bg-color: {{ super() }}  */
+}
 .enumerate-headings-plugin {
     filter: opacity(20%);
   }
@@ -41,6 +109,8 @@
       transform: none;   
     }
   }
+
+
 
 /* Sliders 
 
@@ -208,8 +278,9 @@
         height: auto;
     }
     
-    .swiper-container {        margin-left: auto;
-        margin-right: auto;
+    .swiper-container {        
+      
+        margin:250px auto;
         position: relative;
         overflow: hidden;
         z-index: 1
@@ -387,7 +458,7 @@
         display: inline-block;
         border-radius: 100%;
         background: #000;
-        opacity: .2
+        opacity: 0.1
     }
     
     button.swiper-pagination-bullet {
@@ -488,9 +559,9 @@
     }
     
     .swiper-container-3d {
-        -webkit-perspective: 500px;
-        -o-perspective: 500px;
-        perspective: 500px
+        -webkit-perspective: 400px;
+        -o-perspective: 400px;
+        perspective: 400px
     }
     
     .swiper-container-3d .swiper-cube-shadow,
@@ -758,10 +829,13 @@
         padding-bottom: 60px;
     }
     
+    .swiper-slide{
+      margin: auto 100px;
+    }
     .swiper-slide img {
         display: block;
         margin: auto;
-        width: 100%;
+        width: 80%;
     }
     
     .swiper-slide {

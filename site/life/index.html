@@ -11,8 +11,8 @@
 <link href="../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css?family=Gaegu:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
-<style>:root{--md-text-font:"Gaegu";--md-code-font:"Roboto Mono"}</style>
+<link href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
 <link href="../stylesheets/extra.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
@@ -53,7 +53,7 @@
 <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
 </aside>
 </div>
-<header class="md-header md-header--lifted" data-md-component="header">
+<header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="Daring and Persistent | Hao Ma, Ph.D." class="md-header__button md-logo" data-md-component="logo" href=".." title="Daring and Persistent | Hao Ma, Ph.D.">
 <img alt="logo" src="../assets/logo.jpeg"/>
@@ -118,6 +118,8 @@
 </div>
 </div>
 </nav>
+</header>
+<div class="md-container" data-md-component="container">
 <nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
 <div class="md-tabs__inner md-grid">
 <ul class="md-tabs__list">
@@ -149,8 +151,6 @@
 </ul>
 </div>
 </nav>
-</header>
-<div class="md-container" data-md-component="container">
 <main class="md-main" data-md-component="main">
 <div class="md-main__inner md-grid">
 <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
@@ -339,8 +339,8 @@
 <li>Confucious</li>
 </ol>
 <p>Option 1 is usually for Chinese since <em>Water Margin</em> is one of the four great classical novels of Chinese literature and its story occured at Liangshan, which most Chinese are aware of. 
-<img _="," align="left" alt="Mount Liangshan" src="../assets/life/liangshan.jpg" style="height:500px;width:700px"><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>
-Option 2 is for non-Chinese, since some people may have heard about Confucious before and Liangshan is very close to Confucius's hometown. Confucious is one of the three figures sculpted on the east pediment of US supreme court, so I guess it is a big name in the western world. As a self-conscious person, I would say that it should at least be a average name, to compensate for the extra importance I put on figures from my own culture.  Based on the small amount of samples in my life, around 50% non-Chinese know about him, or at least pretend to know about him to avoid any potential social awkwardness :P <img align="right" alt="Confucius" src="../assets/life/confucius.jpg"><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> </img></img></p>
+<img _="," align="left" alt="Mount Liangshan" src="../assets/life/liangshan.jpg" style="height:250px;width:400px"><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>
+Option 2 is for non-Chinese, since some people may have heard about Confucious before and Liangshan is very close to Confucius's hometown. Confucious is one of the three figures sculpted on the east pediment of US supreme court, so I guess it is a big name in the western world. As a self-conscious person, I would say that it should at least be a average name, to compensate for the extra importance I put on figures from my own culture.  Based on the small amount of samples in my life, around 50% non-Chinese know about him, or at least pretend to know about him to avoid any potential social awkwardness :P <img _="," align="right" alt="Confucius" src="../assets/life/confucius.jpg" style="height:300px;width:400px"><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> </img></img></p>
 <p>Although Liangshan has almost a million population, it is still a small town according to the Chinese standard. The geographical area that I am familiar with is even smaller. Most of my first 16 years were spent in a 5 by 5 matrix of blocks in Liangshan. But life was not boring at all. I had all I needed there. Home, families, relatives, schools, friends, shopping malls, basketball courts. The only long trips I needed to take are the visits to my maternal grandparents in Jinan around twice a year. 3-hour bus trips seemed really long back then. The tempo was slow, life was simple, and each day is fulfilling. </p>
 <h2 id="university-life"><span class="enumerate-headings-plugin enumerate-heading-plugin">1.2</span> University Life</h2>
 <div class="footnote">
@@ -416,18 +416,20 @@ Option 2 is for non-Chinese, since some people may have heard about Confucious b
 </div>
 </footer>
 <!-- <img class='doraemon' src="../assets/doraemon.gif"> -->
-<div class="doraemon">
-<img src="../assets/searching.gif"/>
-</div>
-<style>
+<!--
+      <div class='doraemon'>
+      <img src="../assets/searching.gif">
+     </div>
+     <style>
       div.doraemon { position: relative; height: 0px; float: right; margin-top: 0px;}
       div.doraemon img { position: absolute; left: 22rem; bottom: 0; height:4rem}
       </style>
+   -->
 </div>
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.indexes", "navigation.top", "header.autohide", "announce.dismiss"], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "header.autohide", "announce.dismiss"], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
 <script src="../assets/javascripts/bundle.078830c0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
