@@ -5,7 +5,11 @@ hide:
   - toc
 ---
 
-
+<style>
+  .md-tabs__list{
+    display:none;
+  }
+</style>
 # 
 
 <!--
@@ -22,24 +26,42 @@ hide:
 -->
 
 
+
+
 <!-- Swiper -->
 <div class="swiper-container two">
 	<div class="swiper-wrapper">
 			<div class="swiper-slide">
 					<div class="slider-image">
-						<a href="./learning"><img src="../assets/learning.png" style="width:300px;height:300px;"></a>
+          <a href="./learning">
+            <div class="image image1">
+						  <p>Learning</p>
+            </div>
+          </a>
 					</div>
 			</div>
 				<div class="swiper-slide">
 					<div class="slider-image">
-						<a href="./teaching"><img src="../assets/teaching.png" style="width:300px;height:300px;"></a>
+           <a href="./teaching">
+             <div class="image image2">
+           	 <p>Teaching</p>
+            </div>
+          <a>
 					</div>
 				</div>
 				<div class="swiper-slide">
 					<div class="slider-image">
-						<a href="./life"><img src="../assets/life.png" style="width:300px;height:300px;"></a>
+          <a href="./life">
+						<div class="image image3">
+           	 <p>Life</p>
+            </div>
+            </a>
 					</div>
 				</div>
 
  </div>
 </div>
+
+
+
+
