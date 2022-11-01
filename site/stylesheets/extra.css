@@ -212,7 +212,10 @@ path{
         z-index: 10
     }
     
-    
+    span.enumerate-headings-plugin:first-child{
+      display:none;
+    }
+
     .swiper-container-coverflow .swiper-wrapper,
     .swiper-container-flip .swiper-wrapper {
         -ms-perspective: 1200px
@@ -274,6 +277,9 @@ path{
     }
     
     
+
+
+
 /* Hovering effect */
 .slider-image .image {
   transform-origin: 50% 50%;
@@ -287,7 +293,9 @@ path{
 
 
 
-/* hide heading */
+/* hovering effect*/
+/* https://www.youtube.com/watch?v=_JvHvGGvps0 */
+
 
 .image{
   width:300px;
