@@ -72,6 +72,9 @@
   background-color: var(--md-primary-fg-color);
 
 }
+.md-nav__item .md-nav__link--active {
+  color: var(--md-primary-fg-color--light);
+}
 
 .md-tabs__inner {
   text-align:center;
@@ -212,7 +215,7 @@ path{
         z-index: 10
     }
     
-    span.enumerate-headings-plugin:first-child{
+    h1>.enumerate-heading-plugin{
       display:none;
     }
 
