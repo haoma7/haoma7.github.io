@@ -59,7 +59,12 @@ hide:
 					</div>
 				</div>
 
+
+  
+
  </div>
+   		<div class="swiper-pagination"></div>
+
 </div>
 
 

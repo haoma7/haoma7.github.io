@@ -1,5 +1,6 @@
 var swiper = new Swiper( '.swiper-container.two', {
-   
+  pagination: '.swiper-pagination',
+  paginationClickable: true,
     effect: 'coverflow',
     centeredSlides: true,
     slidesPerView: 'auto',
@@ -10,7 +11,11 @@ var swiper = new Swiper( '.swiper-container.two', {
         scale:5,
         modifier: 1.5,
         slideShadows:true,
-    }
+    },
+    navigation:{
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
 } );
 
 const myAtropos = Atropos({
