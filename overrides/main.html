@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+<!--
+{% block announce %}
+{{ super() }}
+   Always to do what you are afraid to do.
+   <style>
+      .md-banner__inner{
+         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         text-align: center;
+         font-weight: bold;
+         font-size: 1rem;
+      }
+
+      aside.md-banner{
+         background-image: linear-gradient(to right, rgba(137, 181, 221, 0.959),rgba(5, 121, 230, 0.959));
+
+      }
+   </style>
+{% endblock %}
+-->
+
+
+{% block content %}
+
+     {{ super() }}
+   <style>
+      main{
+         font-family: "Inter", "Exo 2", Lora, Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+   </style>
+{% endblock %}
+
+{% block footer %}
+     {{ super() }}
+     <!-- <img class='doraemon' src="{{ base_url }}/assets/doraemon.gif"> -->
+     
+     
+     <!--
+      <div class='doraemon'>
+      <img src="{{ base_url }}/assets/searching.gif">
+     </div>
+     <style>
+      div.doraemon { position: relative; height: 0px; float: right; margin-top: 0px;}
+      div.doraemon img { position: absolute; left: 22rem; bottom: 0; height:4rem}
+      </style>
+   -->
+{% endblock %}
+
