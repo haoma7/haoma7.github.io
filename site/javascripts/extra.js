@@ -1,17 +1,21 @@
 var swiper = new Swiper( '.swiper-container.two', {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
+  pagination: '.swiper-pagination',
+  paginationClickable: true,
     effect: 'coverflow',
-    loop: true,
     centeredSlides: true,
-    slidesPerView: 3,
+    slidesPerView: 'auto',
     coverflow: {
         rotate: 0,
-        stretch: 100,
+        stretch: 50,
         depth: 150,
+        scale:5,
         modifier: 1.5,
-        slideShadows : false,
-    }
+        slideShadows:true,
+    },
+    navigation:{
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
 } );
 
 const myAtropos = Atropos({
