@@ -30,7 +30,7 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   font:
-    text: Inter
+    text: Roboto
     code: Roboto Mono
 extra_css:
   - stylesheets/extra.css
