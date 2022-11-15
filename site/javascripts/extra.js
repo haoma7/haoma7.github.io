@@ -1,9 +1,15 @@
+
+
+
 var swiper = new Swiper( '.swiper-container.two', {
   pagination: '.swiper-pagination',
   paginationClickable: true,
     effect: 'coverflow',
     centeredSlides: true,
     slidesPerView: 'auto',
+    initialSlide: 1,
+
+
     coverflow: {
         rotate: 0,
         stretch: 50,
@@ -16,8 +22,22 @@ var swiper = new Swiper( '.swiper-container.two', {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev"
     },
+    keyboard: {
+      enabled: true,
+    },
 } );
 
+
+swiper.on("keyPress", (swiper, keyCode) => {
+  switch (keyCode) {
+    case 38:
+      swiper.slidePrev();
+      break;
+    case 40:
+      swiper.slideNext();
+      break;
+  }
+});
 const myAtropos = Atropos({
     el: '.my-atropos',
     activeOffset: 40,

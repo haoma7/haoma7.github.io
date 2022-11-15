@@ -1,37 +1,50 @@
-var swiper = new Swiper( '.swiper-container.two', {
-  pagination: '.swiper-pagination',
-  paginationClickable: true,
-    effect: 'coverflow',
-    centeredSlides: true,
-    slidesPerView: 'auto',
-    initialSlide: 1,
-
-
-    coverflow: {
+var swiper = new Swiper('.swiper-container', {
+  coverflow: {
         rotate: 0,
-        stretch: 50,
-        depth: 150,
+        stretch: 100,
+        depth: 10,
         scale:5,
         modifier: 1.5,
         slideShadows:true,
     },
+    pagination: '.swiper-pagination',
+    autoplay:true,
+    speed:3000,
+    paginationClickable: true,
+    effect: 'coverflow',
+    grabCursor:true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    autoHeight:true,
+    initialSlide: 1,
+    mousewheelControl: true,
+    
     navigation:{
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev"
     },
+
+    keyboard: {
+      enabled: true,
+    },
+
 } );
 
-const myAtropos = Atropos({
-    el: '.my-atropos',
-    activeOffset: 40,
-    shadowScale: 1.05,
-    onEnter() {
-      console.log('Enter');
-    },
-    onLeave() {
-      console.log('Leave');
-    },
-    onRotate(x, y) {
-      console.log('Rotate', x, y);
-    }
-  });
+$(".swiper-container").hover(function() {
+  swiper.stopAutoplay();
+}, function() {
+  swiper.startAutoplay();
+});
+
+
+
+$("body").keydown(function(e) {
+  if(e.keyCode == 38 || e.keyCode == 37) { // top
+    swiper.slidePrev();
+  }
+  else if(e.keyCode == 40||e.keyCode==39) { // bottom
+    swiper.slideNext();
+  }
+});
+
+

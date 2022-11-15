@@ -29,22 +29,30 @@ hide:
 
 
 <!-- Swiper -->
-<div class="swiper-container two">
+<div class="swiper-container">
 	<div class="swiper-wrapper">
 			<div class="swiper-slide">
 					<div class="slider-image">
-          <a href="./learning">
-            <div class="image image1">
-						  <p>LEARN</p>
+          <a href="./teaching">
+            <div class="image image2">
+						   	<div onmouseout="reset_animation()" class="text-animation-container">
+            <div class="animate">
+                    <span>l</span><span>e</span><span>a</span><span>r</span><span>n</span>
+            </div>
+            </div>
             </div>
           </a>
 					</div>
 			</div>
-				<div class="swiper-slide">
+				<div class="swiper-slide" >
 					<div class="slider-image">
-           <a href="./teaching">
-             <div class="image image2">
-           	 <p>TEACH</p>
+           <a href="./learning">
+             <div class="image image1">
+           	<div onmouseout="reset_animation()" class="text-animation-container">
+            <div class="animate">
+                    <span>t</span><span>e</span><span>a</span><span>c</span><span>h</span>
+            </div>
+            </div>
             </div>
           <a>
 					</div>
@@ -53,9 +61,13 @@ hide:
 					<div class="slider-image">
           <a href="./life">
 						<div class="image image3">
-           	 <p>LIFE</p>
+           	<div onmouseout="reset_animation()" class="text-animation-container">
+            <div class="animate">
+                    <span>l</span><span>i</span><span>f</span><span>e</span>
             </div>
-            </a>
+            </div>
+            </div>
+          </a>
 					</div>
 				</div>
 
