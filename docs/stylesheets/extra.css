@@ -841,10 +841,21 @@ scroll-snap-type: y mandatory !important;
 
 .md-social{
   position: relative;
-  top:-8vh;
+  top:-4rem;
   height:0;
 }
 
 .md-sidebar{
   padding-top:30vh;
+}
+
+@media only screen and (max-width: 1200px) {
+  .swiper-container {        
+    width: 100%;
+}
+
+.md-social{
+
+}
+
 }
