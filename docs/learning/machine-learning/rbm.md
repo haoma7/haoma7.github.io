@@ -286,11 +286,10 @@ $$
     F(\mathbf{v})=-\log\Big(\sum_{\mathbf{h}}\exp\big(-E(\mathbf{v},\mathbf{h})\big)\Big)
 $$
 
+<!---
 %\bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
 %%% and comment out the ``thebibliography'' section.
-
-
-%%% Comment out this section when you \bibliography{references} is enabled.
+%%% Comment out this section when you \bibliography{references} is enabled.)-->
 
 ### RBM Training Algorithm
 

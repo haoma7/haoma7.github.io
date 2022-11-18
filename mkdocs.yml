@@ -30,11 +30,12 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: 'Futura Md BT'
+    code: 'Futura Md BT'
 extra_css:
   - stylesheets/extra.css
   - https://cdn.jsdelivr.net/npm/atropos@1.0.2/atropos.min.css
+  - https://fonts.cdnfonts.com/css/futura-pt
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/atropos@1.0.2/atropos.js
   - https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js
@@ -86,8 +87,8 @@ nav:
     - 'Teaching Philosophy': teaching/teaching-philosophy.md
     - 'CSIT@KPU': teaching/kpu.md
     - 'Thoughts on Higher-Ed': teaching/high-ed-books.md
-  - Life:
-    - life/index.md
+  - Blogs:
+    - blogs/index.md
   - Tags: tags.md
 
 plugins:

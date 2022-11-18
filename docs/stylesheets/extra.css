@@ -7,16 +7,20 @@
 }
 
 .md-typeset h1
- {
-  
-  font-size:1.05rem;
+{
+   font-size:1.5rem;
+}
+
+.md-typeset h1, .md-typeset h2{
   color:var(--md-primary-fg-color--dark);
-  line-height:1.2;
+  line-height:1.2em;
+  font-weight: 900;
+  font-family: 'Futura Md BT', sans-serif;  
+  text-transform: uppercase;
 }
 
 .md-typeset h2{
   font-size:1rem;
-  color:var(--md-primary-fg-color--dark);
 }
 .md-typeset a{
   color:var(--md-primary-fg-color--dark); 
@@ -25,10 +29,11 @@
   font-size:0.9rem;
 }
 .md-tabs__link {
-  font-size:1rem;
+  font-size:0.8rem;
   background-color: var(--md-primary-fg-color);
   color:var(--md-primary-fg-color--dark);
-
+  text-transform: uppercase;
+  font-family: 'Futura Md BT', sans-serif;
 }
 
 .md-tabs__link--active, .md-tabs__link:is(:focus,:hover) {
@@ -143,7 +148,7 @@ path{
         overflow:visible;
         min-height:500px;
     }
-    
+      
 
     .swiper-wrapper {
         position: relative;
@@ -438,9 +443,10 @@ button.swiper-pagination-bullet {
   transform: scale(1.3);
 }
 .swiper-container p{
-  font-family: 'Poppins', Roboto;
-  font-weight: bold;
+  font-family: 'Futura Md BT', sans-serif;
+    font-weight: bold;
   font-stretch:ultra-expanded;
+  text-transform: uppercase;
   
 }
 
@@ -450,7 +456,7 @@ button.swiper-pagination-bullet {
 
 
 .image{
-  width:300px;
+  width:350px;
   height:300px;
   display:flex;
   justify-content:center;
@@ -475,11 +481,11 @@ button.swiper-pagination-bullet {
   background-image: url(../assets/learning.png);
 } 
 .image2{
-  background-image: url(../assets/teaching.png);
+  background-image: url(../assets/teach.png);
 }
 
 .image3{
-  background-image: url(../assets/life.png);
+  background-image: url(../assets/blog.png);
 
 }
 .image:hover{
@@ -560,6 +566,7 @@ button.swiper-pagination-bullet {
 
 
 .image .text-animation-container span {  
+  font-family: 'Futura Md BT', sans-serif;  
   transform: translate(-300px, 0) scale(0); 
   color: var(--md-primary-fg-color--dark);
   opacity:0;

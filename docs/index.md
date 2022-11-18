@@ -37,7 +37,7 @@ hide:
             <div class="image image2">
 						   	<div onmouseout="reset_animation()" class="text-animation-container">
             <div class="animate">
-                    <span>l</span><span>e</span><span>a</span><span>r</span><span>n</span>
+                <span>t</span><span>e</span><span>a</span><span>c</span><span>h</span>
             </div>
             </div>
             </div>
@@ -50,7 +50,7 @@ hide:
              <div class="image image1">
            	<div onmouseout="reset_animation()" class="text-animation-container">
             <div class="animate">
-                    <span>t</span><span>e</span><span>a</span><span>c</span><span>h</span>
+            <span>l</span><span>e</span><span>a</span><span>r</span><span>n</span>
             </div>
             </div>
             </div>
@@ -59,11 +59,11 @@ hide:
 				</div>
 				<div class="swiper-slide">
 					<div class="slider-image">
-          <a href="./life">
+          <a href="./blogs">
 						<div class="image image3">
            	<div onmouseout="reset_animation()" class="text-animation-container">
             <div class="animate">
-                    <span>l</span><span>i</span><span>f</span><span>e</span>
+                    <span>B</span><span>L</span><span>O</span><span>G</span><span>S</span>
             </div>
             </div>
             </div>
