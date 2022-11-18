@@ -29,6 +29,8 @@ hide:
 
 
 <!-- Swiper -->
+<div class="wrapper">
+<section class = "first-section">
 <div class="swiper-container">
 	<div class="swiper-wrapper">
 			<div class="swiper-slide">
@@ -78,7 +80,27 @@ hide:
    		<div class="swiper-pagination"></div>
 
 </div>
+<div class="mouse_scroll">
+
+		<div class="mouse">
+			<div class="wheel"></div>
+		</div>
+		<div>
+			<span class="m_scroll_arrows unu"></span>
+			<span class="m_scroll_arrows doi"></span>
+			<span class="m_scroll_arrows trei"></span>
+		</div>
+</div>
+</section>
 
 
 
 
+<section class = "second-section">
+<div class="self-intro">
+Hao holds a Ph.D. in Electrical and Computer Engineering from Universtiy of British Columbia, a M.Sc. in Electrical Engineering from King Abdullah University of Science and Technology, and a B.Eng. in Information Engineering from Xi'an Jiaotong University.
+</div>
+</section>
+
+
+</div>
