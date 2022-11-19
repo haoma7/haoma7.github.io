@@ -857,4 +857,7 @@ scroll-snap-type: y mandatory !important;
 
 }
 
+div.md-footer__title{
+  display:none;
+}
 }
