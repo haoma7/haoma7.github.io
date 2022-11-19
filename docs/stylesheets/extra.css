@@ -846,7 +846,6 @@ scroll-snap-type: y mandatory !important;
 }
 
 .md-sidebar{
-  padding-top:30vh;
 }
 
 @media only screen and (max-width: 1200px) {
