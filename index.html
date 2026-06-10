@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hao Ma — Lab Infrastructure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #FAFAFA;
+            --text: #334155;
+            --accent: #2563EB; /* NVIDIA/Engineering Blue */
+            --code-bg: #F1F5F9;
+            --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 3rem auto;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        header { border-bottom: 2px solid #E2E8F0; padding-bottom: 2rem; margin-bottom: 3rem; }
+        h1 { font-size: 2.2em; color: var(--accent); margin: 0; }
+        .motto { font-style: italic; color: #64748B; margin-top: 0.5rem; }
+        .header-info { font-size: 0.9em; display: flex; gap: 1rem; color: #475569; }
+
+        h2 { 
+            font-size: 1.1em; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .highlight-block { background: var(--code-bg); border-left: 4px solid var(--accent); margin-bottom: 2rem; }
+        summary { cursor: pointer; padding: 1.5rem; font-weight: bold; list-style: none; display: flex; justify-content: space-between; }
+        summary::after { content: '+'; }
+        details[open] summary::after { content: '-'; }
+        .highlight-content { padding: 0 1.5rem 1.5rem 1.5rem; }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 0.8rem; }
+        b { color: #0F172A; }
+        
+        .masonry-layout { column-count: 1; }
+        footer { margin-top: 5rem; text-align: center; color: #94A3B8; font-size: 0.8em; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>[HAO_MA]</h1>
+        <div class="header-info">
+            <span><i class="fa-solid fa-location-dot"></i> Burnaby, BC</span>
+            <span>•</span>
+            <span>hao_ma at bcit dot com</span>
+            <span>•</span>
+            <a href="https://scholar.google.com/citations?user=F44gDZ4AAAAJ&hl=en&oi=ao">GOOGLE_SCHOLAR</a>
+        </div>
+    </header>
+
+    <div class="opportunities-banner">
+        <details class="highlight-block">
+            <summary>//_PROSPECTIVE_STUDENT_RESEARCHERS</summary>
+            <div class="highlight-content">
+                        <p class="motto">// "I love what I do. I am looking for those who do, too."</p>
+
+                <p>I welcome inquiries from diligent students seeking to engage with Agentic AI, IoT, and physical robotics.</p>
+                <h3>Graduate_Students (M.Sc.)</h3>
+                <p>Admission via <a href="https://www.bcit.ca/programs/applied-computing-master-of-science-full-time-m600msc/#overview">BCIT Applied Computing</a>. Reach out for collaboration post-admission.</p>
+                <h3>Undergraduate_Students (2nd - 4th Year)</h3>
+                <p>Seeking strong foundations in Mathematics, Engineering, or Computing. I value rigorous discipline and deep hardware engagement. Research contributors have clear pathways to co-authorship.</p>
+            </div>
+        </details>
+
+        <details class="highlight-block">
+            <summary>//_PROSPECTIVE_INDUSTRIAL_PARTNERS</summary>
+            <div class="highlight-content">
+                <p>I welcome collaborations leveraging BCIT's fabrication/testing infrastructure to bridge models (LLMs/Agentic AI) and functional robotics.</p>
+                <p>Funded via <a href="https://www.mitacs.ca/">MITACS</a> or <a href="https://nserc-crsng.canada.ca/en/">NSERC</a> frameworks. Organizations interested in accessing technical talent to solve industrial problems are encouraged to contact me.</p>
+            </div>
+        </details>
+    </div>
+
+    <section>
+        <h2>//_CURRENT_RESEARCH_INITIATIVES</h2>
+        <ul>
+            <li>{ Embodied_AI; Human-Robot Interaction; IoT}</li>
+        </ul>
+
+        <h2>//_TEAM_MEMBERS</h2>
+        <p>Research is a collaborative pursuit. Our team is defined by technical rigor and a shared drive to translate theory into functional systems.</p>
+        <ul>
+            <li><b>Alex</b> — { Embodied_AI; VLM; Robotic_Manipulation }</li>
+            <li><b>Chris</b> — { Assistive_Quadrupedal_Locomotion; Human_Mobility }</li>
+            <li><b>Jun</b> — { Spatial_Perception; Sensor_Fusion; Localization }</li>
+        </ul>
+
+        <h2>//_EDUCATION</h2>
+        <ul>
+            <li><b>Ph.D., Electrical and Computer Engineering</b> — University Of British Columbia</li>
+            <li><b>M.Sc., Eletrical Engineering</b> — King Abdullah University of Science and Technology</li>
+            <li><b>B.Eng., Inforomation Engineering</b> — Xi'an Jiaotong University</li>
+        </ul>
+
+        <h2>//_EXPERIENCE</h2>
+        <ul>
+            <li><b>Faculty</b> — BCIT (2022-Present)</li>
+            <li><b>Part-Time Faculty</b> — KPU (2016-Present)</li>
+            <li><b>Machine Learning Scientist</b> — 1QBit (2019-2020)</li>
+        </ul>
+
+        <h2>//_TEACHING_EXPERIENCE</h2>
+        <p>//_PRIMARY_INSTRUCTION</p>
+        <ul>
+            <li><b>AI & Data Science</b> — Machine Learning; Data Science; Reinforcement Learning; LLMs & Agentic AI.</li>
+            <li><b>Computer Science</b> — Algorithm Analysis; Data Structures; System Design & Analysis.</li>
+            <li><b>Software/Hardware</b> — Full-Stack Web Development; Computer Architecture; Java; C++.</li>
+        </ul>
+
+        <p>//_GRADUATE_ASSISTANTSHIPS</p>
+        <ul>
+            <li>Supervised Learning; Ordinary/Partial Differential Equations; Signals & Systems.</li>
+        </ul>
+    </section>
+
+    
+    <footer>
+        <p>PAGE_LAST_UPDATED: JUNE_2026 // SYSTEM_OPERATIONAL</p>
+    </footer>
+
+</body>
+</html>
