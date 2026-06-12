@@ -1,141 +1,345 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hao Ma — Lab Infrastructure</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Hao Ma, Ph.D. - Homepage</title>
     <style>
-        :root {
-            --bg: #FAFAFA;
-            --text: #334155;
-            --accent: #2563EB; /* NVIDIA/Engineering Blue */
-            --code-bg: #F1F5F9;
-            --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-        }
-
+        /* Modernized Academic Typography & Colors */
         body {
-            font-family: var(--font-mono);
-            line-height: 1.6;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 3rem auto;
-            max-width: 1000px;
-            padding: 0 2rem;
+            font-family: "Charter", "Bitstream Charter", Georgia, serif; 
+            font-size: 16px;
+            line-height: 1.6; 
+            background-color: #FAFAFA; 
+            color: #334155; 
+            margin: 2rem auto; 
+            max-width: 1200px; 
+            padding: 0 1.5rem;
         }
-
-        header { border-bottom: 2px solid #E2E8F0; padding-bottom: 2rem; margin-bottom: 3rem; }
-        h1 { font-size: 2.2em; color: var(--accent); margin: 0; }
-        .motto { font-style: italic; color: #64748B; margin-top: 0.5rem; }
-        .header-info { font-size: 0.9em; display: flex; gap: 1rem; color: #475569; }
-
-        h2 { 
-            font-size: 1.1em; 
-            text-transform: uppercase; 
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            border-bottom: 1px solid #E2E8F0;
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-        }
-
-        .highlight-block { background: var(--code-bg); border-left: 4px solid var(--accent); margin-bottom: 2rem; }
-        summary { cursor: pointer; padding: 1.5rem; font-weight: bold; list-style: none; display: flex; justify-content: space-between; }
-        summary::after { content: '+'; }
-        details[open] summary::after { content: '-'; }
-        .highlight-content { padding: 0 1.5rem 1.5rem 1.5rem; }
-
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 0.8rem; }
-        b { color: #0F172A; }
         
-        .masonry-layout { column-count: 1; }
-        footer { margin-top: 5rem; text-align: center; color: #94A3B8; font-size: 0.8em; }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        a:link, a:visited { color: #2563EB; text-decoration: none; }
+        a:hover { text-decoration: underline; color: #1D4ED8; }
+        
+        /* Clean, authoritative sans-serif headings */
+        h1, h2, h3 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #0F172A; 
+            font-weight: 600;
+            margin-bottom: 0.3em;
+            letter-spacing: -0.01em; 
+        }
+        
+        /* Flattened Header Styling */
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        h1 { 
+            font-size: 2.4em; 
+            margin: 0;
+        }
+
+        .header-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: #475569;
+            align-items: center;
+        }
+
+        .header-info .separator {
+            color: #CBD5E1;
+        }
+
+        h2 { font-size: 1.4em; border-bottom: 1px solid #E2E8F0; padding-bottom: 0.3em; margin-top: 0; }
+        h3 { font-size: 1.1em; margin-top: 1.2em; }
+        
+        p, ul { margin-top: 0.4em; margin-bottom: 1em; }
+        li { margin-bottom: 0.4em; }
+        hr { border: none; border-top: 1px solid #CBD5E1; margin: 2em 0; }
+
+        /* --- New Layout Structure --- */
+        
+        /* Flattened Opportunities Banner (Full Width, Stacked) */
+        .opportunities-banner {
+            display: flex;
+            flex-direction: column; 
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* The specific Callout Block styling */
+        .highlight-block {
+            background-color: #F1F5F9; 
+            border-left: 4px solid #475569; 
+            border-radius: 0 4px 4px 0; 
+        }
+        
+        /* Collapsible Native Elements Settings */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            /* Inherit heading styles for the summary */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1E293B; 
+            font-weight: 600;
+            font-size: 1.4em;
+            letter-spacing: -0.01em; 
+            transition: background-color 0.2s ease;
+        }
+
+        details > summary:hover {
+            background-color: #E2E8F0; /* Subtle hover effect */
+        }
+        
+        details > summary::-webkit-details-marker {
+            display: none; /* Hides default browser triangle */
+        }
+
+        /* The + and - indicator styling */
+        details > summary::after {
+            content: '+';
+            font-size: 1.2em;
+            color: #64748B;
+            font-weight: 400;
+        }
+
+        details[open] > summary::after {
+            content: '−';
+        }
+
+        /* The content inside the collapsible wrapper */
+        .highlight-content {
+            padding: 0 2rem 1.5rem 2rem;
+        }
+
+        /* Adjust internal headings for highlight blocks so they aren't too large */
+        .highlight-content h3 {
+            margin-top: 1.5em;
+        }
+
+        /* Standard Modular Layout for the rest of the content */
+        .masonry-layout {
+            column-count: 2;
+            column-gap: 3.5rem;
+        }
+
+        .section-block {
+            break-inside: avoid; 
+            page-break-inside: avoid; 
+            margin-bottom: 2.5rem;
+        }
+
+        /* Responsive Mobile Stacking */
+        @media (max-width: 850px) {
+            .masonry-layout {
+                column-count: 1;
+            }
+            .header-info {
+                flex-direction: column;
+                gap: 0.2rem;
+                align-items: flex-start;
+            }
+            .header-info .separator {
+                display: none;
+            }
+            details > summary {
+                padding: 1.25rem 1rem;
+            }
+            .highlight-content {
+                padding: 0 1rem 1.5rem 1rem;
+            }
+        }
+        
+        
+        footer { margin-top: 2rem; padding-top: 1rem; color: #64748B; border-top: 2px solid #E2E8F0; }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <h1>[HAO_MA]</h1>
+<header>
+        <h1>Hao Ma</h1>
         <div class="header-info">
-            <span><i class="fa-solid fa-location-dot"></i> Burnaby, BC</span>
-            <span>•</span>
-            <span>hao_ma at bcit dot com</span>
-            <span>•</span>
-            <a href="https://scholar.google.com/citations?user=F44gDZ4AAAAJ&hl=en&oi=ao">GOOGLE_SCHOLAR</a>
+            <span><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</span>
+            <span class="separator">•</span>
+            <span><i class="fa-solid fa-envelope"></i> hao_ma at bcit dot com</span>
+            <span class="separator">•</span>
+            <a href="https://scholar.google.com/citations?user=F44gDZ4AAAAJ&hl=en&oi=ao">
+                <i class="fa-solid fa-graduation-cap"></i> Google Scholar
+            </a>
         </div>
     </header>
 
     <div class="opportunities-banner">
+        
         <details class="highlight-block">
-            <summary>//_PROSPECTIVE_STUDENT_RESEARCHERS</summary>
+            <summary>Prospective Student Researchers</summary>
             <div class="highlight-content">
-                        <p class="motto">// "I love what I do. I am looking for those who do, too."</p>
+                <p>
+                    I love what I do. I am looking for those who do, too.
+                </p>
+                <p>
+                    I welcome inquiries from diligent undergraduate and graduate students seeking collaborative applied research opportunities. Opportunities exist for those inclined toward rigorous work involving Agentic AI, large language models, and physical robotics.
+                </p>
 
-                <p>I welcome inquiries from diligent students seeking to engage with Agentic AI, IoT, and physical robotics.</p>
-                <h3>Graduate_Students (M.Sc.)</h3>
-                <p>Admission via <a href="https://www.bcit.ca/programs/applied-computing-master-of-science-full-time-m600msc/#overview">BCIT Applied Computing</a>. Reach out for collaboration post-admission.</p>
-                <h3>Undergraduate_Students (2nd - 4th Year)</h3>
-                <p>Seeking strong foundations in Mathematics, Engineering, or Computing. I value rigorous discipline and deep hardware engagement. Research contributors have clear pathways to co-authorship.</p>
+                <h3>For Prospective Graduate Students (M.Sc.)</h3>
+                <p>
+                    Individuals seeking to pursue graduate-level research under my supervision must first be admitted to the <a target="_blank" href="https://www.bcit.ca/programs/applied-computing-master-of-science-full-time-m600msc/#overview">Master Of Science in Applied Computing</a> program at the British Columbia Institute Of Technology. I encourage prospective candidates to review the <a href="https://www.bcit.ca/programs/applied-computing-master-of-science-full-time-m600msc/#overview" target="_blank">program curriculum and admission requirements</a> thoroughly. Students are welcome to reach out to discuss potential research collaboration or supervision after you have received formal admission to the institution.
+                </p>
+
+                <h3>For Undergraduate Students (2nd to 4th Year)</h3>
+                <p>
+                    The laboratory actively integrates undergraduate students into core projects. While these positions are typically uncompensated, they offer a structured environment for acquiring practical expertise with physical robotic platforms and sensor ecosystems. My objective is to foster the technical and analytical acumen necessary for students to develop a substantive portfolio suitable for graduate studies or industry placement. Dedicated individuals may have the opportunity to co-author academic publications. I value fundamental curiosity, technical discipline, and a willingness to engage deeply with complex hardware.
+                </p>
+                <p>
+                    Prospective students are invited to contact me via email with the following materials:
+                </p>
+                <ul>
+                    <li>A current CV or resume.</li>
+                    <li>Unofficial academic transcripts.</li>
+                    <li>A brief statement outlining your academic background and specific research interests.</li>
+                </ul>
             </div>
         </details>
 
-        <details class="highlight-block">
-            <summary>//_PROSPECTIVE_INDUSTRIAL_PARTNERS</summary>
+     <details class="highlight-block">
+            <summary>Prospective Industrial Partners</summary>
             <div class="highlight-content">
-                <p>I welcome collaborations leveraging BCIT's fabrication/testing infrastructure to bridge models (LLMs/Agentic AI) and functional robotics.</p>
-                <p>Funded via <a href="https://www.mitacs.ca/">MITACS</a> or <a href="https://nserc-crsng.canada.ca/en/">NSERC</a> frameworks. Organizations interested in accessing technical talent to solve industrial problems are encouraged to contact me.</p>
+                <p>
+                    I welcome applied research collaborations with industry partners. The British Columbia Institute Of Technology provides extensive fabrication and testing facilities for physical prototyping, enabling the rigorous translation of algorithmic models—such as Agentic AI and large language models—into functional robotic platforms.
+                </p>
+              <p>
+  Such collaborative initiatives are typically resourced through federally supported applied research programs, utilizing funding mechanisms from agencies including
+  <a href="https://www.mitacs.ca/" target="_blank" rel="noopener noreferrer">Mitacs</a>
+  and the
+  <a href="https://www.nserc-crsng.gc.ca/" target="_blank" rel="noopener noreferrer">
+    Natural Sciences and Engineering Research Council of Canada (NSERC)
+  </a>.
+  Organizations interested in addressing industrial challenges through these frameworks are invited to contact me.
+</p>
             </div>
         </details>
+
     </div>
 
-    <section>
-        <h2>//_CURRENT_RESEARCH_INITIATIVES</h2>
-        <ul>
-            <li>{ Embodied_AI; Human-Robot Interaction; IoT}</li>
-        </ul>
+    <div class="masonry-layout">
+        
+        <div class="section-block">
+            <h2>Current Research Initiatives</h2>
+            <p>My current research agenda focuses on the intersection of physical systems and artificial intelligence:</p>
+            <ul>
+                <li>Embodied AI, Human-Robot Interaction, IoT</li>
+            </ul>
+        </div>
 
-        <h2>//_TEAM_MEMBERS</h2>
-        <p>Research is a collaborative pursuit. Our team is defined by technical rigor and a shared drive to translate theory into functional systems.</p>
-        <ul>
-            <li><b>Alex</b> — { Embodied_AI; VLM; Robotic_Manipulation }</li>
-            <li><b>Chris</b> — { Assistive_Quadrupedal_Locomotion; Human_Mobility }</li>
-            <li><b>Jun</b> — { Spatial_Perception; Sensor_Fusion; Localization }</li>
-        </ul>
+        <div class="section-block">
+            <h2>Education</h2>
+            <ul>
+                <li><b>Ph.D., Electrical and Computer Engineering</b>, University Of British Columbia (UBC), Canada </li>
+                <li><b>M.Sc., Electrical Engineering</b>, King Abdullah University Of Science And Technology (KAUST), Saudi Arabia </li>
+                <li><b>Exchange Scholar, Electronics Engineering</b>, City University Of Hong Kong (CITYU), Hong Kong </li>
+                <li><b>B.Eng., Information Engineering</b>, Xi'an Jiaotong University (XJTU), China (Ranking: Top 1%) </li>
+                <li><b>1st place, among ~5000 graduates</b>, National University Entrance Examination, Liangshan, Shan Dong, China </li>
+            </ul>
+        </div>
 
-        <h2>//_EDUCATION</h2>
-        <ul>
-            <li><b>Ph.D., Electrical and Computer Engineering</b> — University Of British Columbia</li>
-            <li><b>M.Sc., Eletrical Engineering</b> — King Abdullah University of Science and Technology</li>
-            <li><b>B.Eng., Inforomation Engineering</b> — Xi'an Jiaotong University</li>
-        </ul>
+        <div class="section-block">
+            <h2>Experience</h2>
+            <ul>
+                <li><b>Faculty</b>, British Columbia Institute Of Technology (2022 - Present)
+                    <ul>
+                        <li>Delivering undergraduate and graduate curricula in large language models, Agentic AI, algorithms, and web development; directing applied collaborative research in robotics.</li>
+                    </ul>
+                </li>
+                <li><b>Part-Time Faculty</b>, Kwantlen Polytechnic University (2016 - Present)
+                    <ul>
+                        <li>Instructing undergraduate computing courses with a focus on data mining, data warehousing, and wireless networks.</li>
+                    </ul>
+                </li>
+                <li><b>Machine Learning Scientist</b>, 1QBit (2019 - 2020)
+                    <ul>
+                        <li>Worked at 1QBit conducting applied research in generative AI and quantum computing; developed a patented simulator.</li>
+                    </ul>
+                </li>
+                <li><b>Research and Teaching Scholar</b>, UBC, KAUST & XJTU (2009 - 2022)
+                    <ul>
+                        <li>Conducted signal processing research, prepared grant proposals, and fostered the development of emerging scholars.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
-        <h2>//_EXPERIENCE</h2>
-        <ul>
-            <li><b>Faculty</b> — BCIT (2022-Present)</li>
-            <li><b>Part-Time Faculty</b> — KPU (2016-Present)</li>
-            <li><b>Machine Learning Scientist</b> — 1QBit (2019-2020)</li>
-        </ul>
+        <div class="section-block">
+            <h2>Mentorship & Student Collaborators</h2>
+            <p>
+                Research is inherently a collaborative endeavor, and I have the distinct privilege of working alongside a dedicated group of emerging scholars. My primary responsibility as an advisor is to provide the necessary framework and resources to help them transition into independent problem-solvers and capable colleagues. I deeply value their diligence, technical contributions, and the steady focus they bring to our ongoing work in AI and physical systems.
+            </p>
+            <ul>
+                <li><b>Alex</b> – Embodied AI; VLM; Robotic Manipulation</li>
+                <li><b>Chris</b> – Assistive Quadrupedal Locomotion; Human Mobility - Co-supervised with Dr. Borisoff</li>
+                <li><b>Jun</b> – Spatial Perception; Sensor Fusion</li>
+            </ul>
+        </div>
+  
 
-        <h2>//_TEACHING_EXPERIENCE</h2>
-        <p>//_PRIMARY_INSTRUCTION</p>
-        <ul>
-            <li><b>AI & Data Science</b> — Machine Learning; Data Science; Reinforcement Learning; LLMs & Agentic AI.</li>
-            <li><b>Computer Science</b> — Algorithm Analysis; Data Structures; System Design & Analysis.</li>
-            <li><b>Software/Hardware</b> — Full-Stack Web Development; Computer Architecture; Java; C++.</li>
-        </ul>
+        <div class="section-block">
+            <h2>Publications, Patents and Presentations</h2>
 
-        <p>//_GRADUATE_ASSISTANTSHIPS</p>
-        <ul>
-            <li>Supervised Learning; Ordinary/Partial Differential Equations; Signals & Systems.</li>
-        </ul>
-    </section>
+            <h3>Selected Conference Publications & Patents</h3>
+            <ul>
+                <li>Ronagh, P., Hao Ma, A. Berezutskii, A.B. Fursman, and B. Sepehry. "<b>System and method for enabling an access to a physics-inspired computer and to a physics-inspired computer simulator.</b>" <i>US Patent 12,051,005</i>, (2024).</li>
+                <li>Prasad, G., Hao Ma, M.J. Rahman, F. Aalamifar, and L. Lampe. "<b>A cumulative power line noise generator.</b>" (2016).</li>
+                <li>Ma, Hao, L. Lampe, and S. Hranilovic. "<b>Robust MMSE linear precoding for visible light communication broadcasting systems.</b>" <i>2013 IEEE Globecom Workshops</i>, (2013): 1081-1086.</li>
+                <li>Ma, Hao, L. Lampe, and S. Hranilovic. "<b>Integration of indoor visible light and power line communication systems.</b>" <i>2013 IEEE 17th International Symposium on Power Line Communications and Its Applications</i>, (2013).</li>
+            </ul>
 
-    
+            <h3>Selected Journal Publications</h3>
+            <ul>
+                <li>Ma, Hao, A. Mostafa, L. Lampe, and S. Hranilovic. "<b>Coordinated beamforming for downlink visible light communication networks.</b>" <i>IEEE Transactions on Communications</i> 66, no. 8 (2018): 3571-3582.</li>
+                <li>Ma, Hao, L. Lampe, and S. Hranilovic. "<b>Hybrid visible light and power line communication for indoor multiuser downlink.</b>" <i>Journal of Optical Communications and Networking</i> 9, no. 8 (2017): 635-647.</li>
+                <li>Ma, Hao, L. Lampe, and S. Hranilovic. "<b>Coordinated broadcasting for multiuser indoor visible light communication systems.</b>" <i>IEEE Transactions on Communications</i> 63, no. 9 (2015): 3313-3324.</li>
+            </ul>
+        </div>
+
+        <div class="section-block">
+            <h2>Teaching</h2>
+            <p>
+                My instructional duties over the past decade have centered on bridging theoretical foundations with applied engineering practices. I have been responsible for the development and delivery of a broad spectrum of undergraduate and graduate curricula across computer science, artificial intelligence, and software engineering.
+            </p>
+
+            <h3>Primary Instruction</h3>
+            <ul>
+                <li><b>Artificial Intelligence & Data Science:</b> Machine Learning, Data Science, Data Warehousing and Data Mining, graduate-level Applied Reinforcement Learning, and Large Language Models & Agentic AI (upcoming Fall 2026).</li>
+                <li><b>Computer Science & Foundations:</b> Graduate Algorithm Analysis, Undergraduate Data Structures, Databases, and System Design and Analysis.</li>
+                <li><b>Software & Hardware Engineering:</b> Programming (Java, C++), Full-Stack Web Development, and Computer Hardware and Software architectures.</li>
+            </ul>
+
+            <h3>Teaching Assistantships (Graduate Studies)</h3>
+            <ul>
+                <li>Supervised Learning</li>
+                <li>Ordinary and Partial Differential Equations</li>
+                <li>Signals and Systems</li>
+            </ul>
+        </div>
+
+    </div>
+
     <footer>
-        <p>PAGE_LAST_UPDATED: JUNE_2026 // SYSTEM_OPERATIONAL</p>
+        <p><small><i>Page last updated: June 2026</i></small></p>
     </footer>
 
 </body>
