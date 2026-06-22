@@ -1,14 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hao Ma, Ph.D. - Homepage</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         /* Modernized Academic Typography & Colors */
         body {
-            font-family: "Charter", "Bitstream Charter", Georgia, serif; 
+            font-family: "IBM Plex Serif", Georgia, serif; 
             font-size: 16px;
             line-height: 1.6; 
             background-color: #FAFAFA; 
@@ -23,23 +29,35 @@
         
         /* Clean, authoritative sans-serif headings */
         h1, h2, h3 {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: #0F172A; 
             font-weight: 600;
             margin-bottom: 0.3em;
             letter-spacing: -0.01em; 
         }
         
-        /* Flattened Header Styling */
+        /* Left-Aligned Header Styling */
         header {
             display: flex;
             flex-wrap: wrap;
-            align-items: baseline;
+            align-items: center;
             justify-content: space-between;
             margin-bottom: 2.5rem;
             border-bottom: 2px solid #E2E8F0;
-            padding-bottom: 1rem;
-            gap: 1rem;
+            padding-bottom: 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .title-group {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-wrapper {
+            width: 180px; /* Scaled down for left alignment */
+            flex-shrink: 0;
+            display: flex;
         }
 
         h1 { 
@@ -53,6 +71,7 @@
             gap: 1.5rem;
             color: #475569;
             align-items: center;
+            font-family: "IBM Plex Sans", sans-serif; 
         }
 
         .header-info .separator {
@@ -66,7 +85,7 @@
         li { margin-bottom: 0.4em; }
         hr { border: none; border-top: 1px solid #CBD5E1; margin: 2em 0; }
 
-        /* --- New Layout Structure --- */
+        /* --- Layout Structure --- */
         
         /* Flattened Opportunities Banner (Full Width, Stacked) */
         .opportunities-banner {
@@ -93,7 +112,7 @@
             align-items: center;
             
             /* Inherit heading styles for the summary */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: #1E293B; 
             font-weight: 600;
             font-size: 1.4em;
@@ -102,11 +121,11 @@
         }
 
         details > summary:hover {
-            background-color: #E2E8F0; /* Subtle hover effect */
+            background-color: #E2E8F0;
         }
         
         details > summary::-webkit-details-marker {
-            display: none; /* Hides default browser triangle */
+            display: none;
         }
 
         /* The + and - indicator styling */
@@ -126,7 +145,6 @@
             padding: 0 2rem 1.5rem 2rem;
         }
 
-        /* Adjust internal headings for highlight blocks so they aren't too large */
         .highlight-content h3 {
             margin-top: 1.5em;
         }
@@ -150,7 +168,7 @@
             }
             .header-info {
                 flex-direction: column;
-                gap: 0.2rem;
+                gap: 0.5rem;
                 align-items: flex-start;
             }
             .header-info .separator {
@@ -162,17 +180,74 @@
             .highlight-content {
                 padding: 0 1rem 1.5rem 1rem;
             }
+            .title-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .logo-wrapper {
+                width: 160px; /* Scale down slightly for smaller screens */
+            }
         }
         
-        
-        footer { margin-top: 2rem; padding-top: 1rem; color: #64748B; border-top: 2px solid #E2E8F0; }
+        footer { margin-top: 2rem; padding-top: 1rem; color: #64748B; border-top: 2px solid #E2E8F0; font-family: "IBM Plex Sans", sans-serif; }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-<header>
-        <h1>Hao Ma</h1>
+    <header>
+        <div class="title-group">
+            <div class="logo-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220" width="100%" height="100%">  
+                    <defs>    
+                        <linearGradient id="hlGrad" x1="50" y1="50" x2="470" y2="170" gradientUnits="userSpaceOnUse">      
+                            <stop offset="0%" stop-color="#0a4670" />      
+                            <stop offset="100%" stop-color="#1ca7a4" />    
+                        </linearGradient>    
+                        <radialGradient id="sensorGrad" cx="50%" cy="50%" r="50%">      
+                            <stop offset="0%" stop-color="#ffffff" />      
+                            <stop offset="100%" stop-color="#1ca7a4" />    
+                        </radialGradient>  
+                    </defs>
+                    <g id="base-logo" fill="url(#hlGrad)">    
+                        <rect x="50" y="50" width="35" height="120" />    
+                        <rect x="85" y="95" width="50" height="35" />    
+                        <rect x="135" y="95" width="35" height="75" />    
+                        <rect x="170" y="135" width="55" height="35" />    
+                        <rect x="240" y="95" width="35" height="75" />    
+                        <rect x="315" y="95" width="35" height="75" />    
+                        <rect x="275" y="95" width="40" height="25" />    
+                        <rect x="275" y="140" width="40" height="15" />    
+                        <rect x="365" y="95" width="35" height="75" />    
+                        <rect x="445" y="95" width="25" height="75" />    
+                        <rect x="400" y="95" width="45" height="20" />    
+                        <rect x="400" y="125" width="45" height="15" />    
+                        <rect x="400" y="150" width="45" height="20" />  
+                    </g>
+                    <g id="robotic-details">    
+                        <line x1="67.5" y1="50" x2="67.5" y2="30" stroke="#0a4670" stroke-width="2.5" />    
+                        <circle cx="67.5" cy="30" r="4" fill="#1ca7a4" />    
+                        <circle cx="67.5" cy="72" r="12" fill="url(#sensorGrad)" />    
+                        <circle cx="67.5" cy="72" r="12" stroke="#0a4670" stroke-width="2" fill="none" />        
+                        <line x1="50" y1="115" x2="85" y2="115" stroke="#1ca7a4" stroke-width="1.5" />    
+                        <line x1="50" y1="150" x2="85" y2="150" stroke="#1ca7a4" stroke-width="1.5" />        
+                        <line x1="85" y1="112.5" x2="135" y2="112.5" stroke="#0a4670" stroke-width="4" />    
+                        <line x1="85" y1="112.5" x2="115" y2="112.5" stroke="#1ca7a4" stroke-width="2" />    
+                        <circle cx="115" cy="112.5" r="3" fill="#ffffff" />
+                        <line x1="210" y1="135" x2="210" y2="170" stroke="#0a4670" stroke-width="2" />    
+                        <circle cx="218" cy="152.5" r="3" fill="#ffffff" />        
+                        <line x1="228" y1="152.5" x2="238" y2="152.5" stroke="#1ca7a4" stroke-width="2.5" stroke-dasharray="3 2" />
+                        <rect x="290" y="125" width="10" height="10" rx="2" fill="url(#sensorGrad)" />        
+                        <circle cx="457.5" cy="105" r="2.5" fill="#ffffff" />    
+                        <circle cx="457.5" cy="115" r="2.5" fill="#1ca7a4" />    
+                        <circle cx="457.5" cy="125" r="2.5" fill="#1ca7a4" />    
+                        <path d="M 382.5 170 V 160 L 392.5 150" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.6"/>    
+                        <circle cx="392.5" cy="150" r="1.5" fill="#ffffff" opacity="0.6"/>  
+                    </g>
+                </svg>
+            </div>
+            <h1>Hao Ma, Ph.D.</h1>
+        </div>
         <div class="header-info">
             <span><i class="fa-solid fa-location-dot"></i> Burnaby, BC, Canada</span>
             <span class="separator">•</span>
@@ -185,7 +260,6 @@
     </header>
 
     <div class="opportunities-banner">
-        
         <details class="highlight-block">
             <summary>Prospective Student Researchers</summary>
             <div class="highlight-content">
@@ -216,24 +290,17 @@
             </div>
         </details>
 
-     <details class="highlight-block">
+        <details class="highlight-block">
             <summary>Prospective Industrial Partners</summary>
             <div class="highlight-content">
                 <p>
                     I welcome applied research collaborations with industry partners. The British Columbia Institute Of Technology provides extensive fabrication and testing facilities for physical prototyping, enabling the rigorous translation of algorithmic models—such as Agentic AI and large language models—into functional robotic platforms.
                 </p>
-              <p>
-  Such collaborative initiatives are typically resourced through federally supported applied research programs, utilizing funding mechanisms from agencies including
-  <a href="https://www.mitacs.ca/" target="_blank" rel="noopener noreferrer">Mitacs</a>
-  and the
-  <a href="https://www.nserc-crsng.gc.ca/" target="_blank" rel="noopener noreferrer">
-    Natural Sciences and Engineering Research Council of Canada (NSERC)
-  </a>.
-  Organizations interested in addressing industrial challenges through these frameworks are invited to contact me.
-</p>
+                <p>
+                    Such collaborative initiatives are typically resourced through federally supported applied research programs, utilizing funding mechanisms from agencies including <a href="https://www.mitacs.ca/" target="_blank" rel="noopener noreferrer">Mitacs</a> and the <a href="https://www.nserc-crsng.gc.ca/" target="_blank" rel="noopener noreferrer">Natural Sciences and Engineering Research Council of Canada (NSERC)</a>. Organizations interested in addressing industrial challenges through these frameworks are invited to contact me.
+                </p>
             </div>
         </details>
-
     </div>
 
     <div class="masonry-layout">
@@ -253,7 +320,6 @@
                 <li><b>M.Sc., Electrical Engineering</b>, King Abdullah University Of Science And Technology (KAUST), Saudi Arabia </li>
                 <li><b>Exchange Scholar, Electronics Engineering</b>, City University Of Hong Kong (CITYU), Hong Kong </li>
                 <li><b>B.Eng., Information Engineering</b>, Xi'an Jiaotong University (XJTU), China (Ranking: Top 1%) </li>
-                <li><b>1st place, among ~5000 graduates</b>, National University Entrance Examination, Liangshan, Shan Dong, China </li>
             </ul>
         </div>
 
@@ -293,8 +359,7 @@
                 <li><b>Chris</b> – Assistive Quadrupedal Locomotion; Human Mobility - Co-supervised with Dr. Borisoff</li>
                 <li><b>Jun</b> – Spatial Perception; Sensor Fusion</li>
             </ul>
-        </div>
-  
+        </div>  
 
         <div class="section-block">
             <h2>Publications, Patents and Presentations</h2>
