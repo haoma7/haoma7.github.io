@@ -3,7 +3,12 @@
    Edit here once; every page picks it up.
    ========================================================= */
 
-:root {
+/* ---------- theme ----------
+   Default follows the operating system. A manual choice sets
+   data-theme on <html> and wins over the system preference. */
+
+:root,
+:root[data-theme="light"] {
   --paper: #FBFCFD;
   --panel: #F2F5F8;
   --ink: #16202B;
@@ -14,10 +19,19 @@
   --h2c: #B07D1A;
   --accent: #7D4A72;
   --fig-grid: #E4EAEF;
+  --logo-metal-a: #E4E9ED;
+  --logo-metal-b: #95A5A6;
+  --logo-lab-a: #00549E;
+  --logo-lab-b: #002147;
+  --logo-line: #2C3E50;
+  --logo-wire: #2C3E50;
+  --logo-cyan: #00E1D9;
+  --logo-sensor: #FFFFFF;
+  --logo-dot: #FFFFFF;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #101720;
     --panel: #18212C;
     --ink: #E3E9EE;
@@ -28,7 +42,38 @@
     --h2c: #D9AC4E;
     --accent: #C08FB6;
     --fig-grid: #243040;
+    --logo-metal-a: #EEF2F5;
+    --logo-metal-b: #9AABB6;
+    --logo-lab-a: #7CC3E4;
+    --logo-lab-b: #3A7FA3;
+    --logo-line: #2C3E50;
+    --logo-wire: #93A3B1;
+    --logo-cyan: #17D8D0;
+    --logo-sensor: #FFFFFF;
+    --logo-dot: #101720;
   }
+}
+
+:root[data-theme="dark"] {
+  --paper: #101720;
+  --panel: #18212C;
+  --ink: #E3E9EE;
+  --ink-soft: #93A3B1;
+  --rule: #2A3644;
+  --chip-bg: #1E2833;
+  --h1c: #6FB6D4;
+  --h2c: #D9AC4E;
+  --accent: #C08FB6;
+  --fig-grid: #243040;
+  --logo-metal-a: #EEF2F5;
+  --logo-metal-b: #9AABB6;
+  --logo-lab-a: #7CC3E4;
+  --logo-lab-b: #3A7FA3;
+  --logo-line: #2C3E50;
+  --logo-wire: #93A3B1;
+  --logo-cyan: #17D8D0;
+  --logo-sensor: #FFFFFF;
+  --logo-dot: #101720;
 }
 
 * { box-sizing: border-box }
@@ -111,7 +156,7 @@ body {
 
 .mark {
   display: block;
-  background: #FBFCFD;
+  background: var(--panel);
   border: 1px solid var(--rule);
   border-radius: 5px;
   padding: .7rem .8rem;
@@ -121,25 +166,25 @@ body {
   background-size: 22px 22px
 }
 
-.mark img { display: block; width: 100%; height: auto }
+.mark svg { display: block; width: 100%; height: auto }
 
 .rail-label {
   text-transform: uppercase;
   letter-spacing: .13em;
   font-size: 10.5px;
   color: var(--ink-soft);
-  margin-bottom: .9rem
+  margin-bottom: 1.1rem
 }
 
 .site-nav { margin-bottom: 0 }
 
 .site-nav a {
   display: block;
-  padding: .34rem 0 .34rem .8rem;
+  padding: .46rem 0 .46rem .85rem;
   color: var(--ink-soft);
   text-decoration: none;
   border-left: 2px solid var(--rule);
-  line-height: 1.45
+  line-height: 1.55
 }
 
 .site-nav a:hover { color: var(--ink) }
@@ -156,11 +201,11 @@ body {
 
 .toc a {
   display: block;
-  padding: .34rem 0 .34rem .8rem;
+  padding: .44rem 0 .44rem .85rem;
   color: var(--ink-soft);
   text-decoration: none;
   border-left: 2px solid var(--rule);
-  line-height: 1.45
+  line-height: 1.55
 }
 
 .toc a:hover { color: var(--ink) }
@@ -211,16 +256,18 @@ h1 {
 h2 {
   font-family: Fraunces, serif;
   font-weight: 600;
-  font-size: 1.62rem;
-  letter-spacing: -.01em;
-  margin: 3.4rem 0 1rem
+  font-size: 1.2rem;
+  letter-spacing: -.005em;
+  margin: 3.2rem 0 .9rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule)
 }
 
 h3 {
   font-family: Fraunces, serif;
   font-weight: 400;
-  font-size: 1.2rem;
-  margin: 2.4rem 0 .7rem
+  font-size: 1.06rem;
+  margin: 2rem 0 .6rem
 }
 
 h2 .num,
@@ -245,9 +292,8 @@ li { margin-bottom: .5rem }
   gap: .5rem;
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
-  margin: 0 0 2.4rem;
-  padding-bottom: 2.4rem;
-  border-bottom: 1px solid var(--rule)
+  margin: 0 0 .6rem;
+  padding-bottom: 0
 }
 
 .meta span,
@@ -273,38 +319,145 @@ li { margin-bottom: .5rem }
 
 /* ---------- homepage feature slot ---------- */
 .feature {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2.4rem;
+  align-items: center;
+  gap: 1rem;
   border: 1px solid var(--rule);
-  border-left: 3px solid var(--h2c);
-  border-radius: 0 4px 4px 0;
+  border-left: 4px solid var(--h2c);
+  border-radius: 0 5px 5px 0;
   background: var(--panel);
-  padding: 1rem 1.3rem;
-  margin: 0 0 2.6rem;
+  padding: 1.15rem 1.3rem;
+  margin: 0 0 1.4rem;
   text-decoration: none;
-  color: inherit
+  color: inherit;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease
 }
 
-.feature:hover { border-color: var(--h2c) }
+.feature:hover {
+  border-color: var(--h2c);
+  background: var(--chip-bg);
+  transform: translateX(2px)
+}
+
+.feature:focus-visible {
+  outline: 2px solid var(--h2c);
+  outline-offset: 3px
+}
 
 .feature .kicker {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  letter-spacing: .13em;
+  font-size: 10.5px;
+  letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--h2c)
 }
 
 .feature .name {
   font-family: Fraunces, serif;
-  font-size: 1.24rem;
+  font-size: 1.42rem;
   font-weight: 600;
-  margin: .3rem 0 .15rem
+  line-height: 1.25;
+  color: var(--h1c);
+  margin: .35rem 0 .3rem
 }
+
+.feature:hover .name { text-decoration: underline }
 
 .feature .go {
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
-  color: var(--h1c)
+  color: var(--ink-soft)
+}
+
+.feature .arrow {
+  justify-self: end;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid var(--h2c);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 15px;
+  color: var(--h2c);
+  transition: transform .15s ease, background .15s ease
+}
+
+.feature:hover .arrow {
+  transform: translateX(3px);
+  background: var(--h2c);
+  color: var(--paper)
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature,
+  .feature .arrow { transition: none }
+
+  .feature:hover,
+  .feature:hover .arrow { transform: none }
+}
+
+/* ---------- theme switch ---------- */
+.theme-toggle {
+  position: fixed;
+  top: 1.15rem;
+  right: 1.25rem;
+  z-index: 20;
+  width: 54px;
+  height: 27px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: var(--chip-bg);
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease
+}
+
+.theme-toggle:hover { border-color: var(--h1c) }
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--h1c);
+  outline-offset: 3px
+}
+
+.theme-toggle .knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease
+}
+
+.theme-toggle[aria-checked="true"] .knob { transform: translateX(27px) }
+
+.theme-toggle .knob svg {
+  width: 12px;
+  height: 12px;
+  display: block
+}
+
+.theme-toggle .knob .moon { display: none }
+.theme-toggle[aria-checked="true"] .knob .sun { display: none }
+.theme-toggle[aria-checked="true"] .knob .moon { display: block }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle .knob { transition: none }
+}
+
+@media (max-width: 1040px) {
+  .theme-toggle {
+    top: .8rem;
+    right: .9rem
+  }
 }
 
 /* ---------- chips ---------- */
@@ -531,8 +684,13 @@ footer a { color: var(--ink-soft) }
   .wrap.two .rail-l { border-bottom: 1px solid var(--rule) }
 
   .mark {
-    max-width: 210px;
-    margin-bottom: 1.4rem
+    max-width: 168px;
+    margin-bottom: 1.1rem
+  }
+
+  .ident {
+    margin-top: 1rem;
+    padding-bottom: 1.1rem
   }
 
   .site-nav {
@@ -579,4 +737,54 @@ footer a { color: var(--ink-soft) }
     grid-template-columns: 1fr;
     gap: .2rem
   }
+}
+
+
+/* ---------- identity block in the left rail ---------- */
+.ident {
+  margin-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule)
+}
+
+.ident .who {
+  display: block;
+  font-family: Fraunces, serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  text-decoration: none;
+  margin: 0 0 .35rem
+}
+
+.ident .who:hover { color: var(--h1c) }
+
+.ident .line {
+  display: block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11.5px;
+  line-height: 2.05;
+  color: var(--ink-soft)
+}
+
+.ident a.line { color: var(--h1c); text-decoration: none }
+.ident a.line:hover { text-decoration: underline }
+
+.ident .aff {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: .7rem
+}
+
+/* the first heading in the main column has nothing above it to divide from */
+.main > h2:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0
 }
