@@ -20,18 +20,18 @@
     aria-label="Dark mode">
     <span class="knob">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" aria-hidden="true" style="color:var(--h2c)">
+        stroke-linecap="round" aria-hidden="true" style="color:var(--ink-soft)">
         <circle cx="12" cy="12" r="4.2" />
         <path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" />
       </svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--h1c)">
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--ink-soft)">
         <path d="M20 14.2A8.4 8.4 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z" />
       </svg>
     </span>
   </button>
 
-  <div class="wrap">
+  <div class="wrap no-toc">
     <nav class="rail rail-l">
       <a class="mark" href="index.html" aria-label="Home"><svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="hLAB">
           <defs>
@@ -109,11 +109,12 @@
       <div class="site-nav">
         <div class="rail-label">Pages</div>
         <a href="index.html" aria-current="page">Home</a>
-        <a href="writing/">Writing</a>
-        <a href="https://haoma7.github.io/TTNN-Transformer-Tutorial/" class="sub">Transformer Series ↗</a>
+        <a href="tutorials/">Tutorials</a>
         <a href="teaching/">Teaching</a>
         <a href="publications/">Publications</a>
+        <a href="cv/">CV</a>
         <a href="group/">Group</a>
+        <a href="openings/">Openings</a>
       </div>
 
 
@@ -121,7 +122,16 @@
 
     <main class="main">
 
-      <h2 id="s1"><span class="num">01</span>Writing</h2>
+      <div class="intro">
+        <!-- DRAFT - please rewrite in your own voice. The facts come from your existing
+             pages; the phrasing is a starting point. Two other drafts, and your original
+             research-agenda sentence, are kept in the comment at the bottom of this file. -->
+        <p>I'm a faculty member at the British Columbia Institute of Technology, working where machine learning
+          meets physical systems: embodied AI, human–robot interaction, and IoT.</p>
+
+        <p>I teach across computing and AI, supervise student researchers, and write about the things I teach.
+          Students and industry partners are both welcome to get in touch.</p>
+      </div>
 
       <a class="feature" href="https://haoma7.github.io/TTNN-Transformer-Tutorial/">
         <div>
@@ -132,166 +142,61 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <h2 id="s2"><span class="num">02</span>Openings</h2>
-
-      <p>I love what I do. I am looking for those who do, too.</p>
-
-      <details class="card">
-        <summary>Prospective student researchers</summary>
-        <div class="card-body">
-          <p>I welcome inquiries from diligent undergraduate and graduate students seeking collaborative applied
-            research opportunities. Opportunities exist for those inclined toward rigorous work involving Agentic AI,
-            large language models, and physical robotics.</p>
-
-          <h4>For prospective graduate students (M.Sc.)</h4>
-          <p>Individuals seeking to pursue graduate-level research under my supervision must first be admitted to the
-            <a href="https://www.bcit.ca/programs/applied-computing-master-of-science-full-time-m600msc/#overview"
-              target="_blank" rel="noopener noreferrer">Master of Science in Applied Computing</a> program at the
-            British Columbia Institute of Technology. I encourage prospective candidates to review the
-            <a href="https://www.bcit.ca/programs/applied-computing-master-of-science-full-time-m600msc/#overview"
-              target="_blank" rel="noopener noreferrer">program curriculum and admission requirements</a> thoroughly.
-            Students are welcome to reach out to discuss potential research collaboration or supervision after you have
-            received formal admission to the institution.
-          </p>
-
-          <h4>For undergraduate students (2nd to 4th year)</h4>
-          <p>The laboratory actively integrates undergraduate students into core projects. While these positions are
-            typically uncompensated, they offer a structured environment for acquiring practical expertise with
-            physical robotic platforms and sensor ecosystems. My objective is to foster the technical and analytical
-            acumen necessary for students to develop a substantive portfolio suitable for graduate studies or industry
-            placement. Dedicated individuals may have the opportunity to co-author academic publications. I value
-            fundamental curiosity, technical discipline, and a willingness to engage deeply with complex hardware.</p>
-
-          <p>Prospective students are invited to contact me via email with the following materials:</p>
-          <ul>
-            <li>A current CV or resume.</li>
-            <li>Unofficial academic transcripts.</li>
-            <li>A brief statement outlining your academic background and specific research interests.</li>
-          </ul>
-
-          <p>You can see what current students are working on on the <a href="group/">group page</a>.</p>
-        </div>
-      </details>
-
-      <details class="card alt">
-        <summary>Prospective industrial partners</summary>
-        <div class="card-body">
-          <p>I welcome applied research collaborations with industry partners. The British Columbia Institute of
-            Technology provides extensive fabrication and testing facilities for physical prototyping, enabling the
-            rigorous translation of algorithmic models — such as Agentic AI and large language models — into functional
-            robotic platforms.</p>
-          <p>Such collaborative initiatives are typically resourced through federally supported applied research
-            programs, utilizing funding mechanisms from agencies including
-            <a href="https://www.mitacs.ca/" target="_blank" rel="noopener noreferrer">Mitacs</a> and the
-            <a href="https://www.nserc-crsng.gc.ca/" target="_blank" rel="noopener noreferrer">Natural Sciences and
-              Engineering Research Council of Canada (NSERC)</a>. Organizations interested in addressing industrial
-            challenges through these frameworks are invited to contact me.
-          </p>
-        </div>
-      </details>
-
-      <h2 id="s3"><span class="num">03</span>Current Research Initiatives</h2>
-
-      <p>My current research agenda focuses on the intersection of physical systems and artificial intelligence:
-        <span class="chip">Embodied AI</span> <span class="chip">Human–Robot Interaction</span>
-        <span class="chip">IoT</span>
-      </p>
-
-      <p>Earlier work, in signal processing for visible light and power line communication, is listed on the
-        <a href="publications/">publications page</a>.</p>
-
-      <h2 id="s4"><span class="num">04</span>Education</h2>
-
-      <div class="entry">
-        <div class="top">
-          <span class="what">Ph.D., Electrical and Computer Engineering</span>
-          <span class="chip">UBC</span>
-        </div>
-        <div class="where">University of British Columbia, Canada</div>
-      </div>
-      <div class="entry">
-        <div class="top">
-          <span class="what">M.Sc., Electrical Engineering</span>
-          <span class="chip">KAUST</span>
-        </div>
-        <div class="where">King Abdullah University of Science and Technology, Saudi Arabia</div>
-      </div>
-      <div class="entry">
-        <div class="top">
-          <span class="what">Exchange Scholar, Electronics Engineering</span>
-          <span class="chip">CityU</span>
-        </div>
-        <div class="where">City University of Hong Kong, Hong Kong</div>
-      </div>
-      <div class="entry">
-        <div class="top">
-          <span class="what">B.Eng., Information Engineering</span>
-          <span class="chip">XJTU</span>
-        </div>
-        <div class="where">Xi'an Jiaotong University, China — ranked top 1%</div>
-      </div>
-
-      <h2 id="s5"><span class="num">05</span>Experience</h2>
-
-      <div class="entry">
-        <div class="top">
-          <span class="what">Faculty</span>
-          <span class="chip">2022 — present</span>
-        </div>
-        <div class="where">British Columbia Institute of Technology</div>
-        <div class="note">Delivering undergraduate and graduate curricula in large language models, Agentic AI,
-          algorithms, and web development; directing applied collaborative research in robotics.</div>
-      </div>
-      <div class="entry">
-        <div class="top">
-          <span class="what">Part-Time Faculty</span>
-          <span class="chip">2016 — present</span>
-        </div>
-        <div class="where">Kwantlen Polytechnic University</div>
-        <div class="note">Instructing undergraduate computing courses with a focus on data mining, data warehousing,
-          and wireless networks.</div>
-      </div>
-      <div class="entry">
-        <div class="top">
-          <span class="what">Machine Learning Scientist</span>
-          <span class="chip">2019 — 2020</span>
-        </div>
-        <div class="where">1QBit</div>
-        <div class="note">Applied research in generative AI and quantum computing; developed a patented simulator.
-        </div>
-      </div>
-      <div class="entry">
-        <div class="top">
-          <span class="what">Research and Teaching Scholar</span>
-          <span class="chip">2009 — 2022</span>
-        </div>
-        <div class="where">UBC, KAUST &amp; XJTU</div>
-        <div class="note">Conducted signal processing research, prepared grant proposals, and fostered the development
-          of emerging scholars.</div>
+      <!-- My wording - adjust it, and swap in the series titles once you have them. -->
+      <div class="feature-note">
+        <p>Two more series are in progress:</p>
+        <ul>
+          <li>Generative models &mdash; RBM, VAE, GAN and diffusion</li>
+          <li>Algorithm analysis</li>
+        </ul>
+        <p><a href="tutorials/">All tutorials</a></p>
       </div>
 
       <footer>
         Hao Ma, Ph.D. &nbsp;·&nbsp; British Columbia Institute of Technology<br>
-        <a href="teaching/">Teaching</a> &nbsp;·&nbsp; <a href="publications/">Publications</a> &nbsp;·&nbsp;
-        <a href="group/">Group</a><br>
+        <a href="tutorials/">Tutorials</a> &nbsp;·&nbsp;
+        <a href="teaching/">Teaching</a> &nbsp;·&nbsp;
+        <a href="publications/">Publications</a> &nbsp;·&nbsp;
+        <a href="cv/">CV</a> &nbsp;·&nbsp;
+        <a href="group/">Group</a> &nbsp;·&nbsp;
+        <a href="openings/">Openings</a><br>
         Page last updated: June 2026
       </footer>
     </main>
 
-    <aside class="rail rail-r">
-      <div class="toc">
-        <div class="rail-label">Contents</div>
-        <a href="#s1">01&nbsp;&nbsp;Writing</a>
-        <a href="#s2">02&nbsp;&nbsp;Openings</a>
-        <a href="#s3">03&nbsp;&nbsp;Research</a>
-        <a href="#s4">04&nbsp;&nbsp;Education</a>
-        <a href="#s5">05&nbsp;&nbsp;Experience</a>
-      </div>
-    </aside>
   </div>
 
   <script src="assets/toc.js"></script>
   <script src="assets/theme.js"></script>
+
+<!--
+ALTERNATIVE DRAFTS for the introduction above, plus the original research sentence.
+
+A - warmer, opens with a greeting
+  <p>Hello, and welcome. I'm a faculty member at the British Columbia Institute of Technology, where I work on
+    getting machine learning to do something useful in the physical world: robots that handle real objects,
+    systems that share a space with people, sensors that have to keep running when nobody is watching.</p>
+  <p>I also teach - algorithms and data structures one term, large language models and Agentic AI the next.
+    Writing tutorials is how I make sure I actually understand what I'm teaching.</p>
+  <p>If you're a student wondering whether to email me, or someone at a company with a problem that needs
+    hardware as well as software, please do.</p>
+
+C - opens with a question
+  <p>Most of my work comes back to the same question: what happens when a model that behaves perfectly in a
+    notebook has to pick up an actual object?</p>
+  <p>I'm a faculty member at the British Columbia Institute of Technology. My students and I work on embodied AI,
+    human-robot interaction, and IoT - which in practice means a lot of time spent on the gap between what a model
+    predicts and what a gripper does.</p>
+  <p>I teach in the same areas, and I write tutorials when I want to be sure I understand something. If any of this
+    sounds like your kind of problem, my inbox is open.</p>
+
+YOUR ORIGINAL research sentence, removed because draft B already names the three areas
+in prose. Drop it back in if you would rather have the keyword chips.
+  <p>My current research agenda focuses on the intersection of physical systems and artificial intelligence:
+    <span class="chip">Embodied AI</span> <span class="chip">Human-Robot Interaction</span>
+    <span class="chip">IoT</span>
+  </p>
+-->
 </body>
 
 </html>

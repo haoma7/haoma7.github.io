@@ -1,4 +1,4 @@
-// Highlights the sidebar contents entry for the section currently in view.
+// Highlights the contents entry for the section currently in view.
 document.addEventListener("DOMContentLoaded", function () {
   var links = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
   if (!links.length || !("IntersectionObserver" in window)) return;

@@ -16,8 +16,6 @@
   --rule: #D6DEE5;
   --chip-bg: #EAF0F4;
   --h1c: #2E6F8E;
-  --h2c: #B07D1A;
-  --accent: #7D4A72;
   --fig-grid: #E4EAEF;
   --logo-metal-a: #E4E9ED;
   --logo-metal-b: #95A5A6;
@@ -39,8 +37,6 @@
     --rule: #2A3644;
     --chip-bg: #1E2833;
     --h1c: #6FB6D4;
-    --h2c: #D9AC4E;
-    --accent: #C08FB6;
     --fig-grid: #243040;
     --logo-metal-a: #EEF2F5;
     --logo-metal-b: #9AABB6;
@@ -62,8 +58,6 @@
   --rule: #2A3644;
   --chip-bg: #1E2833;
   --h1c: #6FB6D4;
-  --h2c: #D9AC4E;
-  --accent: #C08FB6;
   --fig-grid: #243040;
   --logo-metal-a: #EEF2F5;
   --logo-metal-b: #9AABB6;
@@ -93,53 +87,27 @@ body {
   color: var(--ink);
   font-family: "Source Serif 4", Georgia, serif;
   font-size: 18px;
-  line-height: 1.72;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ---------- layout ---------- */
 .wrap {
   display: grid;
-  grid-template-columns: 230px minmax(0, 1fr) 200px;
-  grid-template-areas: "nav main toc";
-  gap: 2.6rem;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 1.5rem
-}
-
-/* pages with no in-page sections drop the right rail */
-.wrap.two {
   grid-template-columns: 230px minmax(0, 1fr);
-  grid-template-areas: "nav main"
+  grid-template-areas: "nav main";
+  gap: 2.6rem;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 194px 0 1.5rem
 }
 
 .rail-l { grid-area: nav }
 
-/* right rail: a full-height sticky box with the contents centred inside,
-   so it floats near the middle of the viewport as the reader scrolls */
-.rail-r {
-  grid-area: toc;
-  position: sticky;
-  top: 0;
-  align-self: start;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0;
-  overflow: visible
-}
-
-.rail-r .toc {
-  max-height: calc(100vh - 4rem);
-  overflow-y: auto
-}
-
 .main {
   grid-area: main;
   max-width: 720px;
-  padding: 3.5rem 0 6rem
+  padding: 3.5rem 0 5rem
 }
 
 /* ---------- rails ---------- */
@@ -178,25 +146,42 @@ body {
 
 .site-nav { margin-bottom: 0 }
 
+.site-nav .rail-label { display: none }
+
 .site-nav a {
   display: block;
-  padding: .46rem 0 .46rem .85rem;
-  color: var(--ink-soft);
+  margin-bottom: .18rem;
+  padding: .52rem .75rem;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  color: var(--ink);
   text-decoration: none;
-  border-left: 2px solid var(--rule);
-  line-height: 1.55
+  background: var(--panel);
+  border: none;
+  border-radius: 3px;
+  line-height: 1.4;
+  transition: background .12s ease, color .12s ease
 }
 
-.site-nav a:hover { color: var(--ink) }
+.site-nav a:hover { background: var(--chip-bg) }
 
 .site-nav a[aria-current="page"] {
-  color: var(--ink);
-  border-left-color: var(--h2c)
+  background: var(--h1c);
+  color: var(--paper);
+  font-weight: 500
 }
 
 .site-nav a.sub {
-  padding-left: 1.7rem;
-  font-size: 11.5px
+  margin-left: .9rem;
+  padding: .42rem .7rem;
+  font-size: 11px;
+  color: var(--ink-soft);
+  background: none
+}
+
+.site-nav a.sub:hover {
+  background: var(--panel);
+  color: var(--ink)
 }
 
 .toc a {
@@ -258,16 +243,14 @@ h2 {
   font-weight: 600;
   font-size: 1.2rem;
   letter-spacing: -.005em;
-  margin: 3.2rem 0 .9rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--rule)
+  margin: 2.3rem 0 .7rem
 }
 
 h3 {
   font-family: Fraunces, serif;
   font-weight: 400;
   font-size: 1.06rem;
-  margin: 2rem 0 .6rem
+  margin: 1.6rem 0 .5rem
 }
 
 h2 .num,
@@ -279,11 +262,11 @@ h3 .num {
   margin-right: .6em
 }
 
-p { margin: 0 0 1.15rem }
+p { margin: 0 0 .9rem }
 a { color: var(--h1c) }
 
-ul { margin: 0 0 1.15rem; padding-left: 1.15rem }
-li { margin-bottom: .5rem }
+ul { margin: 0 0 .9rem; padding-left: 1.15rem }
+li { margin-bottom: .38rem }
 
 /* ---------- contact strip ---------- */
 .meta {
@@ -317,6 +300,67 @@ li { margin-bottom: .5rem }
   font-size: .85em
 }
 
+/* ---------- homepage introduction ---------- */
+.intro {
+  font-size: 1.06rem;
+  line-height: 1.72;
+  margin-bottom: 2rem
+}
+
+.intro p:last-child { margin-bottom: 0 }
+
+/* ---------- note under the homepage feature ---------- */
+.feature-note {
+  font-size: .92rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: -.4rem 0 0
+}
+
+.feature-note ul {
+  margin: .2rem 0 .5rem;
+  padding-left: 1.1rem
+}
+
+.feature-note li { margin-bottom: .2rem }
+
+/* ---------- tutorial series list ---------- */
+.series {
+  display: block;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit
+}
+
+.series:first-of-type { padding-top: .2rem }
+
+.series .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap
+}
+
+.series .name {
+  font-family: Fraunces, serif;
+  font-size: 1.16rem;
+  font-weight: 600;
+  line-height: 1.3
+}
+
+a.series .name { color: var(--h1c) }
+a.series:hover .name { text-decoration: underline }
+
+.series .what {
+  color: var(--ink-soft);
+  font-size: .95em;
+  margin-top: .25rem
+}
+
+.series.soon .name { color: var(--ink-soft); font-weight: 400 }
+
 /* ---------- homepage feature slot ---------- */
 .feature {
   display: grid;
@@ -324,7 +368,7 @@ li { margin-bottom: .5rem }
   align-items: center;
   gap: 1rem;
   border: 1px solid var(--rule);
-  border-left: 4px solid var(--h2c);
+  border-left: 4px solid var(--h1c);
   border-radius: 0 5px 5px 0;
   background: var(--panel);
   padding: 1.15rem 1.3rem;
@@ -335,13 +379,13 @@ li { margin-bottom: .5rem }
 }
 
 .feature:hover {
-  border-color: var(--h2c);
+  border-color: var(--h1c);
   background: var(--chip-bg);
   transform: translateX(2px)
 }
 
 .feature:focus-visible {
-  outline: 2px solid var(--h2c);
+  outline: 2px solid var(--h1c);
   outline-offset: 3px
 }
 
@@ -350,7 +394,7 @@ li { margin-bottom: .5rem }
   font-size: 10.5px;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--h2c)
+  color: var(--ink-soft)
 }
 
 .feature .name {
@@ -374,20 +418,20 @@ li { margin-bottom: .5rem }
   justify-self: end;
   width: 2.1rem;
   height: 2.1rem;
-  border: 1px solid var(--h2c);
+  border: 1px solid var(--h1c);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "IBM Plex Mono", monospace;
   font-size: 15px;
-  color: var(--h2c);
+  color: var(--h1c);
   transition: transform .15s ease, background .15s ease
 }
 
 .feature:hover .arrow {
   transform: translateX(3px);
-  background: var(--h2c);
+  background: var(--h1c);
   color: var(--paper)
 }
 
@@ -397,6 +441,32 @@ li { margin-bottom: .5rem }
 
   .feature:hover,
   .feature:hover .arrow { transform: none }
+}
+
+
+/* ---------- contents, top right: always visible, deliberately quiet ---------- */
+.toc-panel {
+  position: fixed;
+  top: 3.5rem;
+  right: 1.25rem;
+  width: 152px;
+  z-index: 15;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px
+}
+
+.toc-panel .rail-label {
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  margin-bottom: .5rem;
+  opacity: .8
+}
+
+.toc-panel .toc a {
+  padding: .26rem 0 .26rem .6rem;
+  font-size: 11px;
+  line-height: 1.45;
+  border-left-width: 1px
 }
 
 /* ---------- theme switch ---------- */
@@ -475,8 +545,8 @@ li { margin-bottom: .5rem }
 }
 
 .chip.hot {
-  color: var(--h2c);
-  border-color: var(--h2c)
+  color: var(--h1c);
+  border-color: var(--h1c)
 }
 
 /* ---------- collapsible cards ---------- */
@@ -486,8 +556,6 @@ details.card {
   border-radius: 0 4px 4px 0;
   margin: 1.2rem 0
 }
-
-details.card.alt { border-left-color: var(--accent) }
 
 details.card > summary {
   list-style: none;
@@ -505,7 +573,6 @@ details.card > summary {
   color: var(--h1c)
 }
 
-details.card.alt > summary { color: var(--accent) }
 details.card > summary::-webkit-details-marker { display: none }
 
 details.card > summary::after {
@@ -537,7 +604,7 @@ h4, .card-body h4 {
 
 /* ---------- callout ---------- */
 .note-box {
-  border-left: 3px solid var(--h2c);
+  border-left: 3px solid var(--h1c);
   border-radius: 0 4px 4px 0;
   background: var(--panel);
   padding: 1rem 1.2rem;
@@ -552,7 +619,7 @@ h4, .card-body h4 {
   font-weight: 500;
   letter-spacing: .09em;
   text-transform: uppercase;
-  color: var(--h2c);
+  color: var(--h1c);
   margin-bottom: .3rem
 }
 
@@ -560,7 +627,7 @@ h4, .card-body h4 {
 
 /* ---------- entries ---------- */
 .entry {
-  padding: 1rem 0;
+  padding: .8rem 0;
   border-bottom: 1px solid var(--rule)
 }
 
@@ -591,7 +658,7 @@ h4, .card-body h4 {
   display: grid;
   grid-template-columns: 3.6rem minmax(0, 1fr);
   gap: 1rem;
-  padding: .9rem 0;
+  padding: .75rem 0;
   border-bottom: 1px solid var(--rule);
   font-size: .96em
 }
@@ -599,7 +666,7 @@ h4, .card-body h4 {
 .pubs .yr {
   font-family: "IBM Plex Mono", monospace;
   font-size: 12px;
-  color: var(--h2c);
+  color: var(--ink-soft);
   padding-top: .35rem
 }
 
@@ -651,11 +718,11 @@ footer a { color: var(--ink-soft) }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1040px) {
-  .wrap,
-  .wrap.two {
+  .wrap {
     grid-template-columns: 1fr;
     grid-template-areas: "nav" "toc" "main";
-    gap: 0
+    gap: 0;
+    padding: 0 1.5rem
   }
 
   .rail {
@@ -664,14 +731,28 @@ footer a { color: var(--ink-soft) }
     overflow: visible
   }
 
-  .rail-r {
-    height: auto;
-    display: block
+  .toc-panel {
+    position: static;
+    width: auto;
+    grid-area: toc;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--rule)
   }
 
-  .rail-r .toc {
-    max-height: none;
-    overflow: visible
+  .wrap.no-toc .rail-l { border-bottom: 1px solid var(--rule) }
+
+  .toc-panel { font-size: 12.5px }
+
+  .toc-panel .rail-label {
+    font-size: 10.5px;
+    margin-bottom: 1.1rem
+  }
+
+  .toc-panel .toc a {
+    padding: .44rem 0 .44rem .85rem;
+    font-size: 12.5px;
+    line-height: 1.55;
+    border-left-width: 2px
   }
 
   .rail-l { padding: 2rem 0 1.4rem }
@@ -680,8 +761,6 @@ footer a { color: var(--ink-soft) }
     padding: 0 0 1.4rem;
     border-bottom: 1px solid var(--rule)
   }
-
-  .wrap.two .rail-l { border-bottom: 1px solid var(--rule) }
 
   .mark {
     max-width: 168px;
@@ -701,17 +780,14 @@ footer a { color: var(--ink-soft) }
   }
 
   .site-nav a {
-    border-left: none;
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    padding: .25rem .6rem
+    margin-bottom: 0;
+    padding: .32rem .68rem
   }
 
-  .site-nav a.sub { padding-left: .6rem }
-
-  .site-nav a[aria-current="page"] {
-    border-color: var(--h2c);
-    color: var(--ink)
+  .site-nav a.sub {
+    margin-left: 0;
+    padding: .32rem .68rem;
+    background: var(--panel)
   }
 
   .toc {
@@ -782,9 +858,4 @@ footer a { color: var(--ink-soft) }
   margin-bottom: .7rem
 }
 
-/* the first heading in the main column has nothing above it to divide from */
-.main > h2:first-child {
-  border-top: none;
-  padding-top: 0;
-  margin-top: 0
-}
+.main > h2:first-child { margin-top: 0 }
